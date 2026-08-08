@@ -55,8 +55,23 @@ of matching or beating MileLion's own publish speed:
 - [x] Output schema defined
 - [x] MileLion fallback tier built and tested end-to-end (`samples/2026-08.json`)
 - [ ] SIA-official primary tier — not yet tested against a live (revealed)
-      cycle; next reveal is expected mid-August 2026
+      cycle; next reveal is expected mid-August 2026 (this routine's first
+      live fire)
 - [ ] One Mile at a Time second-fallback tier — not yet needed/tested
-- [ ] Scheduled cloud routine (RemoteTrigger) — procedure is written and
-      ready to register, holding off on actually creating the recurring
-      trigger until reviewed
+- [x] Scheduled cloud routine (RemoteTrigger) — live as of 2026-08-08
+
+## Scheduled routine
+
+- **Name**: `⚡ SS_Escapes_Monthly_Extract` (id `trig_01QhQcNpgm11HAxTdwE98dw8`)
+- **Cron**: `23 1,4,7,10,13 15,16 * *` (UTC) — fires 5× on the 15th and 5× on
+  the 16th of each month, at 9am/12pm/3pm/6pm/9pm Singapore time each day.
+  This is a simplified single-rule approximation of `PROCEDURE.md`'s
+  described cadence (every ~2h through day one, one more check the next
+  morning, then stop) — each fire is idempotent (it no-ops if that month's
+  `samples/<travel_month>.json` already exists), so the extra fires on day
+  two are a cheap safety margin rather than a problem.
+- **Notifications**: push, on completion of every fire (including no-ops) —
+  this is the cue for the human review gate (`PROCEDURE.md` step 8).
+- **First live fire**: 2026-08-15, 09:23 SGT — will be the first real test
+  of the SIA-direct primary tier, since it's only been validated
+  interactively so far, not from an unattended scheduled context.

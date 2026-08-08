@@ -25,4 +25,4 @@ Brand system and (upcoming) automation for a monthly newsletter/social presence 
 - [x] Website brand/style instructions (CSS tokens)
 - [~] Scraper for Spontaneous Escapes business class promos — procedure built, MileLion fallback tested end-to-end; SIA-direct primary tier not yet validated against a live cycle
 - [ ] Monthly artifact / carousel / story templates
-- [ ] Monthly automation (15th of the month, push + email delivery) — procedure ready to schedule via RemoteTrigger, not yet registered
+- [x] Monthly extraction automation (RemoteTrigger, fires around the 15th–16th) — live, see [`scraper/README.md`](scraper/README.md#scheduled-routine). Push + email newsletter delivery itself still to come once the artifact/carousel/story templates exist.
