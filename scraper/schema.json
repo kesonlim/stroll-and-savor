@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Stroll & Savor — Spontaneous Escapes business-class extract",
+  "type": "object",
+  "required": ["travel_month", "generated_at", "source", "source_url", "booking_window", "travel_window", "deals"],
+  "properties": {
+    "travel_month": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}$",
+      "description": "The month these fares are valid for travel, e.g. 2026-09"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this extract was produced"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["sia-official", "milelion", "onemileatatime"],
+      "description": "Which tier of the fallback chain actually produced this extract"
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "booking_window": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "string", "format": "date" },
+        "end": { "type": "string", "format": "date" }
+      }
+    },
+    "travel_window": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "string", "format": "date" },
+        "end": { "type": "string", "format": "date" }
+      }
+    },
+    "discount_pct": {
+      "type": "number",
+      "description": "e.g. 30 for 30% off Saver Awards"
+    },
+    "deals": {
+      "type": "array",
+      "description": "Business-class-only rows. Routes with no business class offer in the source are excluded.",
+      "items": {
+        "type": "object",
+        "required": ["origin", "destination", "cabin", "miles"],
+        "properties": {
+          "origin": { "type": "string", "description": "IATA code or city name as given by the source, e.g. SIN" },
+          "destination": { "type": "string" },
+          "route_label": { "type": "string", "description": "Human-readable label as it should appear in content, e.g. 'SIN → HND'" },
+          "cabin": { "type": "string", "const": "business" },
+          "miles": { "type": "integer", "description": "Discounted award miles cost, one-way unless noted" },
+          "miles_before_discount": { "type": "integer" },
+          "taxes_fees": { "type": "string", "description": "As given by source, e.g. 'S$92' — currency varies by source, kept as-is not normalized" },
+          "notes": { "type": "string", "description": "Blackout dates, one-direction-only caveats, etc." }
+        }
+      }
+    },
+    "extraction_notes": {
+      "type": "string",
+      "description": "Free text: anything the extraction procedure wants a human reviewer to double-check"
+    }
+  }
+}

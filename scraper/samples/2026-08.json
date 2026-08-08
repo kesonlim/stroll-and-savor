@@ -1,0 +1,314 @@
+{
+  "travel_month": "2026-08",
+  "generated_at": "2026-08-08T12:46:03.813233+00:00",
+  "source": "milelion",
+  "source_url": "https://milelion.com/2026/07/15/singapore-airlines-krisflyer-spontaneous-escapes-for-august-2026-announced/",
+  "booking_window": {
+    "start": "2026-07-15",
+    "end": "2026-07-31"
+  },
+  "travel_window": {
+    "start": "2026-08-01",
+    "end": "2026-08-31"
+  },
+  "discount_pct": 30,
+  "deals": [
+    {
+      "origin": "Singapore",
+      "destination": "Denpasar",
+      "route_label": "Singapore \u2192 Denpasar",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ934, SQ946, SQ948. Blackout dates: 1 - 9 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Jakarta",
+      "route_label": "Singapore \u2192 Jakarta",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ950, SQ952, SQ960. Blackout dates: 17 - 19 August, 24 - 26 August 2026."
+    },
+    {
+      "origin": "Jakarta",
+      "destination": "Singapore",
+      "route_label": "Jakarta \u2192 Singapore",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ951, SQ963, SQ965. Blackout dates: 13 - 16 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Kuala Lumpur",
+      "route_label": "Singapore \u2192 Kuala Lumpur",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ122. Blackout dates: 7-Aug-26."
+    },
+    {
+      "origin": "Kuala Lumpur",
+      "destination": "Singapore",
+      "route_label": "Kuala Lumpur \u2192 Singapore",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ105. Blackout dates: 8 - 11 August, 22 - 23 August, 30 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Medan",
+      "route_label": "Singapore \u2192 Medan",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ990, SQ994. Blackout dates: 5 - 8 August, 20 - 23 August 2026."
+    },
+    {
+      "origin": "Surabaya",
+      "destination": "Singapore",
+      "route_label": "Surabaya \u2192 Singapore",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ922. Blackout dates: 7 August, 18 - 19 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Bangkok",
+      "route_label": "Singapore \u2192 Bangkok",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ706. Blackout dates: 1 August, 6 - 8 August, 13 - 14 August 2026."
+    },
+    {
+      "origin": "Bangkok",
+      "destination": "Singapore",
+      "route_label": "Bangkok \u2192 Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ719. Blackout dates: 9 - 11 August, 16 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Hanoi",
+      "route_label": "Singapore \u2192 Hanoi",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ192. Blackout dates: 3 - 9 August, 21 August 2026."
+    },
+    {
+      "origin": "Hanoi",
+      "destination": "Singapore",
+      "route_label": "Hanoi \u2192 Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ191. Blackout dates: 7 August, 10 - 11 August, 14 August, 16 August, 23 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Phuket",
+      "route_label": "Singapore \u2192 Phuket",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ726. Blackout dates: 1 August, 5 - 8 August, 13 August, 15 August, 19 August, 21 August, 23 August, 26 - 27 August, 29 August, 31 August 2026."
+    },
+    {
+      "origin": "Phuket",
+      "destination": "Singapore",
+      "route_label": "Phuket \u2192 Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ725. Blackout dates: 1 August, 5 August, 10 August, 13 - 14 August, 17 - 18 August, 20 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Manila",
+      "route_label": "Singapore \u2192 Manila",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ914. Blackout dates: 1 August, 3 August 2026."
+    },
+    {
+      "origin": "Manila",
+      "destination": "Singapore",
+      "route_label": "Manila \u2192 Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ917. Blackout dates: 1 - 3 August, 5 - 6 August, 8 August, 10 - 13 August, 18 - 23 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Ho Chi Minh City",
+      "route_label": "Singapore \u2192 Ho Chi Minh City",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ184, SQ186. Blackout dates: 7-Aug-26."
+    },
+    {
+      "origin": "Ho Chi Minh City",
+      "destination": "Singapore",
+      "route_label": "Ho Chi Minh City \u2192 Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ183, SQ185. Blackout dates: 10-Aug-26."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Hangzhou",
+      "route_label": "Singapore \u2192 Hangzhou",
+      "cabin": "business",
+      "miles": 24850,
+      "notes": "Flights: SQ838."
+    },
+    {
+      "origin": "Hangzhou",
+      "destination": "Singapore",
+      "route_label": "Hangzhou \u2192 Singapore",
+      "cabin": "business",
+      "miles": 24850,
+      "notes": "Flights: SQ839. Blackout dates: 1 - 2 August, 8 - 12 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Hong Kong",
+      "route_label": "Singapore \u2192 Hong Kong",
+      "cabin": "business",
+      "miles": 24850,
+      "notes": "Flights: SQ874. Blackout dates: 5 - 9 August 2026."
+    },
+    {
+      "origin": "Hong Kong",
+      "destination": "Singapore",
+      "route_label": "Hong Kong \u2192 Singapore",
+      "cabin": "business",
+      "miles": 24850,
+      "notes": "Flights: SQ899. Blackout dates: 10 - 11 August 2026."
+    },
+    {
+      "origin": "Beijing",
+      "destination": "Singapore",
+      "route_label": "Beijing \u2192 Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ805, SQ807. Blackout dates: 1 - 18 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Beijing Daxing",
+      "route_label": "Singapore \u2192 Beijing Daxing",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ810. Blackout dates: 1 August, 7 - 9 August 2026."
+    },
+    {
+      "origin": "Beijing Daxing",
+      "destination": "Singapore",
+      "route_label": "Beijing Daxing \u2192 Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ811. Blackout dates: 1 - 4 August, 7 - 8 August, 10 August, 16 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Shanghai",
+      "route_label": "Singapore \u2192 Shanghai",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ826, SQ828, SQ830."
+    },
+    {
+      "origin": "Shanghai",
+      "destination": "Singapore",
+      "route_label": "Shanghai \u2192 Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ833, SQ835. Blackout dates: 2 - 3 August, 5 August, 10 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Ahmedabad",
+      "route_label": "Singapore \u2192 Ahmedabad",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ504. Blackout dates: 2 August, 9 - 11 August 2026."
+    },
+    {
+      "origin": "Ahmedabad",
+      "destination": "Singapore",
+      "route_label": "Ahmedabad \u2192 Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ505. Blackout dates: 4 August, 11 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Chennai",
+      "route_label": "Singapore \u2192 Chennai",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ524, SQ528. Blackout dates: 1 - 4 August, 7 August, 9 - 11 August, 24 - 25 August 2026."
+    },
+    {
+      "origin": "Chennai",
+      "destination": "Singapore",
+      "route_label": "Chennai \u2192 Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ525, SQ529. Blackout dates: 3 - 5 August, 10 - 11 August, 14 - 18 August, 29 - 31 August 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Colombo",
+      "route_label": "Singapore \u2192 Colombo",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ468."
+    },
+    {
+      "origin": "Colombo",
+      "destination": "Singapore",
+      "route_label": "Colombo \u2192 Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ469."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Dhaka",
+      "route_label": "Singapore \u2192 Dhaka",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ446."
+    },
+    {
+      "origin": "Dhaka",
+      "destination": "Singapore",
+      "route_label": "Dhaka \u2192 Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ447."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Cairns",
+      "route_label": "Singapore \u2192 Cairns",
+      "cabin": "business",
+      "miles": 50400,
+      "notes": "Flights: SQ203. Blackout dates: 1 - 9 August 2026."
+    },
+    {
+      "origin": "Cairns",
+      "destination": "Singapore",
+      "route_label": "Cairns \u2192 Singapore",
+      "cabin": "business",
+      "miles": 50400,
+      "notes": "Flights: SQ204. Blackout dates: 1 August, 10 - 16 August 2026."
+    },
+    {
+      "origin": "Los Angeles",
+      "destination": "Tokyo",
+      "route_label": "Los Angeles \u2192 Tokyo",
+      "cabin": "business",
+      "miles": 79800,
+      "notes": "Flights: SQ11. Blackout dates: 1 - 3 August, 13 - 18 August 2026."
+    }
+  ],
+  "extraction_notes": "Test run of the extraction procedure (2026-08-08), executed against the MileLion fallback tier since SIA's own page was between reveal cycles at the time. Data pulled from the article's embedded Flourish visualisation (id 29635069, 'Business & Economy Class' table) rather than the article prose, which only lists partial highlights. Route strings split on ' to ' from MileLion's 'X to Y' format \u2014 verify this holds for routes with 'to' in a city name (none observed this run)."
+}

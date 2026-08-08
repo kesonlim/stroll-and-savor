@@ -13,6 +13,7 @@ Brand system and (upcoming) automation for a monthly newsletter/social presence 
   - `website-style-guide.css` / `website-style-guide.md` — framework-agnostic CSS tokens for the website, derived from the CI guide.
   - `fonts/` — self-hosted `.woff2` files (IBM Plex Sans, Space Mono, Courier Prime) backing the website style guide.
   - `scripts/` — Python build scripts used to generate the HTML guide and render the PNG/ICO assets, kept for reproducibility.
+- `scraper/` — the monthly Spontaneous Escapes business-class extraction procedure, output schema, and test runs. See [`scraper/README.md`](scraper/README.md).
 - `.claude/skills/design-taste-frontend/` — anti-slop frontend design skill (sourced from `Leonxlnx/taste-skill`), available to any Claude Code session working in this repo.
 
 ## Status
@@ -22,6 +23,6 @@ Brand system and (upcoming) automation for a monthly newsletter/social presence 
 - [x] Brand/corporate identity guide written
 - [x] Per-platform profile pictures & banners produced
 - [x] Website brand/style instructions (CSS tokens)
-- [ ] Scraper for Spontaneous Escapes business class promos
+- [~] Scraper for Spontaneous Escapes business class promos — procedure built, MileLion fallback tested end-to-end; SIA-direct primary tier not yet validated against a live cycle
 - [ ] Monthly artifact / carousel / story templates
-- [ ] Monthly automation (15th of the month, push + email delivery)
+- [ ] Monthly automation (15th of the month, push + email delivery) — procedure ready to schedule via RemoteTrigger, not yet registered
