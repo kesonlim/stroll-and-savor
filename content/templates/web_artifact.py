@@ -1,13 +1,18 @@
-"""Monthly web artifact: full-width HTML page listing every business-class
-route for the month, grouped by region. Text-dense, full three-typeface
-system, dot-grid throughout -- per CI guide section 06's "Applying the
-system" row for this surface."""
+"""Monthly web artifact: full-width HTML content listing every
+business-class route for the month, grouped by region. Text-dense, full
+three-typeface system, dot-grid throughout -- per CI guide section 06's
+"Applying the system" row for this surface.
+
+`render_content` + `CONTENT_STYLE` are the reusable building blocks (used
+directly by site/templates/blog_post.py, which wraps them in real site
+chrome instead of a standalone document). `render` is the standalone
+version used by content/scripts/generate.py's own output."""
 import sys
 from pathlib import Path
 from datetime import datetime
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from brand import CSS_PATH, WORDMARK_INK, ROUTE_LINE_SVG  # noqa: E402
+from brand import CSS_PATH, WORDMARK_INK  # noqa: E402
 from curate import group_all_by_region, REGION_ORDER  # noqa: E402
 
 
@@ -21,8 +26,34 @@ SOURCE_LABEL = {
     "onemileatatime": "One Mile at a Time",
 }
 
+CONTENT_STYLE = """
+  .masthead { margin-bottom: 3rem; }
+  .masthead .mark { width: 260px; max-width: 60vw; margin-bottom: 1.6rem; }
+  .masthead .eyebrow { display: block; margin-bottom: 0.8rem; }
+  .masthead h1 { margin: 0 0 1rem; }
+  .masthead .window-row {
+    display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 1.6rem;
+    padding-top: 1.2rem; border-top: 1px dashed var(--rule);
+    font-family: var(--font-data); font-size: 0.78rem; color: var(--ink-soft);
+  }
+  .masthead .window-row b { color: var(--ink); font-weight: 400; }
+  .region-block { margin: 3rem 0; padding-top: 2rem; border-top: 1px solid var(--rule); }
+  .region-block h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; margin-bottom: 1.2rem; }
+  .deal-list { display: flex; flex-direction: column; }
+  .deal-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 0.2rem 1.2rem;
+    padding: 0.9rem 0; border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .deal-row .route { font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
+  .deal-row .miles { font-size: 0.92rem; color: var(--rust-text); text-align: right; }
+  .deal-row .deal-notes { grid-column: 1 / -1; font-size: 0.76rem; color: var(--ink-soft); font-family: var(--font-data); }
+  .artifact-footnote { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+"""
 
-def render(data: dict) -> str:
+
+def render_content(data: dict) -> str:
+    """Masthead + region-grouped route list + footnote. No <html>/<head>/<body>."""
     travel_month = data["travel_month"]
     label = month_label(travel_month)
     groups = group_all_by_region(data["deals"])
@@ -47,39 +78,9 @@ def render(data: dict) -> str:
           <div class="deal-list">{row_html}</div>
         </section>""")
 
-    body = "".join(region_sections)
+    regions_html = "".join(region_sections)
 
-    return f"""<!doctype html>
-<html><head><meta charset="utf-8">
-<title>Spontaneous Escapes — {label} — Stroll &amp; Savor</title>
-<link rel="stylesheet" href="file://{CSS_PATH}">
-<style>
-  body {{ max-width: 900px; margin: 0 auto; padding: 4rem 1.75rem 6rem; }}
-  .masthead {{ margin-bottom: 3rem; }}
-  .masthead .mark {{ width: 260px; max-width: 60vw; margin-bottom: 1.6rem; }}
-  .masthead .eyebrow {{ display: block; margin-bottom: 0.8rem; }}
-  .masthead h1 {{ margin: 0 0 1rem; }}
-  .masthead .window-row {{
-    display: flex; gap: 1.6rem; flex-wrap: wrap; margin-top: 1.6rem;
-    padding-top: 1.2rem; border-top: 1px dashed var(--rule);
-    font-family: var(--font-data); font-size: 0.78rem; color: var(--ink-soft);
-  }}
-  .masthead .window-row b {{ color: var(--ink); font-weight: 400; }}
-  .region-block {{ margin: 3rem 0; padding-top: 2rem; border-top: 1px solid var(--rule); }}
-  .region-block h3 {{ font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; margin-bottom: 1.2rem; }}
-  .deal-list {{ display: flex; flex-direction: column; }}
-  .deal-row {{
-    display: grid; grid-template-columns: 1fr auto; gap: 0.2rem 1.2rem;
-    padding: 0.9rem 0; border-bottom: 1px solid var(--rule);
-    align-items: baseline;
-  }}
-  .deal-row .route {{ font-family: var(--font-display); font-weight: 700; font-size: 1rem; }}
-  .deal-row .miles {{ font-size: 0.92rem; color: var(--rust-text); text-align: right; }}
-  .deal-row .deal-notes {{ grid-column: 1 / -1; font-size: 0.76rem; color: var(--ink-soft); font-family: var(--font-data); }}
-  footer {{ margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }}
-</style>
-</head>
-<body>
+    return f"""
   <div class="masthead">
     <div class="mark">{WORDMARK_INK}</div>
     <span class="eyebrow">Spontaneous Escapes — {label}</span>
@@ -91,11 +92,25 @@ def render(data: dict) -> str:
       <span>{len(data["deals"])} business-class fares listed</span>
     </div>
   </div>
-  {body}
-  <footer>
+  {regions_html}
+  <div class="artifact-footnote">
     <p>Discounts may apply in one direction only. Blackout dates and flight numbers are noted per route where given. Always confirm live availability on singaporeair.com before booking — this is a field note, not a booking engine.</p>
-  </footer>
-</body></html>"""
+  </div>"""
+
+
+def render(data: dict) -> str:
+    """Standalone document version (used by content/scripts/generate.py)."""
+    label = month_label(data["travel_month"])
+    return f"""<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Spontaneous Escapes — {label} — Stroll &amp; Savor</title>
+<link rel="stylesheet" href="file://{CSS_PATH}">
+<style>
+  body {{ max-width: 900px; margin: 0 auto; padding: 4rem 1.75rem 6rem; }}
+  {CONTENT_STYLE}
+</style>
+</head>
+<body>{render_content(data)}</body></html>"""
 
 
 if __name__ == "__main__":

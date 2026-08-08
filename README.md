@@ -15,6 +15,7 @@ Brand system and (upcoming) automation for a monthly newsletter/social presence 
   - `scripts/` — Python build scripts used to generate the HTML guide and render the PNG/ICO assets, kept for reproducibility.
 - `scraper/` — the monthly Spontaneous Escapes business-class extraction procedure, output schema, and test runs. See [`scraper/README.md`](scraper/README.md).
 - `content/` — web artifact / carousel / story templates and generated monthly posts, built from `brand/` and fed by `scraper/`. See [`content/README.md`](content/README.md).
+- `site/` — the public website (landing page + blog), deployed to Cloudflare Pages. See [`site/README.md`](site/README.md).
 - `.claude/skills/design-taste-frontend/` — anti-slop frontend design skill (sourced from `Leonxlnx/taste-skill`), available to any Claude Code session working in this repo.
 
 ## Status
@@ -26,4 +27,7 @@ Brand system and (upcoming) automation for a monthly newsletter/social presence 
 - [x] Website brand/style instructions (CSS tokens)
 - [~] Scraper for Spontaneous Escapes business class promos — procedure built, MileLion fallback tested end-to-end; SIA-direct primary tier not yet validated against a live cycle
 - [x] Monthly artifact / carousel / story templates — built and run end-to-end against real August 2026 data, see [`content/README.md`](content/README.md)
-- [x] Monthly extraction automation (RemoteTrigger, fires around the 15th–18th) — live, see [`scraper/README.md`](scraper/README.md#scheduled-routine). Generating content (`content/`) and actually publishing it are still manual/separate steps.
+- [x] Monthly extraction automation (RemoteTrigger, fires around the 15th–18th) — live, see [`scraper/README.md`](scraper/README.md#scheduled-routine). Content generation (`content/`) is now chained onto the same routine (browser-availability in that environment is unvalidated — degrades gracefully to text-only if no browser is found).
+- [x] Public site (landing page + blog) — live at `https://stroll-and-savor.pages.dev`, custom domain `strollsavor.thethinkthank.com` pending a one-time manual DNS step (see [`site/README.md`](site/README.md)). First blog post published from real August 2026 data. Deploys are manual, not wired to the extraction routine, per the review-gate policy.
+- [ ] Social media posting — carousel/story images + proposed captions are generated (`content/posts/<month>/`) but posted manually; no publishing automation, and no accounts confirmed live yet.
+- [ ] Newsletter/mailing list — doesn't exist yet.
