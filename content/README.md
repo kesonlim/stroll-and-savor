@@ -47,11 +47,41 @@ logic lives in `content/scripts/curate.py`:
 
 ## Rendering
 
-`content/scripts/render.py` shells out to this Mac's local Chrome in
+`content/scripts/render.py` shells out to a Chromium-family browser in
 headless mode to screenshot HTML at an exact pixel canvas size — same
-approach as `brand/scripts/render_platform_assets.py`. **Local-machine
-only** — this does not run inside the scheduled cloud routine, which only
-produces data (see `scraper/README.md`), not images.
+approach as `brand/scripts/render_platform_assets.py`. The browser location
+is auto-detected (`render.find_browser`) across known Mac/Playwright paths,
+a `google-chrome`/`chromium` PATH lookup, and an `$STROLL_SAVOR_CHROME`
+override — so it works locally on this Mac and *should* work inside the
+scheduled cloud routine's environment too, but **that hasn't been proven
+yet** (see "Wired into the extraction routine" below).
+
+If no browser is found, `generate.py` degrades gracefully rather than
+failing: it still writes `web-artifact.html` and all caption `.txt` files
+(neither needs a browser), skips the PNGs, and says so plainly in that
+run's `README.md` — including the exact command to run locally afterward
+to fill in the images.
+
+## Wired into the extraction routine
+
+The `⚡ SS_Escapes_Monthly_Extract` cloud routine (see
+`scraper/README.md`'s "Scheduled routine" section) now also runs
+`content/scripts/generate.py` after a successful extraction, in the same
+fire, and commits/pushes whatever it produces alongside the extracted data.
+
+This is the routine's first attempt at finding a browser in that
+environment — genuinely untested before this. Expected outcomes going
+forward:
+- **Browser found**: full carousel/story PNGs land automatically, same as
+  a local run.
+- **No browser found**: `web-artifact.html` and captions still land
+  automatically (already useful — captions are most of the manual writing
+  work), and `content/posts/<travel_month>/README.md` says exactly what to
+  run locally to add images. Not a failure, just a partial win.
+
+Check `content/posts/<travel_month>/README.md` after the first live fire
+(2026-08-15) to see which of these actually happened, and update this
+section once it's known rather than left as a prediction.
 
 ## Files
 
@@ -72,5 +102,9 @@ produces data (see `scraper/README.md`), not images.
 - [x] Caption copy generator
 - [x] First real run: `posts/2026-08/` — generated from the July 15 2026
       release (August 2026 travel), MileLion-sourced (`scraper/samples/2026-08.json`)
+- [x] Wired into the extraction routine (`⚡ SS_Escapes_Monthly_Extract`
+      now runs `generate.py` after a successful extraction) — untested
+      against a live fire as of this writing; first real signal comes
+      2026-08-15
 - [ ] Actually posting anything — still fully manual, by design (review
       gate); no publishing automation exists yet
