@@ -10,6 +10,8 @@ Brand system and (upcoming) automation for a monthly newsletter/social presence 
   - `stroll-savor-moodboard.html` — early direction/moodboard exploration.
   - `logo-master/` — final logo files (SVG source, PNG exports, favicon).
   - `platform-assets/` — avatars and banners sized per platform (Instagram, Facebook, LinkedIn, YouTube, TikTok, Xiaohongshu, website OG image).
+  - `website-style-guide.css` / `website-style-guide.md` — framework-agnostic CSS tokens for the website, derived from the CI guide.
+  - `fonts/` — self-hosted `.woff2` files (IBM Plex Sans, Space Mono, Courier Prime) backing the website style guide.
   - `scripts/` — Python build scripts used to generate the HTML guide and render the PNG/ICO assets, kept for reproducibility.
 - `.claude/skills/design-taste-frontend/` — anti-slop frontend design skill (sourced from `Leonxlnx/taste-skill`), available to any Claude Code session working in this repo.
 
@@ -19,7 +21,7 @@ Brand system and (upcoming) automation for a monthly newsletter/social presence 
 - [x] Master logo file set produced
 - [x] Brand/corporate identity guide written
 - [x] Per-platform profile pictures & banners produced
-- [ ] Website brand/style instructions (CSS tokens)
+- [x] Website brand/style instructions (CSS tokens)
 - [ ] Scraper for Spontaneous Escapes business class promos
 - [ ] Monthly artifact / carousel / story templates
 - [ ] Monthly automation (15th of the month, push + email delivery)
