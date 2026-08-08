@@ -14,6 +14,7 @@ Brand system and (upcoming) automation for a monthly newsletter/social presence 
   - `fonts/` — self-hosted `.woff2` files (IBM Plex Sans, Space Mono, Courier Prime) backing the website style guide.
   - `scripts/` — Python build scripts used to generate the HTML guide and render the PNG/ICO assets, kept for reproducibility.
 - `scraper/` — the monthly Spontaneous Escapes business-class extraction procedure, output schema, and test runs. See [`scraper/README.md`](scraper/README.md).
+- `content/` — web artifact / carousel / story templates and generated monthly posts, built from `brand/` and fed by `scraper/`. See [`content/README.md`](content/README.md).
 - `.claude/skills/design-taste-frontend/` — anti-slop frontend design skill (sourced from `Leonxlnx/taste-skill`), available to any Claude Code session working in this repo.
 
 ## Status
@@ -24,5 +25,5 @@ Brand system and (upcoming) automation for a monthly newsletter/social presence 
 - [x] Per-platform profile pictures & banners produced
 - [x] Website brand/style instructions (CSS tokens)
 - [~] Scraper for Spontaneous Escapes business class promos — procedure built, MileLion fallback tested end-to-end; SIA-direct primary tier not yet validated against a live cycle
-- [ ] Monthly artifact / carousel / story templates
-- [x] Monthly extraction automation (RemoteTrigger, fires around the 15th–16th) — live, see [`scraper/README.md`](scraper/README.md#scheduled-routine). Push + email newsletter delivery itself still to come once the artifact/carousel/story templates exist.
+- [x] Monthly artifact / carousel / story templates — built and run end-to-end against real August 2026 data, see [`content/README.md`](content/README.md)
+- [x] Monthly extraction automation (RemoteTrigger, fires around the 15th–18th) — live, see [`scraper/README.md`](scraper/README.md#scheduled-routine). Generating content (`content/`) and actually publishing it are still manual/separate steps.
