@@ -1,10 +1,13 @@
 # Monthly extraction procedure
 
-Run this on the 15th of each month (SIA's own reveal cadence — confirmed via
-MileLion posting "Spontaneous Escapes for [next month] announced" consistently
-dated the 15th of the prior month). This doc is the literal prompt/checklist
-the scheduled cloud routine follows — read it top to bottom, in order, and
-stop at the first step that succeeds.
+Run this on the 15th of each month, **or the next working day if the 15th
+falls on a weekend** — per MileLion's own SEAT-tool writeup, SIA's release
+cadence has this exception built in, and it applies to August 2026's cycle
+specifically (the 15th is a Saturday, so the reveal may land on the 17th
+instead). The scheduled cloud routine (see `scraper/README.md`'s "Scheduled
+routine" section) covers this by firing across the 15th–18th, not just the
+15th–16th. This doc is the literal prompt/checklist that routine follows —
+read it top to bottom, in order, and stop at the first step that succeeds.
 
 ## Source order (decided 2026-08-08, see project history for the reasoning)
 

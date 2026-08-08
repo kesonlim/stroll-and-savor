@@ -63,15 +63,31 @@ of matching or beating MileLion's own publish speed:
 ## Scheduled routine
 
 - **Name**: `⚡ SS_Escapes_Monthly_Extract` (id `trig_01QhQcNpgm11HAxTdwE98dw8`)
-- **Cron**: `23 1,4,7,10,13 15,16 * *` (UTC) — fires 5× on the 15th and 5× on
-  the 16th of each month, at 9am/12pm/3pm/6pm/9pm Singapore time each day.
-  This is a simplified single-rule approximation of `PROCEDURE.md`'s
-  described cadence (every ~2h through day one, one more check the next
-  morning, then stop) — each fire is idempotent (it no-ops if that month's
-  `samples/<travel_month>.json` already exists), so the extra fires on day
-  two are a cheap safety margin rather than a problem.
+- **Cron**: `20 1,2,3,4,5,6 15,16,17,18 * *` (UTC) — fires hourly, 9:20am
+  through 2:20pm Singapore time, on the **15th through 18th** of each
+  month.
+- **Why days 15–18, not just 15–16**: MileLion's own SEAT-tool writeup
+  states SIA releases "on the 15th of each month, **or the next working
+  day**." All three of our reference data points (May/June/July 2026
+  reveals) happened to land on weekdays, so that rule was untested until
+  now — **August 15, 2026 is a Saturday**, so this routine's very first
+  live fire is also the first real test of the weekend-shift behavior. Day
+  range 15–18 covers every possible shift case: a Sunday 15th shifts to
+  Monday the 16th; a Saturday 15th shifts to Monday the 17th; an 18th
+  buffer day covers a Monday public holiday stacking on top of a weekend
+  15th. Each fire is idempotent (no-ops once `samples/<travel_month>.json`
+  exists for the month), so the extra days/hours cost nothing but a quick
+  no-op check.
+- **Why hourly, not every 30 min**: the platform enforces a 1-hour minimum
+  fire interval per trigger; every-30-min was rejected outright by the API.
+- **Timing basis — a proxy, not confirmed**: the 9am–2:20pm SGT window is
+  based on MileLion's article `datePublished` timestamps (11:34, 11:38,
+  11:47 SGT across three past reveals) — that's when the *blogger* posted
+  after noticing the page change, not a first-party SIA timestamp. Actual
+  SIA reveal time could be earlier. Wayback Machine access is blocked in
+  this environment, so this couldn't be verified more precisely; treat the
+  window as a best-effort estimate and widen it in `run-log.md` if actual
+  fires show the reveal happening outside it.
 - **Notifications**: push, on completion of every fire (including no-ops) —
   this is the cue for the human review gate (`PROCEDURE.md` step 8).
-- **First live fire**: 2026-08-15, 09:23 SGT — will be the first real test
-  of the SIA-direct primary tier, since it's only been validated
-  interactively so far, not from an unattended scheduled context.
+- **First live fire**: 2026-08-15, 09:20 SGT.
