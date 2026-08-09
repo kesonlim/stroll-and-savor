@@ -1,0 +1,48 @@
+{
+  "sources": {
+    "oneworld": "https://www.oneworld.com/members",
+    "skyteam": "https://www.skyteam.com/en/about/our-members"
+  },
+  "retrieved_at": "2026-08-09",
+  "note": "Tier 2 of the airline glossary (docs/growth-plan.md): oneworld and SkyTeam members flying to/from Changi, same cross-reference methodology as tier 1's Star Alliance list. 19 confirmed members total.",
+  "caveat": "Philippine Airlines is listed as a 'Future Member' on oneworld.com, not a full member yet -- excluded from oneworld_at_changi for the same reason Juneyao Air was excluded from tier 1 (Star Alliance Connecting Partner, not full member): don't conflate pending/partner status with confirmed membership. Revisit once it converts to full membership.",
+  "other_notes": "SkyTeam's own site (via third-party reporting, not confirmed on skyteam.com directly) suggests Asiana Airlines will eventually move from Star Alliance to SkyTeam following its merger with Korean Air, full integration reportedly by 2027 -- NOT yet reflected on either alliance's live member page as of 2026-08-09 (Asiana still shows as a current Star Alliance member on staralliance.com). Not acted on; noted for awareness when this data is next refreshed.",
+  "oneworld_members_full_list": [
+    "Alaska Airlines", "American Airlines", "British Airways", "Cathay Pacific",
+    "Fiji Airways", "Finnair", "Iberia", "Japan Airlines", "Malaysia Airlines",
+    "Oman Air", "Qantas", "Qatar Airways", "Royal Air Maroc", "Royal Jordanian",
+    "SriLankan Airlines"
+  ],
+  "oneworld_future_members_full_list": ["Philippine Airlines"],
+  "skyteam_members_full_list": [
+    "Aerolineas Argentinas", "Aeromexico", "Air Europa", "Air France",
+    "China Airlines", "China Eastern Airlines", "Delta Air Lines",
+    "Garuda Indonesia", "Kenya Airways", "KLM Royal Dutch Airlines", "Korean Air",
+    "Middle East Airlines", "SAS", "Saudia", "Tarom", "Vietnam Airlines",
+    "Virgin Atlantic", "Xiamen Airlines"
+  ],
+  "oneworld_at_changi": [
+    {"name": "British Airways", "iata": "BA"},
+    {"name": "Cathay Pacific", "iata": "CX"},
+    {"name": "Fiji Airways", "iata": "FJ"},
+    {"name": "Finnair", "iata": "AY"},
+    {"name": "Japan Airlines", "iata": "JL"},
+    {"name": "Malaysia Airlines", "iata": "MH"},
+    {"name": "Oman Air", "iata": "WY"},
+    {"name": "Qantas Airways", "iata": "QF"},
+    {"name": "Qatar Airways", "iata": "QR"},
+    {"name": "SriLankan Airlines", "iata": "UL"}
+  ],
+  "skyteam_at_changi": [
+    {"name": "Air France", "iata": "AF"},
+    {"name": "China Airlines", "iata": "CI"},
+    {"name": "China Eastern Airlines", "iata": "MU"},
+    {"name": "Garuda Indonesia", "iata": "GA"},
+    {"name": "KLM Royal Dutch Airlines", "iata": "KL"},
+    {"name": "Korean Air", "iata": "KE"},
+    {"name": "Saudia Airlines", "iata": "SV"},
+    {"name": "Vietnam Airlines", "iata": "VN"},
+    {"name": "Xiamen Airlines", "iata": "MF"}
+  ],
+  "count": 19
+}

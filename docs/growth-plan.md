@@ -134,11 +134,33 @@ Singapore Airlines itself (deliberately — it's the reason the site
 exists, and leaving it out of an otherwise-complete tier would be its own
 kind of inconsistency).
 
-**Not yet done, for tier 2+**: sitemap.xml generation, internal linking
-(glossary entries should cross-link to relevant Spontaneous Escapes routes
-where applicable — not built for tier 1 since there's no natural link
-target per-airline yet), and deciding the tier-2 list (other
-alliance/codeshare partners at Changi).
+**Tier 2, scoped 2026-08-09** (not yet built): oneworld and SkyTeam
+members flying to/from Changi, same cross-reference methodology as tier 1
+— **19 airlines**, saved in
+`airlines/data/oneworld-skyteam-members.json`:
+
+- *oneworld (10)*: British Airways, Cathay Pacific, Fiji Airways, Finnair,
+  Japan Airlines, Malaysia Airlines, Oman Air, Qantas Airways, Qatar
+  Airways, SriLankan Airlines.
+- *SkyTeam (9)*: Air France, China Airlines, China Eastern Airlines,
+  Garuda Indonesia, KLM Royal Dutch Airlines, Korean Air, Saudia Airlines,
+  Vietnam Airlines, Xiamen Airlines.
+
+Philippine Airlines is a "Future Member" on oneworld's own site, not full
+yet — excluded for the same reason Juneyao Air was excluded from tier 1
+(don't conflate pending/partner status with confirmed membership); revisit
+once it converts. One more note worth carrying forward: third-party
+reporting suggests Asiana Airlines (tier 1) will eventually move from Star
+Alliance to SkyTeam following its merger with Korean Air, but this isn't
+reflected on either alliance's live site yet as of 2026-08-09 — not acted
+on, just flagged for when this data is next refreshed.
+
+**Not yet done**: actually building tier 2's pages (entries.py-equivalent
+data + editorial blurbs, following the tier 1 pattern), sitemap.xml
+generation, and internal linking (glossary entries should cross-link to
+relevant Spontaneous Escapes routes where applicable — not built for tier
+1 since there was no natural link target per-airline yet; worth
+reconsidering once more sections exist).
 
 ## News pipeline (press-release rewrite)
 
