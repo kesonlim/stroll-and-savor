@@ -1,0 +1,23 @@
+{
+  "source": "https://www.staralliance.com/en/members",
+  "retrieved_at": "2026-08-09",
+  "note": "Full official Star Alliance member list (26 airlines). 'tier_1_at_changi' is the cross-reference against changi-airlines.json -- Star Alliance members that actually fly to/from Singapore, which is the real tier-1 glossary build list (see docs/growth-plan.md). Naming note: this source says 'Swiss International Air Lines'; Changi's page says 'SWISS International Airlines' -- same airline, cross-referenced correctly despite the discrepancy.",
+  "caveat": "Juneyao Air (HO, in changi-airlines.json) is a Star Alliance Connecting Partner, not a full Member -- listed separately on staralliance.com under 'Connecting and Intermodal Partners' with different mileage-earning/redemption rules than full members. Deliberately excluded from tier_1_at_changi to avoid conflating the two; worth a distinct note if/when it gets its own glossary entry.",
+  "count": 26,
+  "members": [
+    "AEGEAN AIRLINES", "Air Canada", "Air China", "Air India", "Air New Zealand",
+    "All Nippon Airways", "Asiana Airlines", "Austrian Airlines", "Avianca",
+    "Brussels Airlines", "Copa Airlines", "Croatia Airlines", "EGYPTAIR",
+    "Ethiopian Airlines", "EVA Air", "ITA Airways", "LOT Polish Airlines",
+    "Lufthansa", "Shenzhen Airlines", "Singapore Airlines", "South African Airways",
+    "Swiss International Air Lines", "TAP Air Portugal", "Thai Airways",
+    "Turkish Airlines", "United Airlines"
+  ],
+  "tier_1_at_changi": [
+    "Air Canada", "Air China", "Air India", "Air New Zealand",
+    "All Nippon Airways", "Asiana Airlines", "Ethiopian Airlines", "EVA Air",
+    "Lufthansa", "Shenzhen Airlines", "Singapore Airlines",
+    "Swiss International Air Lines", "Thai Airways", "Turkish Airlines",
+    "United Airlines"
+  ]
+}

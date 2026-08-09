@@ -112,8 +112,15 @@ in **tiers** rather than all 86 at once:
 3. **Everything else** last, and possibly with a lighter per-entry bar
    once the format is proven on the higher-priority tiers.
 
-This tiering is a proposal, not yet confirmed with the project owner —
-check before building tier 1.
+**Tier 1, confirmed 2026-08-09**: cross-referencing Star Alliance's official
+26-member list (`airlines/data/star-alliance-members.json`) against the
+Changi 86 gives **15 airlines**: Air Canada, Air China, Air India, Air New
+Zealand, All Nippon Airways, Asiana Airlines, Ethiopian Airlines, EVA Air,
+Lufthansa, Shenzhen Airlines, Singapore Airlines, Swiss International Air
+Lines, Thai Airways, Turkish Airlines, United Airlines. A tight, manageable
+first batch. (Note: Juneyao Air is a Star Alliance *Connecting Partner* at
+Changi, not a full member — different mileage rules, deliberately excluded
+from this tier rather than conflated with it.)
 
 **Technical approach**: extends the existing Python-template-generation
 pattern (`content/templates/`, `site/templates/`) rather than introducing
