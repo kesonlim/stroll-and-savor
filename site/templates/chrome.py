@@ -9,11 +9,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "content" / "script
 from brand import MONOGRAM_INK  # noqa: E402
 
 # Trim to what actually has content at each phase -- don't link to empty
-# sections. Add "Guides" (glossary) and "News" once those ship (see
-# docs/growth-plan.md).
+# sections. Add "News" once that ships (see docs/growth-plan.md).
 NAV_LINKS = [
     ("Home", ""),
     ("Singapore Airlines", "singapore-airlines/spontaneous-escapes/"),
+    ("Airlines", "airlines/"),
 ]
 
 SOCIAL_LINKS = [

@@ -124,11 +124,21 @@ from this tier rather than conflated with it.)
 
 **Technical approach**: extends the existing Python-template-generation
 pattern (`content/templates/`, `site/templates/`) rather than introducing
-a new stack. New considerations at this scale: sitemap.xml generation,
-internal linking (glossary entries should cross-link to relevant
-Spontaneous Escapes routes where applicable), and a per-entry content
-review pass before publishing (no auto-publish, consistent with the
-review-gate policy everywhere else in this project).
+a new stack.
+
+**Tier 1 shipped 2026-08-09**: all 15 entries live at `/airlines/<slug>/`
+plus an index at `/airlines/` (added to site nav). Data + hand-authored
+blurbs in `airlines/data/entries.py`, templates in
+`site/templates/airline_entry.py` / `airlines_index.py`. Includes
+Singapore Airlines itself (deliberately — it's the reason the site
+exists, and leaving it out of an otherwise-complete tier would be its own
+kind of inconsistency).
+
+**Not yet done, for tier 2+**: sitemap.xml generation, internal linking
+(glossary entries should cross-link to relevant Spontaneous Escapes routes
+where applicable — not built for tier 1 since there's no natural link
+target per-airline yet), and deciding the tier-2 list (other
+alliance/codeshare partners at Changi).
 
 ## News pipeline (press-release rewrite)
 

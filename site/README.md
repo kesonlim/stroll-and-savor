@@ -16,7 +16,9 @@ so the IA can hold other airlines/verticals later without a rename.
 /                                            brand-general landing page
 /singapore-airlines/spontaneous-escapes/     the monthly tracker (section landing + latest)
   <travel-month>/                            individual monthly posts
-/airlines/  /hotels/  /attractions/          [planned] SEO glossary, see docs/growth-plan.md
+/airlines/                                   airline glossary index -- tier 1 live (15 Star Alliance members at Changi)
+  <airline-slug>/                            individual airline entries
+/hotels/  /attractions/                      [planned] SEO glossary, see docs/growth-plan.md
 /news/                                       [planned] rewritten airline press releases
 ```
 
@@ -76,11 +78,16 @@ correct immediately; this is Cloudflare's edge cache, not a deploy failure.
 
 ## What's NOT here
 
-- **`/airlines/`, `/hotels/`, `/attractions/`, `/news/`** — planned, not
-  built. See [`docs/growth-plan.md`](../docs/growth-plan.md) for scope and
-  sequencing.
-- **No affiliate links yet** — planned (Klook/OTA first, bank card
-  referrals incrementally), not implemented.
+- **`/hotels/`, `/attractions/`, `/news/`** — planned, not built.
+  `/airlines/` tier 1 (15 Star Alliance members) is live; tiers 2+ and the
+  other verticals are not. See [`docs/growth-plan.md`](../docs/growth-plan.md)
+  for scope and sequencing.
+- **No affiliate links on `/airlines/` yet** — the Klook affiliate link
+  (live, tracked) is currently only on Spontaneous Escapes monthly posts,
+  not on airline glossary pages. Bank card referrals (Citi first) also not
+  implemented yet — mechanism differs from Klook (a personal
+  identity-verified referral code, not a trackable link), see
+  `docs/growth-plan.md`.
 - **No newsletter/mailing list** — doesn't exist yet, out of scope until
   one does.
 - **No social publishing automation** — Instagram/etc carousel and story
