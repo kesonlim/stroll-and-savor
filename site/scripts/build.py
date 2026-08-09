@@ -1,5 +1,9 @@
 """Builds the full static site into site/dist/ from scraper/samples/*.json.
 Usage: python3 site/scripts/build.py
+
+Site IA (docs/growth-plan.md): root is a brand-general landing page;
+Singapore Airlines Spontaneous Escapes content lives under
+/singapore-airlines/spontaneous-escapes/.
 """
 import json
 import shutil
@@ -12,12 +16,13 @@ sys.path.insert(0, str(REPO_ROOT / "content" / "templates"))
 sys.path.insert(0, str(REPO_ROOT / "content" / "scripts"))
 
 import landing  # noqa: E402
-import blog_index  # noqa: E402
-import blog_post  # noqa: E402
+import spontaneous_escapes  # noqa: E402
+import monthly_post  # noqa: E402
 from web_artifact import month_label, SOURCE_LABEL  # noqa: E402
 
 DIST = REPO_ROOT / "site" / "dist"
 BRAND = REPO_ROOT / "brand"
+SE_PATH = "singapore-airlines/spontaneous-escapes"
 
 
 def post_meta(data: dict) -> dict:
@@ -64,14 +69,15 @@ def main():
         meta = post_meta(data)
         posts.append(meta)
 
-        post_dir = DIST / "blog" / meta["slug"]
+        post_dir = DIST / SE_PATH / meta["slug"]
         post_dir.mkdir(parents=True, exist_ok=True)
-        (post_dir / "index.html").write_text(blog_post.render(data))
-        print(f"wrote /blog/{meta['slug']}/")
+        (post_dir / "index.html").write_text(monthly_post.render(data))
+        print(f"wrote /{SE_PATH}/{meta['slug']}/")
 
-    (DIST / "blog").mkdir(parents=True, exist_ok=True)
-    (DIST / "blog" / "index.html").write_text(blog_index.render(posts))
-    print("wrote /blog/")
+    se_dir = DIST / SE_PATH
+    se_dir.mkdir(parents=True, exist_ok=True)
+    (se_dir / "index.html").write_text(spontaneous_escapes.render(posts))
+    print(f"wrote /{SE_PATH}/")
 
     (DIST / "index.html").write_text(landing.render(posts[0]))
     print("wrote /")

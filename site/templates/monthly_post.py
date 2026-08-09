@@ -1,6 +1,6 @@
-"""Blog post page: same content as the standalone web artifact
-(content/templates/web_artifact.py's render_content), wrapped in real site
-chrome (nav/footer) instead of a bare document."""
+"""Monthly Spontaneous Escapes post: same content as the standalone web
+artifact (content/templates/web_artifact.py's render_content), wrapped in
+site chrome. Lives at /singapore-airlines/spontaneous-escapes/<month>/."""
 import sys
 from pathlib import Path
 
@@ -8,6 +8,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "content" / "templa
 from web_artifact import render_content, CONTENT_STYLE, month_label  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from chrome import page  # noqa: E402
+
+ASSET_PREFIX = "../../../"
 
 STYLE = f"""
   main {{ max-width: 900px; margin: 0 auto; padding: 3rem 1.75rem 6rem; }}
@@ -22,6 +24,6 @@ def render(data: dict) -> str:
         title=f"Spontaneous Escapes — {label} — Stroll & Savor",
         description=f"Every business-class Spontaneous Escapes route for {label} travel, {data.get('discount_pct', 30)}% off Saver Awards.",
         body=body,
-        asset_prefix="../../",
+        asset_prefix=ASSET_PREFIX,
         extra_style=STYLE,
     )
