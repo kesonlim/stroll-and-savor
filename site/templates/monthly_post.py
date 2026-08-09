@@ -8,18 +8,20 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "content" / "templa
 from web_artifact import render_content, CONTENT_STYLE, month_label  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from chrome import page  # noqa: E402
+from affiliate import complete_the_trip_card, STYLE as AFFILIATE_STYLE  # noqa: E402
 
 ASSET_PREFIX = "../../../"
 
 STYLE = f"""
   main {{ max-width: 900px; margin: 0 auto; padding: 3rem 1.75rem 6rem; }}
   {CONTENT_STYLE}
+  {AFFILIATE_STYLE}
 """
 
 
 def render(data: dict) -> str:
     label = month_label(data["travel_month"])
-    body = f'<main>{render_content(data)}</main>'
+    body = f'<main>{render_content(data)}{complete_the_trip_card()}</main>'
     return page(
         title=f"Spontaneous Escapes — {label} — Stroll & Savor",
         description=f"Every business-class Spontaneous Escapes route for {label} travel, {data.get('discount_pct', 30)}% off Saver Awards.",

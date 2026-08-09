@@ -55,6 +55,18 @@
   .deal-row .deal-notes { grid-column: 1 / -1; font-size: 0.76rem; color: var(--ink-soft); font-family: var(--font-data); }
   .artifact-footnote { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
 
+  
+  .affiliate-card {
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 1.8rem 2rem; margin: 3rem 0; display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .affiliate-card .eyebrow { font-family: var(--font-data); font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--rust-text); }
+  .affiliate-card p { margin: 0; max-width: 60ch; }
+  .affiliate-card .cta { font-family: var(--font-data); font-size: 0.86rem; color: var(--teal-text); text-decoration: none; }
+  .affiliate-card .cta:hover { color: var(--teal); }
+  .affiliate-card .disclosure { font-family: var(--font-data); font-size: 0.7rem; color: var(--ink-soft); }
+
 
 </style>
 </head>
@@ -155,7 +167,13 @@
         </section>
   <div class="artifact-footnote">
     <p>Discounts may apply in one direction only. Blackout dates and flight numbers are noted per route where given. Always confirm live availability on singaporeair.com before booking — this is a field note, not a booking engine.</p>
-  </div></main>
+  </div>
+    <div class="affiliate-card">
+      <span class="eyebrow">Complete the trip</span>
+      <p>Booked a Spontaneous Escapes fare? Activities and tours at most of these destinations are bookable separately, sometimes cheaper than airline add-ons.</p>
+      <a class="cta" href="https://www.klook.com/en-SG/" rel="noopener sponsored" target="_blank">Browse activities on Klook &rarr;</a>
+      <span class="disclosure">Stroll &amp; Savor may earn a commission on bookings made through this link, at no extra cost to you.</span>
+    </div></main>
   <footer class="site-footer">
     <span>Stroll &amp; Savor — independent, not affiliated with any airline, hotel, or attraction we cover.</span>
     <span class="social"><a href="https://www.facebook.com/profile.php?id=61581034831451" rel="noopener" target="_blank">Facebook</a><a href="https://www.instagram.com/stroll_savor/" rel="noopener" target="_blank">Instagram</a><a href="https://www.tiktok.com/@stroll_savor" rel="noopener" target="_blank">TikTok</a><a href="https://www.youtube.com/@StrollAndSavor" rel="noopener" target="_blank">YouTube</a></span>
