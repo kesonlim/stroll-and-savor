@@ -97,10 +97,23 @@ airline in the established brand voice** — not a pure data template, not
 full long-form. Matches the pattern already used for the monthly blog post
 (data template + light editorial framing in the masthead).
 
-**Scope sizing** (needs a research pass before build, not yet done):
-compile the actual list of airlines currently flying to/from Singapore
-Changi. Rough order of magnitude is "several dozen," not hundreds — small
-enough to hand-review each entry rather than fully unattended-generate.
+**Scope sizing** (researched 2026-08-09, corrects this doc's earlier
+"several dozen" guess): Changi Airport's official passenger airline list
+has **86 airlines** — see `airlines/data/changi-airlines.json` (name +
+IATA code, sourced from
+`changiairport.com/en/fly/airline-information/passenger.html`). That's a
+meaningfully bigger hand-review commitment than "several dozen," so build
+in **tiers** rather than all 86 at once:
+
+1. **Star Alliance members** (SIA's own alliance — most relevant to a
+   KrisFlyer-focused audience deciding where to redeem/earn miles) first.
+2. **Major codeshare/oneworld/SkyTeam partners** relevant to Singapore
+   routes next.
+3. **Everything else** last, and possibly with a lighter per-entry bar
+   once the format is proven on the higher-priority tiers.
+
+This tiering is a proposal, not yet confirmed with the project owner —
+check before building tier 1.
 
 **Technical approach**: extends the existing Python-template-generation
 pattern (`content/templates/`, `site/templates/`) rather than introducing
