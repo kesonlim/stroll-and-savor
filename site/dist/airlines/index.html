@@ -3,9 +3,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Airlines — Stroll & Savor</title>
-<meta name="description" content="Star Alliance member airlines flying to and from Singapore Changi, relevant to KrisFlyer miles redemption and earning.">
+<meta name="description" content="Star Alliance, oneworld, and SkyTeam member airlines flying to and from Singapore Changi.">
 <meta property="og:title" content="Airlines — Stroll & Savor">
-<meta property="og:description" content="Star Alliance member airlines flying to and from Singapore Changi, relevant to KrisFlyer miles redemption and earning.">
+<meta property="og:description" content="Star Alliance, oneworld, and SkyTeam member airlines flying to and from Singapore Changi.">
 
 <link rel="icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../assets/style.css">
@@ -33,6 +33,8 @@
   main { max-width: 900px; margin: 0 auto; padding: 3rem 1.75rem 6rem; }
   main h1 { margin-bottom: 0.6rem; }
   main > p { max-width: 62ch; margin-bottom: 2.4rem; }
+  .alliance-group { margin-bottom: 2.6rem; }
+  .alliance-group h2 { font-size: 1.15rem; margin-bottom: 1rem; }
   .airline-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1rem; }
   .airline-card {
     display: block; text-decoration: none; color: inherit;
@@ -42,7 +44,7 @@
   .airline-card:hover { border-color: var(--rust-soft); }
   .airline-card .iata { font-family: var(--font-data); font-size: 0.72rem; color: var(--rust-text);
     text-transform: uppercase; letter-spacing: 0.08em; }
-  .airline-card h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; margin: 0.3rem 0 0; }
+  .airline-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; margin: 0.3rem 0 0; }
   .airline-card .hub { font-family: var(--font-data); font-size: 0.76rem; color: var(--ink-soft); margin-top: 0.4rem; display: block; }
 
 </style>
@@ -64,86 +66,194 @@
     <main>
       <h1>Airlines</h1>
       <p>
-        Star Alliance members flying to and from Singapore Changi — the airlines
-        most relevant to redeeming and earning KrisFlyer miles. Starting with
-        Star Alliance; more of Changi's ~86 airlines to follow.
+        Star Alliance, oneworld, and SkyTeam member airlines flying to and from
+        Singapore Changi — the airlines most relevant to redeeming and earning
+        miles from a Singapore base. 34 of Changi's ~86 airlines
+        covered so far.
       </p>
-      <div class="airline-grid">
-    <a class="airline-card" href="air-canada/">
-      <span class="iata">AC</span>
-      <h2>Air Canada</h2>
-      <span class="hub">Toronto Pearson</span>
-    </a>
-    <a class="airline-card" href="air-china/">
-      <span class="iata">CA</span>
-      <h2>Air China</h2>
-      <span class="hub">Beijing (Capital & Daxing)</span>
-    </a>
-    <a class="airline-card" href="air-india/">
-      <span class="iata">AI</span>
-      <h2>Air India</h2>
-      <span class="hub">Delhi & Mumbai</span>
-    </a>
-    <a class="airline-card" href="air-new-zealand/">
-      <span class="iata">NZ</span>
-      <h2>Air New Zealand</h2>
-      <span class="hub">Auckland</span>
-    </a>
-    <a class="airline-card" href="all-nippon-airways/">
-      <span class="iata">NH</span>
-      <h2>All Nippon Airways</h2>
-      <span class="hub">Tokyo Haneda & Narita</span>
-    </a>
-    <a class="airline-card" href="asiana-airlines/">
-      <span class="iata">OZ</span>
-      <h2>Asiana Airlines</h2>
-      <span class="hub">Seoul Incheon</span>
-    </a>
-    <a class="airline-card" href="ethiopian-airlines/">
-      <span class="iata">ET</span>
-      <h2>Ethiopian Airlines</h2>
-      <span class="hub">Addis Ababa</span>
-    </a>
-    <a class="airline-card" href="eva-air/">
-      <span class="iata">BR</span>
-      <h2>EVA Air</h2>
-      <span class="hub">Taipei Taoyuan</span>
-    </a>
-    <a class="airline-card" href="lufthansa/">
-      <span class="iata">LH</span>
-      <h2>Lufthansa</h2>
-      <span class="hub">Frankfurt & Munich</span>
-    </a>
-    <a class="airline-card" href="shenzhen-airlines/">
-      <span class="iata">ZH</span>
-      <h2>Shenzhen Airlines</h2>
-      <span class="hub">Shenzhen</span>
-    </a>
-    <a class="airline-card" href="singapore-airlines/">
-      <span class="iata">SQ</span>
-      <h2>Singapore Airlines</h2>
-      <span class="hub">Singapore Changi</span>
-    </a>
-    <a class="airline-card" href="swiss-international-air-lines/">
-      <span class="iata">LX</span>
-      <h2>Swiss International Air Lines</h2>
-      <span class="hub">Zurich & Geneva</span>
-    </a>
-    <a class="airline-card" href="thai-airways/">
-      <span class="iata">TG</span>
-      <h2>Thai Airways</h2>
-      <span class="hub">Bangkok Suvarnabhumi</span>
-    </a>
-    <a class="airline-card" href="turkish-airlines/">
-      <span class="iata">TK</span>
-      <h2>Turkish Airlines</h2>
-      <span class="hub">Istanbul</span>
-    </a>
-    <a class="airline-card" href="united-airlines/">
-      <span class="iata">UA</span>
-      <h2>United Airlines</h2>
-      <span class="hub">Chicago O'Hare, Houston, Newark, San Francisco (multi-hub)</span>
-    </a></div>
+      
+        <div class="alliance-group">
+          <h2>Star Alliance</h2>
+          <div class="airline-grid">
+        <a class="airline-card" href="air-canada/">
+          <span class="iata">AC</span>
+          <h3>Air Canada</h3>
+          <span class="hub">Toronto Pearson</span>
+        </a>
+        <a class="airline-card" href="air-china/">
+          <span class="iata">CA</span>
+          <h3>Air China</h3>
+          <span class="hub">Beijing (Capital & Daxing)</span>
+        </a>
+        <a class="airline-card" href="air-india/">
+          <span class="iata">AI</span>
+          <h3>Air India</h3>
+          <span class="hub">Delhi & Mumbai</span>
+        </a>
+        <a class="airline-card" href="air-new-zealand/">
+          <span class="iata">NZ</span>
+          <h3>Air New Zealand</h3>
+          <span class="hub">Auckland</span>
+        </a>
+        <a class="airline-card" href="all-nippon-airways/">
+          <span class="iata">NH</span>
+          <h3>All Nippon Airways</h3>
+          <span class="hub">Tokyo Haneda & Narita</span>
+        </a>
+        <a class="airline-card" href="asiana-airlines/">
+          <span class="iata">OZ</span>
+          <h3>Asiana Airlines</h3>
+          <span class="hub">Seoul Incheon</span>
+        </a>
+        <a class="airline-card" href="ethiopian-airlines/">
+          <span class="iata">ET</span>
+          <h3>Ethiopian Airlines</h3>
+          <span class="hub">Addis Ababa</span>
+        </a>
+        <a class="airline-card" href="eva-air/">
+          <span class="iata">BR</span>
+          <h3>EVA Air</h3>
+          <span class="hub">Taipei Taoyuan</span>
+        </a>
+        <a class="airline-card" href="lufthansa/">
+          <span class="iata">LH</span>
+          <h3>Lufthansa</h3>
+          <span class="hub">Frankfurt & Munich</span>
+        </a>
+        <a class="airline-card" href="shenzhen-airlines/">
+          <span class="iata">ZH</span>
+          <h3>Shenzhen Airlines</h3>
+          <span class="hub">Shenzhen</span>
+        </a>
+        <a class="airline-card" href="singapore-airlines/">
+          <span class="iata">SQ</span>
+          <h3>Singapore Airlines</h3>
+          <span class="hub">Singapore Changi</span>
+        </a>
+        <a class="airline-card" href="swiss-international-air-lines/">
+          <span class="iata">LX</span>
+          <h3>Swiss International Air Lines</h3>
+          <span class="hub">Zurich & Geneva</span>
+        </a>
+        <a class="airline-card" href="thai-airways/">
+          <span class="iata">TG</span>
+          <h3>Thai Airways</h3>
+          <span class="hub">Bangkok Suvarnabhumi</span>
+        </a>
+        <a class="airline-card" href="turkish-airlines/">
+          <span class="iata">TK</span>
+          <h3>Turkish Airlines</h3>
+          <span class="hub">Istanbul</span>
+        </a>
+        <a class="airline-card" href="united-airlines/">
+          <span class="iata">UA</span>
+          <h3>United Airlines</h3>
+          <span class="hub">Chicago O'Hare, Houston, Newark, San Francisco (multi-hub)</span>
+        </a></div>
+        </div>
+        <div class="alliance-group">
+          <h2>oneworld</h2>
+          <div class="airline-grid">
+        <a class="airline-card" href="british-airways/">
+          <span class="iata">BA</span>
+          <h3>British Airways</h3>
+          <span class="hub">London Heathrow</span>
+        </a>
+        <a class="airline-card" href="cathay-pacific/">
+          <span class="iata">CX</span>
+          <h3>Cathay Pacific</h3>
+          <span class="hub">Hong Kong</span>
+        </a>
+        <a class="airline-card" href="fiji-airways/">
+          <span class="iata">FJ</span>
+          <h3>Fiji Airways</h3>
+          <span class="hub">Nadi</span>
+        </a>
+        <a class="airline-card" href="finnair/">
+          <span class="iata">AY</span>
+          <h3>Finnair</h3>
+          <span class="hub">Helsinki</span>
+        </a>
+        <a class="airline-card" href="japan-airlines/">
+          <span class="iata">JL</span>
+          <h3>Japan Airlines</h3>
+          <span class="hub">Tokyo Haneda & Narita</span>
+        </a>
+        <a class="airline-card" href="malaysia-airlines/">
+          <span class="iata">MH</span>
+          <h3>Malaysia Airlines</h3>
+          <span class="hub">Kuala Lumpur</span>
+        </a>
+        <a class="airline-card" href="oman-air/">
+          <span class="iata">WY</span>
+          <h3>Oman Air</h3>
+          <span class="hub">Muscat</span>
+        </a>
+        <a class="airline-card" href="qantas-airways/">
+          <span class="iata">QF</span>
+          <h3>Qantas Airways</h3>
+          <span class="hub">Sydney, Melbourne, Brisbane & Perth (multi-hub)</span>
+        </a>
+        <a class="airline-card" href="qatar-airways/">
+          <span class="iata">QR</span>
+          <h3>Qatar Airways</h3>
+          <span class="hub">Doha</span>
+        </a>
+        <a class="airline-card" href="srilankan-airlines/">
+          <span class="iata">UL</span>
+          <h3>SriLankan Airlines</h3>
+          <span class="hub">Colombo</span>
+        </a></div>
+        </div>
+        <div class="alliance-group">
+          <h2>SkyTeam</h2>
+          <div class="airline-grid">
+        <a class="airline-card" href="air-france/">
+          <span class="iata">AF</span>
+          <h3>Air France</h3>
+          <span class="hub">Paris Charles de Gaulle</span>
+        </a>
+        <a class="airline-card" href="china-airlines/">
+          <span class="iata">CI</span>
+          <h3>China Airlines</h3>
+          <span class="hub">Taipei Taoyuan</span>
+        </a>
+        <a class="airline-card" href="china-eastern-airlines/">
+          <span class="iata">MU</span>
+          <h3>China Eastern Airlines</h3>
+          <span class="hub">Shanghai</span>
+        </a>
+        <a class="airline-card" href="garuda-indonesia/">
+          <span class="iata">GA</span>
+          <h3>Garuda Indonesia</h3>
+          <span class="hub">Jakarta & Denpasar</span>
+        </a>
+        <a class="airline-card" href="klm-royal-dutch-airlines/">
+          <span class="iata">KL</span>
+          <h3>KLM Royal Dutch Airlines</h3>
+          <span class="hub">Amsterdam Schiphol</span>
+        </a>
+        <a class="airline-card" href="korean-air/">
+          <span class="iata">KE</span>
+          <h3>Korean Air</h3>
+          <span class="hub">Seoul Incheon</span>
+        </a>
+        <a class="airline-card" href="saudia-airlines/">
+          <span class="iata">SV</span>
+          <h3>Saudia Airlines</h3>
+          <span class="hub">Jeddah & Riyadh</span>
+        </a>
+        <a class="airline-card" href="vietnam-airlines/">
+          <span class="iata">VN</span>
+          <h3>Vietnam Airlines</h3>
+          <span class="hub">Hanoi & Ho Chi Minh City</span>
+        </a>
+        <a class="airline-card" href="xiamen-airlines/">
+          <span class="iata">MF</span>
+          <h3>Xiamen Airlines</h3>
+          <span class="hub">Xiamen</span>
+        </a></div>
+        </div>
     </main>
   <footer class="site-footer">
     <span>Stroll &amp; Savor — independent, not affiliated with any airline, hotel, or attraction we cover.</span>

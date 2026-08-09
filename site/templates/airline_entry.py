@@ -36,18 +36,26 @@ STYLE = """
 
 
 def render(entry: dict) -> str:
+    alliance_line = (
+        f"{entry['alliance']} member since {entry['alliance_joined']}"
+        if entry.get("alliance_joined") else f"{entry['alliance']} member"
+    )
+    alliance_fact = (
+        f"{entry['alliance']} (member since {entry['alliance_joined']})"
+        if entry.get("alliance_joined") else entry["alliance"]
+    )
     body = f"""
     <main>
-      <span class="eyebrow">Airlines &middot; Star Alliance</span>
+      <span class="eyebrow">Airlines &middot; {entry['alliance']}</span>
       <h1>{entry['name']}</h1>
-      <span class="subline">{entry['iata']} &middot; Star Alliance member since {entry['star_alliance_joined']} &middot; hub: {entry['hub']}</span>
+      <span class="subline">{entry['iata']} &middot; {alliance_line} &middot; hub: {entry['hub']}</span>
       <div class="route-line-motif">{ROUTE_LINE_SVG}</div>
 
       <p class="blurb">{entry['blurb']}</p>
 
       <table class="facts-table">
         <tr><th>IATA code</th><td>{entry['iata']}</td></tr>
-        <tr><th>Alliance</th><td>Star Alliance (member since {entry['star_alliance_joined']})</td></tr>
+        <tr><th>Alliance</th><td>{alliance_fact}</td></tr>
         <tr><th>Hub</th><td>{entry['hub']}</td></tr>
         <tr><th>Changi check-in</th><td>{entry['changi_terminal']}</td></tr>
         <tr><th>Official site</th><td><a href="{entry['website']}" rel="noopener" target="_blank">{entry['website'].replace('https://', '').replace('http://', '').rstrip('/')}</a></td></tr>
@@ -57,7 +65,7 @@ def render(entry: dict) -> str:
     </main>"""
     return page(
         title=f"{entry['name']} — Stroll & Savor",
-        description=f"{entry['name']} ({entry['iata']}), Star Alliance member since {entry['star_alliance_joined']}, hubbed at {entry['hub']}.",
+        description=f"{entry['name']} ({entry['iata']}), {alliance_line}, hubbed at {entry['hub']}.",
         body=body,
         asset_prefix=ASSET_PREFIX,
         extra_style=STYLE,

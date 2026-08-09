@@ -134,7 +134,7 @@ Singapore Airlines itself (deliberately — it's the reason the site
 exists, and leaving it out of an otherwise-complete tier would be its own
 kind of inconsistency).
 
-**Tier 2, scoped 2026-08-09** (not yet built): oneworld and SkyTeam
+**Tier 2, shipped 2026-08-09**: oneworld and SkyTeam
 members flying to/from Changi, same cross-reference methodology as tier 1
 — **19 airlines**, saved in
 `airlines/data/oneworld-skyteam-members.json`:
@@ -155,12 +155,25 @@ Alliance to SkyTeam following its merger with Korean Air, but this isn't
 reflected on either alliance's live site yet as of 2026-08-09 — not acted
 on, just flagged for when this data is next refreshed.
 
-**Not yet done**: actually building tier 2's pages (entries.py-equivalent
-data + editorial blurbs, following the tier 1 pattern), sitemap.xml
-generation, and internal linking (glossary entries should cross-link to
-relevant Spontaneous Escapes routes where applicable — not built for tier
-1 since there was no natural link target per-airline yet; worth
-reconsidering once more sections exist).
+Live at `/airlines/<slug>/` (34 total now: 15 tier 1 + 19 tier 2), index
+grouped by alliance since a flat 34-card grid was hard to scan.
+`airlines/data/entries.py` now covers both tiers, keyed by alliance rather
+than hardcoded to Star Alliance — tier-2 entries show alliance membership
+without a join date rather than a fabricated one, since oneworld/SkyTeam
+join dates weren't part of this research pass. Official website links
+verified per-airline the same way as tier 1 (direct checks against
+oneworld.com/skyteam.com member pages, or a targeted search for the few
+where that page didn't expose a clean external link), not guessed.
+Changi terminal data now lives centrally in `changi-airlines.json` for all
+86 airlines (fixed from tier 1, which had it hardcoded separately in
+`entries.py` — a real inconsistency worth avoiding for tier 3+).
+
+**Not yet done**: sitemap.xml generation, and internal linking (glossary
+entries should cross-link to relevant Spontaneous Escapes routes where
+applicable — not built yet since there's no natural link target
+per-airline; worth reconsidering once more sections exist), and scoping
+tier 3 (the remaining ~52 of Changi's 86 airlines with no major alliance
+membership).
 
 ## News pipeline (press-release rewrite)
 

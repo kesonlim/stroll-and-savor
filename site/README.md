@@ -16,7 +16,7 @@ so the IA can hold other airlines/verticals later without a rename.
 /                                            brand-general landing page
 /singapore-airlines/spontaneous-escapes/     the monthly tracker (section landing + latest)
   <travel-month>/                            individual monthly posts
-/airlines/                                   airline glossary index -- tier 1 live (15 Star Alliance members at Changi)
+/airlines/                                   airline glossary index -- tiers 1+2 live (34 airlines: Star Alliance, oneworld, SkyTeam at Changi)
   <airline-slug>/                            individual airline entries
 /hotels/  /attractions/                      [planned] SEO glossary, see docs/growth-plan.md
 /news/                                       [planned] rewritten airline press releases

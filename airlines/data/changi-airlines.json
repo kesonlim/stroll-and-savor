@@ -1,94 +1,438 @@
 {
   "source": "https://www.changiairport.com/en/fly/airline-information/passenger.html",
   "retrieved_at": "2026-08-09",
-  "note": "Official Changi Airport passenger airline list. Name + IATA code only -- terminal/check-in details deliberately not mirrored here since Changi's own page is the live authoritative source for that operational info and it changes; link out to it rather than duplicate/maintain a copy that can go stale.",
+  "note": "Official Changi Airport passenger airline list: name, IATA code, and regular check-in terminal/row/door. Re-verified and terminal data added 2026-08-09 (previous version deliberately omitted terminal info; corrected since tier-1 glossary entries ended up hardcoding it separately in entries.py, which was the actual inconsistency worth avoiding).",
   "count": 86,
   "airlines": [
-    {"name": "9 Air", "iata": "AQ"},
-    {"name": "Aero Dili", "iata": "8G"},
-    {"name": "Air Canada", "iata": "AC"},
-    {"name": "Air China", "iata": "CA"},
-    {"name": "Air France", "iata": "AF"},
-    {"name": "Air India", "iata": "AI"},
-    {"name": "Air India Express", "iata": "IX"},
-    {"name": "Air Macau", "iata": "NX"},
-    {"name": "Air New Zealand", "iata": "NZ"},
-    {"name": "Air Niugini", "iata": "PX"},
-    {"name": "AirAsia", "iata": "AK"},
-    {"name": "AirBorneo", "iata": "MY"},
-    {"name": "Aircalin", "iata": "SB"},
-    {"name": "All Nippon Airways", "iata": "NH"},
-    {"name": "Asiana Airlines", "iata": "OZ"},
-    {"name": "Bangkok Airways", "iata": "PG"},
-    {"name": "Batik Air", "iata": "ID"},
-    {"name": "Batik Air Malaysia", "iata": "OD"},
-    {"name": "Biman Bangladesh Airlines", "iata": "BG"},
-    {"name": "British Airways", "iata": "BA"},
-    {"name": "Cambodia Airways", "iata": "KR"},
-    {"name": "Cathay Pacific", "iata": "CX"},
-    {"name": "Cebu Pacific Air", "iata": "5J"},
-    {"name": "China Airlines", "iata": "CI"},
-    {"name": "China Eastern Airlines", "iata": "MU"},
-    {"name": "China Southern Airlines", "iata": "CZ"},
-    {"name": "Chongqing Airlines", "iata": "OQ"},
-    {"name": "Citilink", "iata": "QG"},
-    {"name": "Drukair", "iata": "KB"},
-    {"name": "EVA Air", "iata": "BR"},
-    {"name": "Emirates", "iata": "EK"},
-    {"name": "Ethiopian Airlines", "iata": "ET"},
-    {"name": "Etihad Airways", "iata": "EY"},
-    {"name": "Fiji Airways", "iata": "FJ"},
-    {"name": "Finnair", "iata": "AY"},
-    {"name": "Firefly", "iata": "FY"},
-    {"name": "Garuda Indonesia", "iata": "GA"},
-    {"name": "Gulf Air", "iata": "GF"},
-    {"name": "Hainan Airlines", "iata": "HU"},
-    {"name": "Hebei Airlines", "iata": "NS"},
-    {"name": "IndiGo", "iata": "6E"},
-    {"name": "Japan Airlines", "iata": "JL"},
-    {"name": "Jeju Air", "iata": "7C"},
-    {"name": "Jetstar International", "iata": "JQ"},
-    {"name": "Juneyao Airlines", "iata": "HO"},
-    {"name": "KLM Royal Dutch Airlines", "iata": "KL"},
-    {"name": "Korean Air", "iata": "KE"},
-    {"name": "Loong Air", "iata": "GJ"},
-    {"name": "Lufthansa", "iata": "LH"},
-    {"name": "MIAT Mongolian Airlines", "iata": "OM"},
-    {"name": "Malaysia Airlines", "iata": "MH"},
-    {"name": "Myanmar Airways International", "iata": "8M"},
-    {"name": "Myanmar National Airlines", "iata": "UB"},
-    {"name": "Oman Air", "iata": "WY"},
-    {"name": "Peach Aviation", "iata": "MM"},
-    {"name": "Pelita Air", "iata": "IP"},
-    {"name": "Philippine Airlines", "iata": "PR"},
-    {"name": "Qantas Airways", "iata": "QF"},
-    {"name": "Qatar Airways", "iata": "QR"},
-    {"name": "Royal Brunei Airlines", "iata": "BI"},
-    {"name": "STARLUX Airlines", "iata": "JX"},
-    {"name": "SWISS International Airlines", "iata": "LX"},
-    {"name": "Saudia Airlines", "iata": "SV"},
-    {"name": "Scoot", "iata": "TR"},
-    {"name": "Shandong Airlines", "iata": "SC"},
-    {"name": "Shanghai Airlines", "iata": "FM"},
-    {"name": "Shenzhen Airlines", "iata": "ZH"},
-    {"name": "Sichuan Airlines", "iata": "3U"},
-    {"name": "Singapore Airlines", "iata": "SQ"},
-    {"name": "Spring Airlines", "iata": "9C"},
-    {"name": "SriLankan Airlines", "iata": "UL"},
-    {"name": "Sun PhuQuoc Airways", "iata": "9G"},
-    {"name": "T'way Air", "iata": "TW"},
-    {"name": "Thai AirAsia", "iata": "FD"},
-    {"name": "Thai Airways", "iata": "TG"},
-    {"name": "Thai Lion Air", "iata": "SL"},
-    {"name": "Tianjin Airlines", "iata": "GS"},
-    {"name": "TransNusa", "iata": "8B"},
-    {"name": "Turkish Airlines", "iata": "TK"},
-    {"name": "US-Bangla Airlines", "iata": "BS"},
-    {"name": "United Airlines", "iata": "UA"},
-    {"name": "VietJet Air", "iata": "VJ"},
-    {"name": "Vietnam Airlines", "iata": "VN"},
-    {"name": "West Air", "iata": "PN"},
-    {"name": "Xiamen Airlines", "iata": "MF"},
-    {"name": "ZIPAIR", "iata": "ZG"}
+    {
+      "name": "9 Air",
+      "iata": "AQ",
+      "changi_terminal": "4, Row 4, Door 3"
+    },
+    {
+      "name": "Aero Dili",
+      "iata": "8G",
+      "changi_terminal": "T4, Row 2, Door 2"
+    },
+    {
+      "name": "Air Canada",
+      "iata": "AC",
+      "changi_terminal": "T2, Row 12, Door 8"
+    },
+    {
+      "name": "Air China",
+      "iata": "CA",
+      "changi_terminal": "T1, Row 4, Door 1"
+    },
+    {
+      "name": "Air France",
+      "iata": "AF",
+      "changi_terminal": "T1, Row 2, Door 1"
+    },
+    {
+      "name": "Air India",
+      "iata": "AI",
+      "changi_terminal": "T2, Row 10, Door 7"
+    },
+    {
+      "name": "Air India Express",
+      "iata": "IX",
+      "changi_terminal": "T2, Row 9, Door 7"
+    },
+    {
+      "name": "Air Macau",
+      "iata": "NX",
+      "changi_terminal": "T2, Row 9, Door 7"
+    },
+    {
+      "name": "Air New Zealand",
+      "iata": "NZ",
+      "changi_terminal": "T3, Row 8, Door 6"
+    },
+    {
+      "name": "Air Niugini",
+      "iata": "PX",
+      "changi_terminal": "T1, Row 11, Door 5"
+    },
+    {
+      "name": "AirAsia",
+      "iata": "AK",
+      "changi_terminal": "T4, Row 5, Door 4"
+    },
+    {
+      "name": "AirBorneo",
+      "iata": "MY",
+      "changi_terminal": "T4, Row 4, Door 3"
+    },
+    {
+      "name": "Aircalin",
+      "iata": "SB",
+      "changi_terminal": "T3, Row 11, Door 8"
+    },
+    {
+      "name": "All Nippon Airways",
+      "iata": "NH",
+      "changi_terminal": "T2, Row 7,8, Door 5,6"
+    },
+    {
+      "name": "Asiana Airlines",
+      "iata": "OZ",
+      "changi_terminal": "T3, Row 8, Door 6"
+    },
+    {
+      "name": "Bangkok Airways",
+      "iata": "PG",
+      "changi_terminal": "T1, Row 1, Door 1"
+    },
+    {
+      "name": "Batik Air",
+      "iata": "ID",
+      "changi_terminal": "T4, Row 1, Door 1"
+    },
+    {
+      "name": "Batik Air Malaysia",
+      "iata": "OD",
+      "changi_terminal": "T4, Row 1, Door 1"
+    },
+    {
+      "name": "Biman Bangladesh Airlines",
+      "iata": "BG",
+      "changi_terminal": "T3, Row 2, Door 2"
+    },
+    {
+      "name": "British Airways",
+      "iata": "BA",
+      "changi_terminal": "T1, Row 10, Door 4"
+    },
+    {
+      "name": "Cambodia Airways",
+      "iata": "KR",
+      "changi_terminal": "T4, Row 4, Door 3"
+    },
+    {
+      "name": "Cathay Pacific",
+      "iata": "CX",
+      "changi_terminal": "T4, Row 7, Door 5"
+    },
+    {
+      "name": "Cebu Pacific Air",
+      "iata": "5J",
+      "changi_terminal": "T4, Row 3, Door 2"
+    },
+    {
+      "name": "China Airlines",
+      "iata": "CI",
+      "changi_terminal": "T3, Row 10, Door 7"
+    },
+    {
+      "name": "China Eastern Airlines",
+      "iata": "MU",
+      "changi_terminal": "T3, Row 9, Door 7"
+    },
+    {
+      "name": "China Southern Airlines",
+      "iata": "CZ",
+      "changi_terminal": "T1, Row 10, Door 4"
+    },
+    {
+      "name": "Chongqing Airlines",
+      "iata": "OQ",
+      "changi_terminal": "T1, Row 10, Door 4"
+    },
+    {
+      "name": "Citilink",
+      "iata": "QG",
+      "changi_terminal": "T3, Row 9, 11, Door 7, 8"
+    },
+    {
+      "name": "Drukair",
+      "iata": "KB",
+      "changi_terminal": "T3, Row 2, Door 2"
+    },
+    {
+      "name": "EVA Air",
+      "iata": "BR",
+      "changi_terminal": "T3, Row 8, Door 6"
+    },
+    {
+      "name": "Emirates",
+      "iata": "EK",
+      "changi_terminal": "T1, Row 13, Door 5"
+    },
+    {
+      "name": "Ethiopian Airlines",
+      "iata": "ET",
+      "changi_terminal": "T2, Row 12, Door 8"
+    },
+    {
+      "name": "Etihad Airways",
+      "iata": "EY",
+      "changi_terminal": "T2, Row 11, Door 8"
+    },
+    {
+      "name": "Fiji Airways",
+      "iata": "FJ",
+      "changi_terminal": "T1, Row 14, Door 5"
+    },
+    {
+      "name": "Finnair",
+      "iata": "AY",
+      "changi_terminal": "T1, Row 14, Door 5"
+    },
+    {
+      "name": "Firefly",
+      "iata": "FY",
+      "changi_terminal": "T2, Row 1, Door 1"
+    },
+    {
+      "name": "Garuda Indonesia",
+      "iata": "GA",
+      "changi_terminal": "T3, Row 5, Door 4"
+    },
+    {
+      "name": "Gulf Air",
+      "iata": "GF",
+      "changi_terminal": "T3, Row 5, Door 4"
+    },
+    {
+      "name": "Hainan Airlines",
+      "iata": "HU",
+      "changi_terminal": "T4, Row 8, Door 6"
+    },
+    {
+      "name": "Hebei Airlines",
+      "iata": "NS",
+      "changi_terminal": "T1, Row 11, Door 4"
+    },
+    {
+      "name": "IndiGo",
+      "iata": "6E",
+      "changi_terminal": "T2, Row 2, Door 1"
+    },
+    {
+      "name": "Japan Airlines",
+      "iata": "JL",
+      "changi_terminal": "T1, Row 1, Door 1"
+    },
+    {
+      "name": "Jeju Air",
+      "iata": "7C",
+      "changi_terminal": "T4, Row 2, Door 2"
+    },
+    {
+      "name": "Jetstar International",
+      "iata": "JQ",
+      "changi_terminal": "T2, Row 2, Door 1"
+    },
+    {
+      "name": "Juneyao Airlines",
+      "iata": "HO",
+      "changi_terminal": "T4, Row 4, Door 3"
+    },
+    {
+      "name": "KLM Royal Dutch Airlines",
+      "iata": "KL",
+      "changi_terminal": "T1, Row 2, Door 1"
+    },
+    {
+      "name": "Korean Air",
+      "iata": "KE",
+      "changi_terminal": "T4, Row 6, Door 4"
+    },
+    {
+      "name": "Loong Air",
+      "iata": "GJ",
+      "changi_terminal": "T4, Row 2, Door 2"
+    },
+    {
+      "name": "Lufthansa",
+      "iata": "LH",
+      "changi_terminal": "T2, Row 4,5, Door 2"
+    },
+    {
+      "name": "MIAT Mongolian Airlines",
+      "iata": "OM",
+      "changi_terminal": "T4, Row 2, Door 2"
+    },
+    {
+      "name": "Malaysia Airlines",
+      "iata": "MH",
+      "changi_terminal": "T2, Row 7, Door 5"
+    },
+    {
+      "name": "Myanmar Airways International",
+      "iata": "8M",
+      "changi_terminal": "T2, Row 12, Door 8"
+    },
+    {
+      "name": "Myanmar National Airlines",
+      "iata": "UB",
+      "changi_terminal": "T2, Row 1, Door 1"
+    },
+    {
+      "name": "Oman Air",
+      "iata": "WY",
+      "changi_terminal": "T2, Row 9, Door 7"
+    },
+    {
+      "name": "Peach Aviation",
+      "iata": "MM",
+      "changi_terminal": "T2, Row 1, Door 1"
+    },
+    {
+      "name": "Pelita Air",
+      "iata": "IP",
+      "changi_terminal": "T4, Row 2, Door 2"
+    },
+    {
+      "name": "Philippine Airlines",
+      "iata": "PR",
+      "changi_terminal": "T2, Row 11, Door 8"
+    },
+    {
+      "name": "Qantas Airways",
+      "iata": "QF",
+      "changi_terminal": "T1, Row 8, Door 3"
+    },
+    {
+      "name": "Qatar Airways",
+      "iata": "QR",
+      "changi_terminal": "T1, Row 3, Door 1"
+    },
+    {
+      "name": "Royal Brunei Airlines",
+      "iata": "BI",
+      "changi_terminal": "T2, Row 9, Door 7"
+    },
+    {
+      "name": "STARLUX Airlines",
+      "iata": "JX",
+      "changi_terminal": "T2, Row 12, Door 8"
+    },
+    {
+      "name": "SWISS International Airlines",
+      "iata": "LX",
+      "changi_terminal": "T2, Row 4,5, Door 2"
+    },
+    {
+      "name": "Saudia Airlines",
+      "iata": "SV",
+      "changi_terminal": "T3, Row 1, Door 1"
+    },
+    {
+      "name": "Scoot",
+      "iata": "TR",
+      "changi_terminal": "T1, Row 5, 6, 7, Door 2, 3"
+    },
+    {
+      "name": "Shandong Airlines",
+      "iata": "SC",
+      "changi_terminal": "T1, Row 1, Door 1"
+    },
+    {
+      "name": "Shanghai Airlines",
+      "iata": "FM",
+      "changi_terminal": "T3, Row 9, Door 7"
+    },
+    {
+      "name": "Shenzhen Airlines",
+      "iata": "ZH",
+      "changi_terminal": "T1, Row 4, Door 1"
+    },
+    {
+      "name": "Sichuan Airlines",
+      "iata": "3U",
+      "changi_terminal": "T2, Row 9, Door 7"
+    },
+    {
+      "name": "Singapore Airlines",
+      "iata": "SQ",
+      "changi_terminal": "T2, Row 3, 5, 6, Door 3 & T3, Row 3, 4, Door 3"
+    },
+    {
+      "name": "Spring Airlines",
+      "iata": "9C",
+      "changi_terminal": "T4, Row 2, Door 2"
+    },
+    {
+      "name": "SriLankan Airlines",
+      "iata": "UL",
+      "changi_terminal": "T3, Row 2, Door 2"
+    },
+    {
+      "name": "Sun PhuQuoc Airways",
+      "iata": "9G",
+      "changi_terminal": "T4, Row 8, Door 6"
+    },
+    {
+      "name": "T'way Air",
+      "iata": "TW",
+      "changi_terminal": "T2, Row 12, Door 8"
+    },
+    {
+      "name": "Thai AirAsia",
+      "iata": "FD",
+      "changi_terminal": "T4, Row 5, Door 4"
+    },
+    {
+      "name": "Thai Airways",
+      "iata": "TG",
+      "changi_terminal": "T2, Row 8, Door 6"
+    },
+    {
+      "name": "Thai Lion Air",
+      "iata": "SL",
+      "changi_terminal": "T4, Row 1, Door 1"
+    },
+    {
+      "name": "Tianjin Airlines",
+      "iata": "GS",
+      "changi_terminal": "T4, Row 1, Door 1"
+    },
+    {
+      "name": "TransNusa",
+      "iata": "8B",
+      "changi_terminal": "T2, Row 1, Door 1"
+    },
+    {
+      "name": "Turkish Airlines",
+      "iata": "TK",
+      "changi_terminal": "T1, Row 9, Door 4"
+    },
+    {
+      "name": "US-Bangla Airlines",
+      "iata": "BS",
+      "changi_terminal": "T3, Row 10, 11, Door 7, 8"
+    },
+    {
+      "name": "United Airlines",
+      "iata": "UA",
+      "changi_terminal": "T2, Row 1, Door 1"
+    },
+    {
+      "name": "VietJet Air",
+      "iata": "VJ",
+      "changi_terminal": "T4, Row 3, Door 2"
+    },
+    {
+      "name": "Vietnam Airlines",
+      "iata": "VN",
+      "changi_terminal": "T3, Row 1, Door 1"
+    },
+    {
+      "name": "West Air",
+      "iata": "PN",
+      "changi_terminal": "T4, Row 1, Door 1"
+    },
+    {
+      "name": "Xiamen Airlines",
+      "iata": "MF",
+      "changi_terminal": "T1, Row 3, Door 1"
+    },
+    {
+      "name": "ZIPAIR",
+      "iata": "ZG",
+      "changi_terminal": "T1, Row 14, Door 5"
+    }
   ]
 }
