@@ -4,15 +4,17 @@ Escapes post -- the highest-intent moment, right after someone's read the
 route list, mirroring how SIA's own promo page nudges toward Pelago
 activities in the same spot.
 
-PLACEHOLDER LINK: KLOOK_URL below is Klook's real, working, non-affiliate
-Singapore page -- safe to ship as-is, just not tracked/monetized yet.
-Swap in the real affiliate tracking link once enrolled (Klook's affiliate
-program has no minimum-traffic requirement, confirmed 2026-08-09 -- see
-docs/growth-plan.md). Do not fabricate a tracking ID or "aff_id"-style
-query param; leave this plain until a real one exists.
+KLOOK_URL is a real tracked affiliate link, generated 2026-08-09 via
+Klook's own affiliate portal (Link Converter tool, "Things to do" tab),
+targeting the locale-neutral https://www.klook.com/ (not a locale-prefixed
+URL like /en-SG/, which would lock in Singapore-market currency/language
+regardless of where the actual reader is) -- tagged with the label
+"spontaneous-escapes-monthly-post" on Klook's side so performance for this
+specific placement is filterable if more Klook links get added elsewhere
+later.
 """
 
-KLOOK_URL = "https://www.klook.com/en-SG/"
+KLOOK_URL = "https://affiliate.klook.com/redirect?aid=130458&aff_adid=1376604&k_site=https%3A%2F%2Fwww.klook.com%2F"
 
 STYLE = """
   .affiliate-card {
