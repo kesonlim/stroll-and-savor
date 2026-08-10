@@ -8,9 +8,10 @@ within this repo over) any global/user-level instructions.
 
 **Every page created in this repo — glossary entries, blog/monthly posts,
 landing pages, anything added later — must follow
-[`docs/seo-standards.md`](docs/seo-standards.md).** This is not optional
-polish; treat it the same as the brand voice rules or the human-review-gate
-policy that already govern this project.
+[`docs/seo-standards.md`](docs/seo-standards.md), which points to the
+canonical global standard at `~/.claude/SEO-GEO-STANDARDS.md`.** This is
+not optional polish; treat it the same as the brand voice rules or the
+human-review-gate policy that already govern this project.
 
 The short version (full detail, reasoning, and a pre-ship checklist in the
 doc itself):
@@ -26,9 +27,10 @@ doc itself):
   the persuading"), so it's rarely extra work, just discipline.
 - Stay fully static/server-rendered — no content gated behind
   client-side JS, since several major AI crawlers don't execute it.
-- Keep `sitemap.xml`, `robots.txt`, and `llms.txt` current when adding a
-  new section (`site/scripts/build.py` generates the first two
-  automatically; `llms.txt` is hand-maintained and needs a manual update).
+- `sitemap.xml`, `robots.txt`, and `llms.txt` are all generated
+  automatically by `site/scripts/build.py` from the actual built pages —
+  never hand-edit them, and never let a new section skip being included
+  (check `build.py`'s `url_paths` list and `write_llms_txt` cover it).
 
 When building a genuinely new page *type* (not a new instance of an
 existing one), run the "Before shipping a new page type" checklist in

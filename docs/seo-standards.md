@@ -6,6 +6,16 @@ root `CLAUDE.md`. When building a new page type, work through the
 checklist in "Before shipping a new page type" below before calling it
 done.
 
+**Canonical source: `~/.claude/SEO-GEO-STANDARDS.md`** (promoted global
+2026-08-09, after this file proved out as the first working
+implementation). This file was written first and is kept here as the
+project-specific record — exact page types, the brand-voice tension notes
+below, and the concrete build artifacts (`site/templates/chrome.py` etc.)
+that implement it — but if the two ever disagree, the global file wins;
+fix this one to match rather than the reverse. New general-purpose
+practices get added to the global file directly, not duplicated here
+first.
+
 Decided 2026-08-09. Covers two overlapping but distinct goals:
 
 - **Traditional SEO** — ranking in Google/Bing search results.
