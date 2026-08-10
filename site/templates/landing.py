@@ -100,4 +100,7 @@ def render(latest_tracker: dict) -> str:
         body=body,
         asset_prefix="",
         extra_style=STYLE,
+        url_path="",
+        og_type="website",
+        breadcrumbs=[("Home", "")],
     )

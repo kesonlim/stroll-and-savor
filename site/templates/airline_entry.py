@@ -63,10 +63,25 @@ def render(entry: dict) -> str:
 
       <a class="back-link" href="../">&larr; All airlines</a>
     </main>"""
+
+    url_path = f"airlines/{entry['slug']}/"
+    airline_json_ld = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": entry["name"],
+        "identifier": entry["iata"],
+        "url": entry["website"],
+        "sameAs": [entry["website"]],
+    }
+
     return page(
         title=f"{entry['name']} — Stroll & Savor",
         description=f"{entry['name']} ({entry['iata']}), {alliance_line}, hubbed at {entry['hub']}.",
         body=body,
         asset_prefix=ASSET_PREFIX,
         extra_style=STYLE,
+        url_path=url_path,
+        og_type="website",
+        breadcrumbs=[("Home", ""), ("Airlines", "airlines/"), (entry["name"], url_path)],
+        json_ld_extra=[airline_json_ld],
     )

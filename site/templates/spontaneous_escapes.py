@@ -92,4 +92,7 @@ def render(posts: list) -> str:
         body=body,
         asset_prefix=ASSET_PREFIX,
         extra_style=STYLE,
+        url_path="singapore-airlines/spontaneous-escapes/",
+        og_type="website",
+        breadcrumbs=[("Home", ""), ("Singapore Airlines", "singapore-airlines/spontaneous-escapes/")],
     )

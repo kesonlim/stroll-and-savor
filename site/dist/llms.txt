@@ -1,0 +1,56 @@
+# Stroll & Savor
+
+> Independent tracker of travel deals and airline loyalty programs worth paying attention to, starting with Singapore Airlines KrisFlyer Spontaneous Escapes. Not affiliated with any airline, hotel, or attraction covered. Voice: numbers first, no hype -- exact routes, exact fare classes, no unverifiable claims.
+
+## Singapore Airlines Spontaneous Escapes
+
+Monthly business-class award fare list (30% off Saver Awards), published as close to Singapore Airlines' own reveal as possible.
+
+- [Spontaneous Escapes tracker](https://strollsavor.thethinkthank.com/singapore-airlines/spontaneous-escapes/) -- section index, all months
+- Latest: [30% off Saver Awards, business class](https://strollsavor.thethinkthank.com/singapore-airlines/spontaneous-escapes/2026-08/) -- 37 fares · book by 2026-07-31 · via MileLion
+
+## Airlines glossary
+
+34 airlines flying to/from Singapore Changi, covering Star Alliance, oneworld, and SkyTeam members so far (~86 airlines serve Changi in total; more coverage planned). Each entry: IATA code, alliance, hub, Changi check-in terminal, official site.
+
+- [Airlines index](https://strollsavor.thethinkthank.com/airlines/)
+- [Air Canada](https://strollsavor.thethinkthank.com/airlines/air-canada/) (AC, Star Alliance)
+- [Air China](https://strollsavor.thethinkthank.com/airlines/air-china/) (CA, Star Alliance)
+- [Air India](https://strollsavor.thethinkthank.com/airlines/air-india/) (AI, Star Alliance)
+- [Air New Zealand](https://strollsavor.thethinkthank.com/airlines/air-new-zealand/) (NZ, Star Alliance)
+- [All Nippon Airways](https://strollsavor.thethinkthank.com/airlines/all-nippon-airways/) (NH, Star Alliance)
+- [Asiana Airlines](https://strollsavor.thethinkthank.com/airlines/asiana-airlines/) (OZ, Star Alliance)
+- [Ethiopian Airlines](https://strollsavor.thethinkthank.com/airlines/ethiopian-airlines/) (ET, Star Alliance)
+- [EVA Air](https://strollsavor.thethinkthank.com/airlines/eva-air/) (BR, Star Alliance)
+- [Lufthansa](https://strollsavor.thethinkthank.com/airlines/lufthansa/) (LH, Star Alliance)
+- [Shenzhen Airlines](https://strollsavor.thethinkthank.com/airlines/shenzhen-airlines/) (ZH, Star Alliance)
+- [Singapore Airlines](https://strollsavor.thethinkthank.com/airlines/singapore-airlines/) (SQ, Star Alliance)
+- [Swiss International Air Lines](https://strollsavor.thethinkthank.com/airlines/swiss-international-air-lines/) (LX, Star Alliance)
+- [Thai Airways](https://strollsavor.thethinkthank.com/airlines/thai-airways/) (TG, Star Alliance)
+- [Turkish Airlines](https://strollsavor.thethinkthank.com/airlines/turkish-airlines/) (TK, Star Alliance)
+- [United Airlines](https://strollsavor.thethinkthank.com/airlines/united-airlines/) (UA, Star Alliance)
+- [British Airways](https://strollsavor.thethinkthank.com/airlines/british-airways/) (BA, oneworld)
+- [Cathay Pacific](https://strollsavor.thethinkthank.com/airlines/cathay-pacific/) (CX, oneworld)
+- [Fiji Airways](https://strollsavor.thethinkthank.com/airlines/fiji-airways/) (FJ, oneworld)
+- [Finnair](https://strollsavor.thethinkthank.com/airlines/finnair/) (AY, oneworld)
+- [Japan Airlines](https://strollsavor.thethinkthank.com/airlines/japan-airlines/) (JL, oneworld)
+- [Malaysia Airlines](https://strollsavor.thethinkthank.com/airlines/malaysia-airlines/) (MH, oneworld)
+- [Oman Air](https://strollsavor.thethinkthank.com/airlines/oman-air/) (WY, oneworld)
+- [Qantas Airways](https://strollsavor.thethinkthank.com/airlines/qantas-airways/) (QF, oneworld)
+- [Qatar Airways](https://strollsavor.thethinkthank.com/airlines/qatar-airways/) (QR, oneworld)
+- [SriLankan Airlines](https://strollsavor.thethinkthank.com/airlines/srilankan-airlines/) (UL, oneworld)
+- [Air France](https://strollsavor.thethinkthank.com/airlines/air-france/) (AF, SkyTeam)
+- [China Airlines](https://strollsavor.thethinkthank.com/airlines/china-airlines/) (CI, SkyTeam)
+- [China Eastern Airlines](https://strollsavor.thethinkthank.com/airlines/china-eastern-airlines/) (MU, SkyTeam)
+- [Garuda Indonesia](https://strollsavor.thethinkthank.com/airlines/garuda-indonesia/) (GA, SkyTeam)
+- [KLM Royal Dutch Airlines](https://strollsavor.thethinkthank.com/airlines/klm-royal-dutch-airlines/) (KL, SkyTeam)
+- [Korean Air](https://strollsavor.thethinkthank.com/airlines/korean-air/) (KE, SkyTeam)
+- [Saudia Airlines](https://strollsavor.thethinkthank.com/airlines/saudia-airlines/) (SV, SkyTeam)
+- [Vietnam Airlines](https://strollsavor.thethinkthank.com/airlines/vietnam-airlines/) (VN, SkyTeam)
+- [Xiamen Airlines](https://strollsavor.thethinkthank.com/airlines/xiamen-airlines/) (MF, SkyTeam)
+
+## Notes for automated readers
+
+- All content is static, server-rendered HTML -- no JavaScript required to read any page.
+- Every page carries schema.org JSON-LD (Organization, BreadcrumbList, and Article/Organization as appropriate).
+- Data sourcing: scraper/ and airlines/data/ in the source repo (github.com/kesonlim/stroll-and-savor) document exactly where each fact came from and when it was retrieved.

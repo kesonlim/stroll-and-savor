@@ -71,7 +71,11 @@ correct immediately; this is Cloudflare's edge cache, not a deploy failure.
   `render_content` (the same full route-list content used for the
   standalone artifact in `content/posts/`) in site chrome, rather than
   duplicating that rendering logic.
-- `scripts/build.py` — orchestrates everything above into `site/dist/`.
+- `scripts/build.py` — orchestrates everything above into `site/dist/`,
+  including `sitemap.xml`, `robots.txt`, and `llms.txt` (see
+  [`../docs/seo-standards.md`](../docs/seo-standards.md) — **mandatory**
+  reading before adding any new page type; every page must implement its
+  per-page checklist: canonical URL, OG/Twitter tags, schema.org JSON-LD).
 - `dist/` — build output, committed for the same reason `content/posts/`
   is: transparency/reproducibility of what's actually live. Regenerate with
   `build.py` rather than hand-editing.

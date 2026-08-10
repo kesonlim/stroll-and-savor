@@ -21,11 +21,33 @@ STYLE = f"""
 
 def render(data: dict) -> str:
     label = month_label(data["travel_month"])
+    title = f"Spontaneous Escapes — {label} — Stroll & Savor"
+    description = f"Every business-class Spontaneous Escapes route for {label} travel, {data.get('discount_pct', 30)}% off Saver Awards."
+    url_path = f"singapore-airlines/spontaneous-escapes/{data['travel_month']}/"
     body = f'<main>{render_content(data)}{complete_the_trip_card()}</main>'
+
+    article_json_ld = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "datePublished": data.get("generated_at"),
+        "author": {"@type": "Organization", "name": "Stroll & Savor"},
+        "publisher": {"@type": "Organization", "name": "Stroll & Savor"},
+    }
+
     return page(
-        title=f"Spontaneous Escapes — {label} — Stroll & Savor",
-        description=f"Every business-class Spontaneous Escapes route for {label} travel, {data.get('discount_pct', 30)}% off Saver Awards.",
+        title=title,
+        description=description,
         body=body,
         asset_prefix=ASSET_PREFIX,
         extra_style=STYLE,
+        url_path=url_path,
+        og_type="article",
+        breadcrumbs=[
+            ("Home", ""),
+            ("Singapore Airlines", "singapore-airlines/spontaneous-escapes/"),
+            (label, url_path),
+        ],
+        json_ld_extra=[article_json_ld],
     )

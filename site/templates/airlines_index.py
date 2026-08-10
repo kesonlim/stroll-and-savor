@@ -65,4 +65,7 @@ def render(entries: list) -> str:
         body=body,
         asset_prefix="../",
         extra_style=STYLE,
+        url_path="airlines/",
+        og_type="website",
+        breadcrumbs=[("Home", ""), ("Airlines", "airlines/")],
     )
