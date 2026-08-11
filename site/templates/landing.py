@@ -22,10 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from chrome import page, SOCIAL_LINKS  # noqa: E402
 
-# TODO(user): replace once you've created the account -- I can't create
-# accounts on your behalf. Sign up at buttondown.com, then swap this for
-# your real username (Q10 of the 2026-08-11 redesign decision).
-BUTTONDOWN_USERNAME = "strollsavor"
+BUTTONDOWN_USERNAME = "klim"
 
 GOOGLE_FONTS_HEAD = """
 <link rel="preconnect" href="https://fonts.googleapis.com">
