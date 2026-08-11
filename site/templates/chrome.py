@@ -75,6 +75,8 @@ def page(
     og_type: str = "website",
     breadcrumbs: list = None,
     json_ld_extra: list = None,
+    body_class: str = "",
+    head_extra: str = "",
 ) -> str:
     nav_html = "".join(
         f'<a href="{asset_prefix}{href}">{label}</a>' for label, href in NAV_LINKS
@@ -114,6 +116,7 @@ def page(
 <meta name="twitter:description" content="{description}">
 <link rel="icon" href="{asset_prefix}assets/favicon.ico">
 <link rel="stylesheet" href="{asset_prefix}assets/style.css">
+{head_extra}
 {json_ld_html}
 <style>
   .site-header {{
@@ -138,14 +141,14 @@ def page(
   {extra_style}
 </style>
 </head>
-<body>
+<body class="{body_class}">
   <header class="site-header">
     <a class="brand" href="{asset_prefix}">{MONOGRAM_INK}<span>stroll &amp; savor</span></a>
     <nav>{nav_html}</nav>
   </header>
   {body}
   <footer class="site-footer">
-    <span>Stroll &amp; Savor — independent, not affiliated with any airline, hotel, or attraction we cover.</span>
+    <span>Stroll &amp; Savor. Independent, not affiliated with any airline, hotel, or attraction we cover.</span>
     <span class="social">{social_html}</span>
   </footer>
 </body></html>"""

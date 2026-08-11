@@ -149,10 +149,11 @@ def main():
     url_paths.append(f"{SE_PATH}/")
     print(f"wrote /{SE_PATH}/")
 
-    (DIST / "index.html").write_text(landing.render(posts[0]))
+    airline_entries = build_airline_entries()
+
+    (DIST / "index.html").write_text(landing.render(posts[0], airline_count=len(airline_entries)))
     print("wrote /")
 
-    airline_entries = build_airline_entries()
     airlines_dir = DIST / "airlines"
     for e in airline_entries:
         entry_dir = airlines_dir / e["slug"]
