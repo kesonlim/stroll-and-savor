@@ -1,254 +1,349 @@
 # Growth, monetization & SEO plan
 
-Decided 2026-08-09 via a structured design-tree interview (see project chat
-history for the full round-by-round reasoning). This doc is the durable
-record — update it as decisions change rather than treating it as a
-point-in-time snapshot that drifts from reality.
+Originally decided 2026-08-09 via a structured design-tree interview.
+**Superseded in large part by a 2026-09-11 strategy reset** (also a
+structured `grilling` interview — see project chat history for full
+round-by-round reasoning), after real research showed the interim
+deal-alert redesign was modeled on the wrong genre of site. This doc is
+the durable record — update it as decisions change rather than treating
+it as a point-in-time snapshot that drifts from reality.
 
-## Where things stand today
+## Where things stand today (2026-09-11)
 
-- Field Notes brand system, fully specified (`brand/`).
+- Field Notes brand system, fully specified (`brand/`) — **now scoped to
+  social media only**, not the website (see reset below).
 - SIA Spontaneous Escapes tracked monthly: extraction (`scraper/`), content
-  generation (`content/`), and a live site (`site/`) — currently living at
-  the site root, being restructured (see below).
+  generation (`content/`), airline glossary (`airlines/`) — all kept, all
+  infrastructure, unaffected by the visual/positioning reset.
 - Social accounts, confirmed live:
   - Facebook: https://www.facebook.com/profile.php?id=61581034831451
   - Instagram: https://www.instagram.com/stroll_savor/
   - TikTok: https://www.tiktok.com/@stroll_savor
   - YouTube: https://www.youtube.com/@StrollAndSavor
-- No mailing list, no ad network integration, no affiliate links live yet.
+- Mailing list (Buttondown signup) and OTA affiliate links (Klook) are
+  live. No ad network integration, no credit-card affiliate relationship
+  yet (see "Citi correction" below — this was never actually live).
+- The site's static-HTML-via-Python-f-strings build (`site/templates/`,
+  `site/scripts/build.py`) is being **replaced by an Astro migration**
+  (see below) — do not build new templates in the old pattern.
+
+## 2026-09-11 strategy reset — what changed and why
+
+**The problem.** The prior session's homepage redesign was modeled on
+Going.com — a deal-alert "subscription" site (Premium/Elite tiers,
+$49-199/yr). But Stroll & Savor's actual business model is affiliate +
+ads, not subscription. Copying a subscription site's visual conventions
+while running a different business model was a genre mismatch, and it's
+why the redesign didn't feel right even though it was well-executed on
+its own terms.
+
+**The correction, researched not guessed:**
+
+- **Superior-margin travel monetization models, ranked**: credit-card/
+  finance affiliate has by far the highest EPC in the travel/finance
+  niche ($100-300+ CPA per approved card vs. 2-8% commission and ~1-3%
+  conversion for OTA affiliate, vs. $3-15 RPM for display ads). This is
+  literally The Points Guy's entire business, and the same playbook
+  MileLion (this project's own scraper fallback source) runs in this
+  exact market. Subscription (Going's model) has the best long-term LTV
+  but is the hardest to bootstrap solo and doesn't fit a "generic
+  consumer" positioning — explicitly not pursued.
+- **Sequencing given that ranking**: OTA affiliate (Klook, already live)
+  + display ads on programmatic content are the *volume/ease-of-scale*
+  layer (low barrier, low margin, but easy to turn on and scales with
+  content volume). Credit-card/finance affiliate is the *profit engine*,
+  entered via a lower-barrier network (CardRatings-style) before
+  graduating to direct issuer deals, once there's real traffic to show —
+  exactly TPG/MileLion's own path.
+- **Site positioning**: broadens from a narrow "deal tracker" to a real
+  points/travel-deals **content hub** in the TPG mold — deals + card
+  guides + airline/program reference content, no single "hero product."
+  A narrow tracker caps traffic at one source (SIA's monthly reveal) and
+  gives card issuers nothing to call "finance-relevant" beyond one
+  recurring post.
+- **Design role model, researched via a live homepage audit**: not
+  Skyscanner (pure search-utility, no editorial content — building that
+  hero would mean competing with the OTAs you're earning commission
+  from), but a **TPG + NerdWallet hybrid**: TPG's editorial grid +
+  "BEST FOR X" affiliate card-offer modules, NerdWallet's ranked
+  "best of" list pages. No live flight-search form anywhere on the site.
+- **Field Notes brand identity** (Courier Prime/IBM Plex Sans/Space Mono,
+  warm paper background) moves to **social media only** — a deliberate
+  split, not a demotion. The website needs generic, mass-market,
+  instantly-recognizable design; social content can still stand out with
+  a distinct identity since it's a different consumption context.
+- **Citi referral correction**: `docs/growth-plan.md` previously implied
+  a live Citi referral link. There isn't one — what's real is that
+  Citibank SG's personal-referral program pays S$150/referral (researched
+  2026-08-09); enrollment hasn't happened yet. Card-guide content
+  launches without live card-affiliate links until real relationships
+  (Citi enrollment, then CardRatings-style network, then direct issuers)
+  exist.
+
+## Tech stack: Astro migration
+
+The existing static-HTML-via-Python-f-string approach (`site/templates/*.py`
+generating raw HTML strings) is being replaced with **Astro + file-based
+content collections**, deployed to Cloudflare Pages same as today.
+
+**Why**: researched, not a preference call — the documented 2026 best
+practice is *"use a headless CMS when you have a dedicated content team
+that needs a visual editor... use file-based content when your team is
+technical or works with AI agents"* (Cosmic JS, Astro vs Next.js
+comparison). That's exactly this project's situation: no editor team,
+content and code both produced by Claude Code sessions. Astro is also the
+documented default for SEO-heavy, mostly-static content sites specifically
+because it's pre-rendered by default. Concretely, this also fixes a real
+maintainability problem the old approach had: content, layout, and copy
+were all mixed together inside Python f-strings generating raw HTML,
+which made the last redesign painful (CSS specificity bugs, giant string
+blocks). Content becomes typed Markdown/YAML/JSON in git (same
+human-review-gate workflow as today); presentation becomes reusable
+`.astro` components.
+
+**Migration is mechanical for existing content**: airline glossary data
+(`airlines/data/entries.py` + JSON files) and SIA Spontaneous Escapes
+posts (`scraper/samples/*.json`) both go from Python dicts to Markdown/
+YAML frontmatter — no re-authoring, no content loss.
 
 ## Site structure (IA)
 
-The root domain (`strollsavor.thethinkthank.com`) is a **general Stroll &
-Savor brand landing page** — not SIA-specific. SIA content moves to a
-subpath so the IA can hold other airlines/verticals alongside it without a
-rename.
+URL structure **stays stable** — it already has real (if early) search
+history and there's no functional reason to reset it:
 
 ```
-/                                  brand-general landing page
+/                                  brand-general hub homepage (TPG+NerdWallet hybrid design)
 /singapore-airlines/
-  spontaneous-escapes/             the existing monthly tracker (moved from root)
-    <travel-month>/                individual monthly posts (was /blog/<month>/)
-/airlines/                         [planned] glossary: every airline serving Singapore
+  spontaneous-escapes/             the existing monthly tracker
+    <travel-month>/                individual monthly posts
+/airlines/                         glossary: every airline serving Singapore (34 live)
   <airline-slug>/
+/cards/                            [new] credit-card guides ("best miles cards in Singapore," per-card pages)
 /hotels/                           [planned, later] glossary: hotel chains, Singapore first
   <chain-slug>/
 /attractions/                      [planned, later] glossary: attractions, Singapore first
   <attraction-slug>/
-/news/                             [planned] rewritten/reframed airline press releases
-  <post-slug>/
+/blog/  (or /news/ + /guides/)     [new] editorial stream — deal analysis, card guides as articles,
+                                    rewritten SIA press releases. One content model, dated posts,
+                                    TPG-style. Absorbs the previously-separate "news pipeline" plan.
 ```
 
-Root nav (once restructured): **Home** / **Singapore Airlines** / **Blog**
-(news) / **Guides** (glossary, once it exists) — trim to what actually has
-content at each phase rather than linking to empty sections.
+New sections get added to the existing tree; nothing gets renamed.
+
+## Homepage design direction
+
+**Role model, from a live structural audit of TPG, Skyscanner, and
+NerdWallet (2026-09-11):**
+
+- **The Points Guy** — magazine-first: editorial article grid (bylines,
+  read times, category tags) with commerce inserted as distinct bordered
+  "offer" modules (superlative label + card image + terms + CTA), plus a
+  points-valuation reference table and a card-filter/comparison tool.
+- **Skyscanner** — utility-first: a search form *is* the hero, almost no
+  editorial content, a long tail of programmatic city/route link tiles
+  below. **Explicitly not the model for Stroll & Savor** — a live
+  flight-search hero is a large technical build that also competes with
+  the OTAs paying commission through this site.
+- **NerdWallet** — ranked "best of" list pages (card image + rating +
+  short "why we like it" + fee summary), no narrative voice, ratings and
+  disclosures next to every commerce unit.
+
+**Stroll & Savor's homepage**: TPG's editorial-grid rhythm and
+superlative-labeled card-offer modules, NerdWallet's ranked "best of"
+structure for card-guide pages specifically, no search-form hero.
+
+## Content pillars (priority order)
+
+1. **Deals** — existing SIA Spontaneous Escapes tracker, widen beyond SIA
+   (see "Widening the scraper" below).
+2. **Airline/loyalty glossary** — existing, 34 of 86 Changi airlines live,
+   continue tiering (see SEO plan below, unchanged in substance).
+3. **Card guides** — new. Evergreen editorial ranking content ("best miles
+   credit cards in Singapore," individual card pages), built now without
+   live affiliate links where none exist yet. Prioritized ahead of the
+   news pipeline because it's the direct path to the card-affiliate
+   profit engine and it's a durable SEO asset (doesn't go stale monthly
+   the way a deal post does).
+4. **Points valuation reference** — new, TPG-style "what's a mile worth"
+   table. Lower priority, natural follow-on once card guides exist.
+5. **News/blog** — the previously-planned SIA press-release rewrite
+   pipeline, now folded into the general editorial/blog stream rather
+   than a separate section. Lowest priority of the five (was already
+   unstarted).
+
+## Content & research agent architecture
+
+Two-stage pipeline, both stages are just scoped Claude Code passes, not
+new infrastructure:
+
+```
+research agent → structured findings (JSON/YAML, no prose)
+              → content agent → Astro content collection entry + social assets
+              → human review (existing gate, unchanged)
+              → publish
+```
+
+- **Research agent**: evolution of `scraper/`. Watches known sources
+  (airline newsrooms, MileLion/OMAAT/TPG, card issuer rate pages) and
+  outputs structured data only. Two modes: **scheduled** (cloud routine,
+  like the existing `⚡ SS_Escapes_Monthly_Extract`) for predictable
+  recurring checks, **on-demand** (an invoked subagent) for irregular
+  research tasks. **Cadence: daily** for the scheduled mode.
+- **Content agent**: evolution of `content/scripts/generate.py`. Consumes
+  a research agent's structured findings, never invents facts, produces
+  an Astro content entry plus matching social assets.
+- **Widening the scraper** (first research-agent task): identify which
+  other airlines/loyalty programs relevant to a Singapore-based audience
+  run comparable trackable promos, so "Deals" stops being SIA-only. Not
+  yet scoped — do this before building the monitoring-agent or reviving
+  the full news pipeline; one new system at a time.
+
+## Social distribution
+
+**Pipeline scope, sequenced**: (a) extend the existing carousel/story/
+caption generator (`content/`) to new content types as they get built —
+smallest lift, same pattern, new content sources. (b) Add real posting
+automation — currently 100% manual, this unlocks consistent cadence. (c)
+Add video generation for TikTok/YouTube — most novel/expensive, last.
+
+**Publish flow: queued-and-approve, never full auto-publish** — consistent
+with every other human-review gate already established in this project;
+social posts are public and permanent in a way that's awkward to walk
+back.
+
+**Posting mechanism**: direct platform APIs, not a unified provider —
+Postiz/Ayrshare-style tools were evaluated (Postiz self-hosted is free;
+Ayrshare's $149+/mo is priced for agencies managing many client brands,
+not a single brand) but tabled in favor of direct integrations, revisited
+only if maintaining several direct integrations becomes a real burden.
+
+**Platform priority — audience-first, not build-ease-first.** An initial
+"start with whatever's easiest to integrate" pass (Threads + X) was
+**corrected** after checking actual Singapore platform-usage data: X has
+the lowest ad-engagement of any platform measured in Singapore (0.5%),
+and Threads doesn't register in Singapore-specific stats at all. Stroll &
+Savor's audience is explicitly Singapore-biased (inbound visitors +
+outbound Singapore-based travelers), so fit had to come before ease:
+
+1. **Instagram** — strongest reach (65.9% of SG internet users) + the
+   existing carousel/story content is already built for this exact
+   format. Start the Meta app review now (2-4 week queue) in parallel
+   with building everything else, since nothing blocks on it.
+2. **Facebook** — same Meta app as Instagram, near-zero extra setup once
+   approved, already has a live presence to feed.
+3. **TikTok** — highest engagement in Singapore specifically (4.2% ad
+   engagement, most time-in-app of any platform measured). Gated on video
+   generation; bump ahead of YouTube once that exists.
+4. **XiaoHongShu** — no official API for foreign creators exists (only
+   unofficial/session-based tools), so automation isn't realistically on
+   the table yet. But it's the **primary destination-research platform
+   for Chinese travelers considering Singapore** (60%+ discover
+   destinations there, ~50% have booked from what they saw) — exactly the
+   inbound-tourist half of this project's target audience. **Start
+   posting manually now**, don't wait for automation that has no clean
+   path.
+5. **YouTube** — after TikTok, also needs video.
+6. **Deprioritized / skipped for now**: X, Threads, Bluesky, LinkedIn —
+   weak Singapore audience fit for this brand. Bluesky specifically: real
+   and growing (43.5M registered users) but no evidence of an established
+   travel/points community there; revisit only if that changes.
 
 ## Monetization plan
 
-**Sequencing: monetize in parallel with growth, but light-touch.** Two
-affiliate categories checked and confirmed low-barrier enough to integrate
-early rather than waiting for meaningful traffic:
+**Sequencing, updated per the 2026-09-11 reset**: OTA affiliate + display
+ads as the volume/ease-of-scale layer, credit-card/finance affiliate as
+the actual profit engine, entered incrementally:
 
-- **OTA/activity affiliates (priority 1)** — Klook has no minimum-traffic
-  requirement and no website requirement to join; commission 2–20%
-  depending on category (tours/hotels ~6.5%, attractions ~5%). Natural
-  first placement: a Klook/Pelago-style link on the Spontaneous Escapes
-  page, which already primes visitors toward post-booking activities (the
-  SIA source page itself features Pelago activity suggestions).
-- **Bank card referrals (priority 2, added incrementally)** — Singapore
-  issuers (Citi confirmed: S$150/referral) run these as personal
-  referral/MGM programs, not a formal affiliate network — same model
-  MileLion uses. Requires signing up individually per bank; add one at a
-  time as enrolled, not a single integration.
-- **Travel insurance affiliates** — relevant given Spontaneous Escapes
-  fares are explicitly non-cancellable (SIA's own T&Cs recommend insurance)
-  — natural contextual fit, lower priority than the above two, revisit
-  once the site has a "before you book" content moment to attach it to.
-- **Google AdSense / display ads** — **confined to reference/utility pages
-  only** (`/airlines/`, `/hotels/`, `/attractions/`, `/news/`) — **never**
-  on deal-tracking pages (home, `/singapore-airlines/spontaneous-escapes/`
-  and its monthly posts). Those are the trust-critical surface; the brand
-  voice (persona "distrusts glossy travel marketing," no-hype principles)
-  is the product there, and ad clutter undercuts it directly. Reference
-  pages are lookup-utility in nature and can carry ads without the same
-  cost. Don't turn this on until there's real traffic to justify it.
-- **Sponsored/partner content** — not ruled out, but no policy needed
-  until someone actually asks; revisit if/when relevant.
-- **Premium tier** — a possible future lever (faster/deeper deal
-  analysis, similar to MileLion's own SEAT tool), explicitly deferred, not
-  part of the current roadmap.
+- **OTA/activity affiliates (live now)** — Klook, no minimum-traffic
+  requirement, commission 2–20% depending on category. Contextual
+  placement on deal pages.
+- **Credit-card/finance affiliate (the priority profit engine, not yet
+  live)** — sequencing: (1) enroll in Citibank SG's personal-referral
+  program (S$150/referral, confirmed rate, not yet enrolled), (2) apply
+  to a lower-barrier aggregator network (CardRatings-style) once card
+  guide content exists to demonstrate "finance relevance," (3) graduate
+  to direct issuer relationships as traffic grows — the exact path TPG
+  and MileLion both walked. Top-tier programs are gated on traffic/
+  authority; card guides (see content pillars) are the asset that
+  unlocks this.
+- **Travel insurance affiliates** — unchanged, lower priority, revisit
+  once there's a "before you book" content moment to attach it to.
+- **Google AdSense / display ads** — unchanged: confined to reference/
+  utility pages only (`/airlines/`, `/hotels/`, `/attractions/`,
+  `/blog/`), never on deal-tracking pages. Don't turn on until there's
+  real traffic to justify it.
+- **Sponsored/partner content** — unchanged, no policy needed until asked.
+- **Premium tier** — explicitly **not pursued** (was previously "possible
+  future lever"). Research showed subscription is the wrong fit for a
+  generic-consumer-positioned affiliate/ads business and the hardest
+  model to bootstrap solo; if revisited, that would be a deliberate
+  future decision, not a default assumption.
 
 ## SEO plan: programmatic glossary
 
-Legitimate, well-precedented strategy in this niche (deal/points blogs and
-travel aggregators do this routinely) — but only if pages carry real
-value, not thin templated shells (both a copyright/quality constraint on
-scraped content and a real SEO risk: search engines actively penalize
-low-value duplicate content).
+Unchanged in substance from the original plan — still a legitimate,
+well-precedented strategy, still airlines-first before hotels/attractions,
+still tiered. Continues under the Astro migration (glossary entries become
+typed content collection items rather than Python dicts, same data, same
+editorial bar).
 
-**Sequencing**: airlines first, Singapore-scoped, before hotels/attractions
-(explicitly deferred — do not start those until airlines is shipped and
-validated).
+**Scope sizing**: Changi Airport's official passenger list has 86
+airlines (`airlines/data/changi-airlines.json`).
 
-**Depth per page**: structured data (routes served, alliance, cabin
-classes, booking links) **plus one short genuine editorial paragraph per
-airline in the established brand voice** — not a pure data template, not
-full long-form. Matches the pattern already used for the monthly blog post
-(data template + light editorial framing in the masthead).
+**Tier 1, shipped**: 15 Star Alliance members (Air Canada, Air China, Air
+India, Air New Zealand, All Nippon Airways, Asiana Airlines, Ethiopian
+Airlines, EVA Air, Lufthansa, Shenzhen Airlines, Singapore Airlines, Swiss
+International Air Lines, Thai Airways, Turkish Airlines, United Airlines).
 
-**Scope sizing** (researched 2026-08-09, corrects this doc's earlier
-"several dozen" guess): Changi Airport's official passenger airline list
-has **86 airlines** — see `airlines/data/changi-airlines.json` (name +
-IATA code, sourced from
-`changiairport.com/en/fly/airline-information/passenger.html`). That's a
-meaningfully bigger hand-review commitment than "several dozen," so build
-in **tiers** rather than all 86 at once:
+**Tier 2, shipped**: 19 oneworld/SkyTeam members — see git history /
+`airlines/data/oneworld-skyteam-members.json` for the full breakdown.
 
-1. **Star Alliance members** (SIA's own alliance — most relevant to a
-   KrisFlyer-focused audience deciding where to redeem/earn miles) first.
-2. **Major codeshare/oneworld/SkyTeam partners** relevant to Singapore
-   routes next.
-3. **Everything else** last, and possibly with a lighter per-entry bar
-   once the format is proven on the higher-priority tiers.
+**Tier 3, not yet scoped**: the remaining ~52 of Changi's 86 airlines with
+no major alliance membership.
 
-**Tier 1, confirmed 2026-08-09**: cross-referencing Star Alliance's official
-26-member list (`airlines/data/star-alliance-members.json`) against the
-Changi 86 gives **15 airlines**: Air Canada, Air China, Air India, Air New
-Zealand, All Nippon Airways, Asiana Airlines, Ethiopian Airlines, EVA Air,
-Lufthansa, Shenzhen Airlines, Singapore Airlines, Swiss International Air
-Lines, Thai Airways, Turkish Airlines, United Airlines. A tight, manageable
-first batch. (Note: Juneyao Air is a Star Alliance *Connecting Partner* at
-Changi, not a full member — different mileage rules, deliberately excluded
-from this tier rather than conflated with it.)
+**Not yet done**: internal linking between glossary entries and
+Spontaneous Escapes/deal routes (now has a much more natural link target
+once the hub has more sections — reconsider during the Astro rebuild), and
+tier 3 scoping.
 
-**Technical approach**: extends the existing Python-template-generation
-pattern (`content/templates/`, `site/templates/`) rather than introducing
-a new stack.
+## Phased roadmap (post-reset)
 
-**Tier 1 shipped 2026-08-09**: all 15 entries live at `/airlines/<slug>/`
-plus an index at `/airlines/` (added to site nav). Data + hand-authored
-blurbs in `airlines/data/entries.py`, templates in
-`site/templates/airline_entry.py` / `airlines_index.py`. Includes
-Singapore Airlines itself (deliberately — it's the reason the site
-exists, and leaving it out of an otherwise-complete tier would be its own
-kind of inconsistency).
+Numbered by dependency order, not calendar date.
 
-**Tier 2, shipped 2026-08-09**: oneworld and SkyTeam
-members flying to/from Changi, same cross-reference methodology as tier 1
-— **19 airlines**, saved in
-`airlines/data/oneworld-skyteam-members.json`:
-
-- *oneworld (10)*: British Airways, Cathay Pacific, Fiji Airways, Finnair,
-  Japan Airlines, Malaysia Airlines, Oman Air, Qantas Airways, Qatar
-  Airways, SriLankan Airlines.
-- *SkyTeam (9)*: Air France, China Airlines, China Eastern Airlines,
-  Garuda Indonesia, KLM Royal Dutch Airlines, Korean Air, Saudia Airlines,
-  Vietnam Airlines, Xiamen Airlines.
-
-Philippine Airlines is a "Future Member" on oneworld's own site, not full
-yet — excluded for the same reason Juneyao Air was excluded from tier 1
-(don't conflate pending/partner status with confirmed membership); revisit
-once it converts. One more note worth carrying forward: third-party
-reporting suggests Asiana Airlines (tier 1) will eventually move from Star
-Alliance to SkyTeam following its merger with Korean Air, but this isn't
-reflected on either alliance's live site yet as of 2026-08-09 — not acted
-on, just flagged for when this data is next refreshed.
-
-Live at `/airlines/<slug>/` (34 total now: 15 tier 1 + 19 tier 2), index
-grouped by alliance since a flat 34-card grid was hard to scan.
-`airlines/data/entries.py` now covers both tiers, keyed by alliance rather
-than hardcoded to Star Alliance — tier-2 entries show alliance membership
-without a join date rather than a fabricated one, since oneworld/SkyTeam
-join dates weren't part of this research pass. Official website links
-verified per-airline the same way as tier 1 (direct checks against
-oneworld.com/skyteam.com member pages, or a targeted search for the few
-where that page didn't expose a clean external link), not guessed.
-Changi terminal data now lives centrally in `changi-airlines.json` for all
-86 airlines (fixed from tier 1, which had it hardcoded separately in
-`entries.py` — a real inconsistency worth avoiding for tier 3+).
-
-**Not yet done**: sitemap.xml generation, and internal linking (glossary
-entries should cross-link to relevant Spontaneous Escapes routes where
-applicable — not built yet since there's no natural link target
-per-airline; worth reconsidering once more sections exist), and scoping
-tier 3 (the remaining ~52 of Changi's 86 airlines with no major alliance
-membership).
-
-## News pipeline (press-release rewrite)
-
-**Scope: start narrow — Singapore Airlines only.** Validates the
-rewrite pipeline actually produces genuinely transformative content before
-investing in a multi-airline tracker. SIA's newsroom/press-release archive
-is browsable at a stable URL pattern
-(`singaporeair.com/en_UK/sg/corporate/newsroom/press-release/`), already
-confirmed reachable during earlier research in this project.
-
-**Architecture**: reuse the proven `scraper/`-style pattern — a
-cloud-scheduled routine that checks the newsroom page/RSS feed, and on a
-new release, runs a rewrite pass before anything publishes.
-
-**Hard constraint, not a nice-to-have**: rewritten posts must be
-genuinely transformative — real framing, analysis, "what this means for
-Spontaneous Escapes / for the deliberate collector," not paraphrased
-press-release copy. This isn't just good practice — it's a operating
-requirement (verbatim reproduction of source material beyond a short
-attributed quote isn't something this pipeline can do), and it's also the
-difference between content that ranks and thin duplicate content that
-gets penalized. Every generated post needs a human review pass before
-publishing, same as everything else in this project — no exception for
-"it's just a rewrite."
-
-**Not yet designed**: the actual prompt/procedure for the rewrite step,
-and whether it needs an explicit "here's what changed vs. last time"
-diffing step to avoid re-processing unchanged pages. Design this when the
-narrow SIA-only version is actually being built, not speculatively now.
-
-## Social conversion
-
-Site ships with a config-driven social-links component (footer, and a
-prominent block on deal pages) — now pointing at the four confirmed live
-accounts above. The mechanism (not yet built): what specifically pulls a
-reader from "reading the Spontaneous Escapes list" to "follows on
-Instagram" — likely a soft CTA near the bottom of each monthly post
-("this month's list as a carousel — see it on Instagram") rather than a
-generic header icon, since that ties the ask to content the reader just
-found valuable. Design the actual CTA copy/placement when building the
-next monthly post, not abstractly now.
-
-## Phased roadmap
-
-Numbered by dependency order, not by calendar date — some phases can run
-in parallel once their prerequisites land.
-
-1. **Site IA restructure** — brand-general root landing page, SIA content
-   moved to `/singapore-airlines/spontaneous-escapes/`, live social links
-   wired in. *(in progress as of this doc's writing)*
-2. **First affiliate integration** — Klook (or equivalent OTA/activity
-   affiliate) link placed contextually on the Spontaneous Escapes page.
-   Low effort, no traffic prerequisite — do this early.
-3. **Airline glossary, Singapore-scoped** — research the actual airline
-   list, build the template (structured data + short editorial paragraph
-   per entry), human-review each entry, publish. Add `/airlines/` to nav
-   once it has real content, not before.
-4. **SIA news pipeline (narrow)** — press-release tracker + rewrite
-   routine for Singapore Airlines only, human-reviewed before publish. Add
-   `/news/` to nav once validated.
-5. **Bank card referral links** — added incrementally as you personally
-   enroll in each issuer's program (Citi first, given the confirmed S$150
-   referral rate).
-6. **Reference-page ad integration (AdSense)** — only once `/airlines/`
-   and/or `/news/` have enough real traffic to be worth it; confined to
-   those sections per the ad philosophy above.
-7. **Hotels + attractions glossaries** — explicitly deferred until (3) is
-   shipped and its content-depth/effort tradeoff is validated in practice.
-8. **Broaden the news pipeline** beyond SIA, if (4) proves out.
+1. **Astro scaffold + content migration** — set up Astro project, content
+   collection schemas, port existing airline glossary + SIA post data
+   mechanically. *(starting now)*
+2. **Homepage rebuild** — TPG+NerdWallet hybrid design, editorial grid +
+   card-offer modules, no search hero.
+3. **Card guide content** — 1-2 evergreen "best miles credit cards in
+   Singapore" pages, editorial-only (no live affiliate links yet).
+4. **Widen the scraper** — research which other programs to track beyond
+   SIA.
+5. **Social pipeline, phase 1** — extend carousel/story/caption generator
+   to new content types; start Meta app review (Instagram/Facebook) in
+   parallel; start manual XiaoHongShu posting now.
+6. **Social pipeline, phase 2** — posting automation (queued-and-approve)
+   for Instagram + Facebook once Meta review clears.
+7. **Airline glossary tier 3** — remaining ~52 airlines, can run in
+   parallel with the above.
+8. **Credit-card affiliate enrollment** — Citi personal referral first,
+   then a CardRatings-style network once card guide content + real
+   traffic exist.
+9. **Video generation + TikTok/YouTube posting automation** — after (5)
+   proves out the pipeline on simpler formats.
+10. **Reference-page ad integration (AdSense)** — once `/airlines/` and/or
+    `/blog/` have real traffic.
+11. **Hotels + attractions glossaries** — deferred until (7) validates the
+    content-depth/effort tradeoff.
 
 ## Explicitly not decided / deferred
 
-- Premium tier (mentioned as a future possibility, not designed).
 - Sponsored/partner content policy (no policy needed until it comes up).
-- Whether/how to expand the glossary beyond Singapore-scoped once the
-  Singapore version is validated.
-- Exact CTA design for social conversion (deferred to when building that
-  content, not designed in the abstract).
+- Whether/how to expand the glossary beyond Singapore-scoped.
+- Unified social-posting provider (Postiz/Ayrshare) — tabled in favor of
+  direct platform integrations; revisit only if direct-integration
+  maintenance becomes a real burden.
+- X, Threads, Bluesky, LinkedIn as distribution channels — deprioritized
+  for weak Singapore audience fit, not ruled out permanently.
+- Premium/subscription tier — explicitly not pursued per the 2026-09-11
+  research, not a default to revisit without a fresh deliberate decision.
