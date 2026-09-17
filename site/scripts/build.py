@@ -22,6 +22,8 @@ import spontaneous_escapes  # noqa: E402
 import monthly_post  # noqa: E402
 import airlines_index  # noqa: E402
 import airline_entry  # noqa: E402
+import limfam_holidays  # noqa: E402
+import krisflyer_dashboard_2026_10  # noqa: E402
 from chrome import SITE_URL  # noqa: E402
 from web_artifact import month_label, SOURCE_LABEL  # noqa: E402
 from entries import build_entries as build_airline_entries  # noqa: E402
@@ -163,6 +165,29 @@ def main():
     (airlines_dir / "index.html").write_text(airlines_index.render(airline_entries))
     url_paths.append("airlines/")
     print(f"wrote /airlines/ ({len(airline_entries)} entries)")
+
+    limfam_dir = DIST / "singapore-airlines" / "spontaneous-escapes" / "2026-10" / "limfam-holidays"
+    limfam_dir.mkdir(parents=True, exist_ok=True)
+    (limfam_dir / "index.html").write_text(limfam_holidays.render())
+    url_paths.append("singapore-airlines/spontaneous-escapes/2026-10/limfam-holidays/")
+    print("wrote /singapore-airlines/spontaneous-escapes/2026-10/limfam-holidays/")
+
+    kf_dashboard_dir = DIST / "singapore-airlines" / "spontaneous-escapes" / "2026-10" / "dashboard"
+    kf_dashboard_dir.mkdir(parents=True, exist_ok=True)
+    (kf_dashboard_dir / "index.html").write_text(krisflyer_dashboard_2026_10.render())
+    url_paths.append("singapore-airlines/spontaneous-escapes/2026-10/dashboard/")
+    print("wrote /singapore-airlines/spontaneous-escapes/2026-10/dashboard/")
+
+    # kfescapes.thethinkthank.com is a second custom domain on this same
+    # Cloudflare Pages project (not its own project/build) -- functions/index.js
+    # serves this exact file at its "/" for that host only. Not added to
+    # url_paths: it's an internal serving alias, not its own indexable URL.
+    # Each month: point this at that month's newest krisflyer_dashboard_*
+    # module instead of editing functions/index.js.
+    kfescapes_alias_dir = DIST / "_kfescapes-landing"
+    kfescapes_alias_dir.mkdir(parents=True, exist_ok=True)
+    (kfescapes_alias_dir / "index.html").write_text(krisflyer_dashboard_2026_10.render())
+    print("wrote /_kfescapes-landing/ (serving alias for kfescapes.thethinkthank.com)")
 
     write_sitemap(url_paths)
     write_robots()

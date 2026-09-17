@@ -347,3 +347,41 @@ Numbered by dependency order, not calendar date.
   for weak Singapore audience fit, not ruled out permanently.
 - Premium/subscription tier — explicitly not pursued per the 2026-09-11
   research, not a default to revisit without a fresh deliberate decision.
+
+## KrisFlyer master dashboard + kfescapes.thethinkthank.com (2026-09-18)
+
+A separate, more ambitious monthly asset from the core roadmap above:
+a full interactive dashboard covering every Singapore Airlines KrisFlyer
+Spontaneous Escapes promotional sector (all 92 one-way sectors + 42
+official round-trip itineraries), with live blackout-date checking,
+region/cabin/weather filters, a collapsible custom open-jaw route
+builder, and a column customizer. Source files (HTML + an engineering
+handoff doc) are supplied out of band each month once Singapore Airlines
+publishes that month's promotion (around the 15th); Claude restyles them
+onto the Field Notes brand system (`site/templates/krisflyer_dashboard_*.py`,
+generated via a one-shot color-remap transform script, never hand-typed
+given the embedded data size) and publishes at
+`/singapore-airlines/spontaneous-escapes/<YYYY-MM>/dashboard/`. Each
+month gets its own template module (e.g. `krisflyer_dashboard_2026_11.py`)
+so past months stay live rather than being overwritten.
+
+**kfescapes.thethinkthank.com** is a second custom domain on the same
+`stroll-and-savor` Cloudflare Pages project (not a separate project) that
+shows the current month's dashboard as its landing page, with full
+Stroll & Savor branding kept. Since one Pages project serves identical
+static output to every custom domain attached to it, `functions/index.js`
+(a Cloudflare Pages Function matching the root route) does host-based
+routing: requests with `Host: kfescapes.thethinkthank.com` are served
+`/_kfescapes-landing/index.html` instead of the normal landing page;
+every other host falls through unchanged. `site/scripts/build.py` writes
+that alias file from whichever `krisflyer_dashboard_*` module is current
+— update that one call each month, not `functions/index.js`.
+
+**Still needs a manual step:** attaching `kfescapes.thethinkthank.com` as
+a custom domain to the `stroll-and-savor` Pages project in the Cloudflare
+dashboard (Workers & Pages → stroll-and-savor → Custom domains → Add).
+No Cloudflare API token is configured in this environment and this
+wrangler version has no CLI command for it, so it hasn't been done yet —
+until it is, the domain won't resolve and the Function's host check can't
+be exercised end-to-end (verified locally via `context.next()` fallthrough
+and the `/_kfescapes-landing/` alias file being reachable instead).
