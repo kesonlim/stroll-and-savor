@@ -752,7 +752,6 @@
     .count-pill, thead th, .kpi-label, .control-label {
       font-family: var(--font-data);
     }
-
     @media (max-width: 640px) {
       .builder-toggle-header {
         flex-direction: column;
@@ -763,6 +762,43 @@
         align-self: flex-start;
       }
     }
+    .input-control, .select-control {
+      height: 38px;
+      box-sizing: border-box;
+      line-height: 1.2;
+    }
+    .select-control {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding-right: 30px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236d6a5f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 14px;
+    }
+    .date-select-primary {
+      height: 38px;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding-right: 30px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23346962' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 14px;
+    }
+    thead th { cursor: default; }
+    .col-grip {
+      display: inline-block;
+      cursor: grab;
+      margin-right: 6px;
+      opacity: 0.6;
+      user-select: none;
+    }
+    .col-grip:hover { opacity: 1; }
+    .col-grip:active { cursor: grabbing; }
 
 </style>
 </head>
@@ -1076,13 +1112,13 @@
       { id: 'destination', label: 'Destination', sortKey: 'destination', default: true },
       { id: 'cabin', label: 'Cabin Class', sortKey: 'cabin', default: true },
       { id: 'miles', label: 'Total Miles', sortKey: 'miles', default: true },
-      { id: 'temp', label: 'Oct Climate (Avg Temp)', sortKey: 'temp_high', default: true },
-      { id: 'weather', label: 'Seasonal Weather', sortKey: 'weather', default: true },
       { id: 'duration', label: 'Flight Time (RT)', sortKey: 'flight_dur_min', default: true },
       { id: 'pph', label: 'Points / Hour', sortKey: 'pts_per_hr', default: true },
       { id: 'outbound', label: 'Outbound Flight & Schedule', sortKey: null, default: true },
       { id: 'inbound', label: 'Inbound Flight & Schedule', sortKey: null, default: true },
-      { id: 'notes', label: 'Validity & Destination Highlights', sortKey: null, default: true }
+      { id: 'notes', label: 'Validity & Destination Highlights', sortKey: null, default: true },
+      { id: 'temp', label: 'OCT AVG TEMP', sortKey: 'temp_high', default: true },
+      { id: 'weather', label: 'Seasonal Weather', sortKey: 'weather', default: true }
     ];
 
     // Column Definitions for Mode 2 (Raw Sectors)
@@ -1095,9 +1131,9 @@
       { id: 'dep_time', label: 'Departure Time', sortKey: 'dep_time', default: true },
       { id: 'duration', label: 'Duration', sortKey: 'flight_dur_min', default: true },
       { id: 'pph', label: 'Points / Hr', sortKey: 'pts_per_hr', default: true },
-      { id: 'weather_temp', label: 'Oct Climate & Temp', sortKey: 'temp_high', default: true },
       { id: 'blackouts', label: 'Promotional Blackouts', sortKey: null, default: true },
-      { id: 'date_status', label: 'Selected Date Status', sortKey: null, default: true }
+      { id: 'date_status', label: 'Selected Date Status', sortKey: null, default: true },
+      { id: 'weather_temp', label: 'OCT AVG TEMP', sortKey: 'temp_high', default: true }
     ];
 
     let visRT = {};
@@ -1351,35 +1387,72 @@
       renderView();
     }
 
+    let orderRT = colsModeRT.map(c => c.id);
+    let orderRaw = colsModeRaw.map(c => c.id);
+    let dragColId = null;
+
+    const rtHeaderHTML = {
+      destination: 'Destination', cabin: 'Cabin Class', miles: 'Total Miles',
+      duration: 'Flight Time', pph: 'Pts / Hour',
+      outbound: 'Outbound (SIN &rarr; Dest) & Dep Time',
+      inbound: 'Inbound (Dest &rarr; SIN) & Dep Time',
+      notes: 'Date Validity & Destination Highlights',
+      temp: 'OCT AVG TEMP', weather: 'Seasonal Weather'
+    };
+    const rtHeaderSort = {
+      destination: 'destination', cabin: 'cabin', miles: 'miles', duration: 'flight_dur_min',
+      pph: 'pts_per_hr', temp: 'temp_high', weather: 'weather'
+    };
+    const rawHeaderHTML = {
+      route: 'Flight Route', direction: 'Direction', cabin: 'Cabin', miles: 'One-Way Miles',
+      flight_nos: 'Flight No.', dep_time: 'Dep. Time', duration: 'Duration', pph: 'Pts / Hr',
+      blackouts: 'Promotional Blackout Period', date_status: 'Selected Date Status',
+      weather_temp: 'OCT AVG TEMP'
+    };
+    const rawHeaderSort = {
+      route: 'route', direction: 'direction', cabin: 'cabin', miles: 'miles',
+      flight_nos: 'flight_nos', dep_time: 'dep_time', duration: 'flight_dur_min',
+      pph: 'pts_per_hr', weather_temp: 'temp_high'
+    };
+
+    function onColDragStart(ev, colId) {
+      dragColId = colId;
+      ev.dataTransfer.effectAllowed = 'move';
+    }
+    function onColDragOver(ev) {
+      ev.preventDefault();
+    }
+    function onColDrop(ev, targetColId) {
+      ev.preventDefault();
+      const order = (currentMode === 'roundtrip') ? orderRT : orderRaw;
+      if (!dragColId || dragColId === targetColId) { dragColId = null; return; }
+      const fromIdx = order.indexOf(dragColId);
+      const toIdx = order.indexOf(targetColId);
+      if (fromIdx === -1 || toIdx === -1) { dragColId = null; return; }
+      order.splice(fromIdx, 1);
+      order.splice(toIdx, 0, dragColId);
+      dragColId = null;
+      buildTableHeaders();
+      renderView();
+    }
+
     function buildTableHeaders() {
       const th = document.getElementById('tableHead');
+      const order = (currentMode === 'roundtrip') ? orderRT : orderRaw;
+      const vis = (currentMode === 'roundtrip') ? visRT : visRaw;
+      const headerHTML = (currentMode === 'roundtrip') ? rtHeaderHTML : rawHeaderHTML;
+      const headerSort = (currentMode === 'roundtrip') ? rtHeaderSort : rawHeaderSort;
+
       let html = '<tr>';
-
-      if (currentMode === 'roundtrip') {
-        if (visRT['destination']) html += `<th onclick="handleSort('destination')">Destination <span class="sort-arrow" id="s-destination">▲▼</span></th>`;
-        if (visRT['cabin']) html += `<th onclick="handleSort('cabin')">Cabin Class <span class="sort-arrow" id="s-cabin">▲▼</span></th>`;
-        if (visRT['miles']) html += `<th onclick="handleSort('miles')">Total Miles <span class="sort-arrow" id="s-miles">▲▼</span></th>`;
-        if (visRT['temp']) html += `<th onclick="handleSort('temp_high')">Oct Climate (Avg Temp) <span class="sort-arrow" id="s-temp_high">▲▼</span></th>`;
-        if (visRT['weather']) html += `<th onclick="handleSort('weather')">Seasonal Weather <span class="sort-arrow" id="s-weather">▲▼</span></th>`;
-        if (visRT['duration']) html += `<th onclick="handleSort('flight_dur_min')">Flight Time <span class="sort-arrow" id="s-flight_dur_min">▲▼</span></th>`;
-        if (visRT['pph']) html += `<th onclick="handleSort('pts_per_hr')">Pts / Hour <span class="sort-arrow" id="s-pts_per_hr">▲▼</span></th>`;
-        if (visRT['outbound']) html += `<th>Outbound (SIN &rarr; Dest) & Dep Time</th>`;
-        if (visRT['inbound']) html += `<th>Inbound (Dest &rarr; SIN) & Dep Time</th>`;
-        if (visRT['notes']) html += `<th>Date Validity & Destination Highlights</th>`;
-      } else {
-        if (visRaw['route']) html += `<th onclick="handleSort('route')">Flight Route <span class="sort-arrow" id="s-route">▲▼</span></th>`;
-        if (visRaw['direction']) html += `<th onclick="handleSort('direction')">Direction <span class="sort-arrow" id="s-direction">▲▼</span></th>`;
-        if (visRaw['cabin']) html += `<th onclick="handleSort('cabin')">Cabin <span class="sort-arrow" id="s-cabin">▲▼</span></th>`;
-        if (visRaw['miles']) html += `<th onclick="handleSort('miles')">One-Way Miles <span class="sort-arrow" id="s-miles">▲▼</span></th>`;
-        if (visRaw['flight_nos']) html += `<th onclick="handleSort('flight_nos')">Flight No. <span class="sort-arrow" id="s-flight_nos">▲▼</span></th>`;
-        if (visRaw['dep_time']) html += `<th onclick="handleSort('dep_time')">Dep. Time <span class="sort-arrow" id="s-dep_time">▲▼</span></th>`;
-        if (visRaw['duration']) html += `<th onclick="handleSort('flight_dur_min')">Duration <span class="sort-arrow" id="s-flight_dur_min">▲▼</span></th>`;
-        if (visRaw['pph']) html += `<th onclick="handleSort('pts_per_hr')">Pts / Hr <span class="sort-arrow" id="s-pts_per_hr">▲▼</span></th>`;
-        if (visRaw['weather_temp']) html += `<th onclick="handleSort('temp_high')">Oct Climate & Temp <span class="sort-arrow" id="s-temp_high">▲▼</span></th>`;
-        if (visRaw['blackouts']) html += `<th>Promotional Blackout Period</th>`;
-        if (visRaw['date_status']) html += `<th>Selected Date Status</th>`;
-      }
-
+      order.forEach(colId => {
+        if (!vis[colId]) return;
+        const sortKey = headerSort[colId];
+        const label = headerHTML[colId] || colId;
+        const labelSpan = sortKey
+          ? `<span onclick="handleSort('${sortKey}')" style="cursor:pointer;">${label} <span class="sort-arrow" id="s-${sortKey}">▲▼</span></span>`
+          : `<span>${label}</span>`;
+        html += `<th ondragover="onColDragOver(event)" ondrop="onColDrop(event,'${colId}')"><span class="col-grip" draggable="true" ondragstart="onColDragStart(event,'${colId}')" title="Drag to reorder columns">⠿</span>${labelSpan}</th>`;
+      });
       html += '</tr>';
       th.innerHTML = html;
     }
@@ -1515,62 +1588,30 @@
       tbody.innerHTML = '';
 
       if (currentMode === 'roundtrip') {
-        filtered.forEach(row => {
-          const tr = document.createElement('tr');
-          let cells = '';
-
-          if (visRT['destination']) {
-            cells += `
+        const rtCellHTML = {
+          destination: (row) => `
               <td>
                 <span class="cell-title">${row.destination}</span><br>
                 <span style="font-size:11px; color:var(--text-muted);">${row.region}</span>
               </td>
-            `;
-          }
-
-          if (visRT['cabin']) {
-            cells += `<td><span class="badge ${getBadgeClass(row.cabin)}">${row.cabin}</span></td>`;
-          }
-
-          if (visRT['miles']) {
-            cells += `<td class="cell-miles">${row.miles.toLocaleString()}</td>`;
-          }
-
-          if (visRT['temp']) {
-            cells += `<td><b>${row.temp_low}°C &ndash; ${row.temp_high}°C</b></td>`;
-          }
-
-          if (visRT['weather']) {
-            cells += `<td><span class="badge ${getWeatherBadgeClass(row.weather_type)}">${row.weather}</span></td>`;
-          }
-
-          if (visRT['duration']) {
-            cells += `<td class="cell-flight-info"><b>${row.flight_dur_str}</b> (RT)</td>`;
-          }
-
-          if (visRT['pph']) {
-            cells += `<td class="cell-pph">${row.pts_per_hr.toLocaleString()} <span style="font-size:10px; font-weight:normal;">pts/hr</span></td>`;
-          }
-
-          if (visRT['outbound']) {
-            cells += `
+            `,
+          cabin: (row) => `<td><span class="badge ${getBadgeClass(row.cabin)}">${row.cabin}</span></td>`,
+          miles: (row) => `<td class="cell-miles">${row.miles.toLocaleString()}</td>`,
+          duration: (row) => `<td class="cell-flight-info"><b>${row.flight_dur_str}</b> (RT)</td>`,
+          pph: (row) => `<td class="cell-pph">${row.pts_per_hr.toLocaleString()} <span style="font-size:10px; font-weight:normal;">pts/hr</span></td>`,
+          outbound: (row) => `
               <td class="cell-flight-info">
                 <span style="font-weight:600; color:#2e2e2c;">${row.out_schedule}</span><br>
                 ${row.out_flights}
               </td>
-            `;
-          }
-
-          if (visRT['inbound']) {
-            cells += `
+            `,
+          inbound: (row) => `
               <td class="cell-flight-info">
                 <span style="font-weight:600; color:#2e2e2c;">${row.in_schedule}</span><br>
                 ${row.in_flights}
               </td>
-            `;
-          }
-
-          if (visRT['notes']) {
+            `,
+          notes: (row) => {
             let validityPill = '';
             if (outD > 0 || inD > 0) {
               if (row._rtValid) {
@@ -1582,73 +1623,42 @@
                 validityPill = '<span class="badge badge-blackout">✕ ' + reasons.join(' | ') + '</span><br>';
               }
             }
-            cells += `
+            return `
               <td class="cell-flight-info" style="max-width:260px;">
                 ${validityPill}
                 ${row.notes}
               </td>
             `;
-          }
-
+          },
+          temp: (row) => `<td><b>${row.temp_low}°C &ndash; ${row.temp_high}°C</b></td>`,
+          weather: (row) => `<td><span class="badge ${getWeatherBadgeClass(row.weather_type)}">${row.weather}</span></td>`
+        };
+        filtered.forEach(row => {
+          const tr = document.createElement('tr');
+          let cells = '';
+          orderRT.forEach(colId => {
+            if (visRT[colId] && rtCellHTML[colId]) cells += rtCellHTML[colId](row);
+          });
           tr.innerHTML = cells;
           tbody.appendChild(tr);
         });
       } else {
-        filtered.forEach(row => {
-          const tr = document.createElement('tr');
-          let cells = '';
-
-          if (visRaw['route']) {
-            cells += `
+        const rawCellHTML = {
+          route: (row) => `
               <td>
                 <span class="cell-title">${row.route}</span><br>
                 <span style="font-size:11px; color:var(--text-muted);">${row.region}</span>
               </td>
-            `;
-          }
-
-          if (visRaw['direction']) {
-            cells += `<td><span class="badge" style="background:#ece9e1; color:#2e2e2c;">${row.direction}</span></td>`;
-          }
-
-          if (visRaw['cabin']) {
-            cells += `<td><span class="badge ${getBadgeClass(row.cabin)}">${row.cabin}</span></td>`;
-          }
-
-          if (visRaw['miles']) {
-            cells += `<td class="cell-miles">${row.miles.toLocaleString()}</td>`;
-          }
-
-          if (visRaw['flight_nos']) {
-            cells += `<td><span class="flight-pill">${row.flight_nos}</span></td>`;
-          }
-
-          if (visRaw['dep_time']) {
-            cells += `<td style="font-weight:600; color:#2e2e2c;">${row.dep_time}</td>`;
-          }
-
-          if (visRaw['duration']) {
-            cells += `<td class="cell-flight-info">${row.flight_dur_str}</td>`;
-          }
-
-          if (visRaw['pph']) {
-            cells += `<td class="cell-pph">${row.pts_per_hr.toLocaleString()}</td>`;
-          }
-
-          if (visRaw['weather_temp']) {
-            cells += `
-              <td>
-                <b>${row.temp_low}°C–${row.temp_high}°C</b><br>
-                <span style="font-size:11px; color:var(--text-muted);">${row.weather}</span>
-              </td>
-            `;
-          }
-
-          if (visRaw['blackouts']) {
-            cells += `<td class="cell-flight-info" style="max-width:240px; color:#994827;">${row.blackout_str}</td>`;
-          }
-
-          if (visRaw['date_status']) {
+            `,
+          direction: (row) => `<td><span class="badge" style="background:#ece9e1; color:#2e2e2c;">${row.direction}</span></td>`,
+          cabin: (row) => `<td><span class="badge ${getBadgeClass(row.cabin)}">${row.cabin}</span></td>`,
+          miles: (row) => `<td class="cell-miles">${row.miles.toLocaleString()}</td>`,
+          flight_nos: (row) => `<td><span class="flight-pill">${row.flight_nos}</span></td>`,
+          dep_time: (row) => `<td style="font-weight:600; color:#2e2e2c;">${row.dep_time}</td>`,
+          duration: (row) => `<td class="cell-flight-info">${row.flight_dur_str}</td>`,
+          pph: (row) => `<td class="cell-pph">${row.pts_per_hr.toLocaleString()}</td>`,
+          blackouts: (row) => `<td class="cell-flight-info" style="max-width:240px; color:#994827;">${row.blackout_str}</td>`,
+          date_status: (row) => {
             let dateStatus = '<span style="color:var(--text-muted); font-size:11.5px;">-</span>';
             if ((row.direction === 'Outbound' && outD > 0) || (row.direction === 'Inbound' && inD > 0)) {
               if (row._targetValid) {
@@ -1657,9 +1667,21 @@
                 dateStatus = '<span class="badge badge-blackout">✕ Blacked Out</span>';
               }
             }
-            cells += `<td>${dateStatus}</td>`;
-          }
-
+            return `<td>${dateStatus}</td>`;
+          },
+          weather_temp: (row) => `
+              <td>
+                <b>${row.temp_low}°C–${row.temp_high}°C</b><br>
+                <span style="font-size:11px; color:var(--text-muted);">${row.weather}</span>
+              </td>
+            `
+        };
+        filtered.forEach(row => {
+          const tr = document.createElement('tr');
+          let cells = '';
+          orderRaw.forEach(colId => {
+            if (visRaw[colId] && rawCellHTML[colId]) cells += rawCellHTML[colId](row);
+          });
           tr.innerHTML = cells;
           tbody.appendChild(tr);
         });
