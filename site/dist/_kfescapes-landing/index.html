@@ -759,6 +759,17 @@
     }
     thead th:first-child { background: var(--sq-navy); z-index: 2; }
 
+    @media (max-width: 640px) {
+      .builder-toggle-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .builder-toggle-btn {
+        align-self: flex-start;
+      }
+    }
+
 </style>
 </head>
 <body>
