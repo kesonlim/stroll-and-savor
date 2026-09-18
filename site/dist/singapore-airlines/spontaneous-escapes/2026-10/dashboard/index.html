@@ -799,6 +799,11 @@
     }
     .col-grip:hover { opacity: 1; }
     .col-grip:active { cursor: grabbing; }
+    .region-hint {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin: -8px 0 12px;
+    }
 
 </style>
 </head>
@@ -1040,13 +1045,14 @@
 
     <!-- Mode Tabs -->
     <div class="mode-nav">
-      <button class="mode-tab active" id="tabModeRT" onclick="switchMode('roundtrip')" title="Simple view: official round-trip vacation packages only.">
-        Two-Way Vacation Planner <span class="count-pill">23 Destinations &bull; 42 Itineraries</span>
-      </button>
-      <button class="mode-tab" id="tabModeRaw" onclick="switchMode('raw')" title="Advanced view: every individual promotional flight sector Singapore Airlines published.">
+      <button class="mode-tab active" id="tabModeRaw" onclick="switchMode('raw')" title="Advanced view: every individual promotional flight sector Singapore Airlines published, including one-way-only Europe and Southwest Pacific fares.">
         Full Promotional Flight Network Database <span class="count-pill">All 92 Flight Sectors</span>
       </button>
+      <button class="mode-tab" id="tabModeRT" onclick="switchMode('roundtrip')" title="Simple view: official round-trip vacation packages only.">
+        Two-Way Vacation Planner <span class="count-pill">23 Destinations &bull; 42 Itineraries</span>
+      </button>
     </div>
+    <p class="region-hint">Europe and Southwest Pacific / Australia fares are discounted one-way only this month, so they only appear here in the Full Promotional Flight Network Database, not in the Two-Way Vacation Planner.</p>
 
     <!-- ACTION BAR: COLUMN SELECTOR & PRINT -->
     <div class="action-bar">
@@ -1142,7 +1148,7 @@
     let visRaw = {};
     colsModeRaw.forEach(c => visRaw[c.id] = c.default);
 
-    let currentMode = 'roundtrip';
+    let currentMode = 'raw';
     let currentSortCol = 'miles';
     let sortAsc = true;
     let builderOpen = false;
