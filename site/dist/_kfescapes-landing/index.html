@@ -1128,8 +1128,7 @@
       { id: 'outbound', label: 'Outbound Flight & Schedule', sortKey: null, default: true },
       { id: 'inbound', label: 'Inbound Flight & Schedule', sortKey: null, default: true },
       { id: 'notes', label: 'Validity & Destination Highlights', sortKey: null, default: true },
-      { id: 'temp', label: 'OCT AVG TEMP', sortKey: 'temp_high', default: true },
-      { id: 'weather', label: 'Seasonal Weather', sortKey: 'weather', default: true }
+      { id: 'weather_temp', label: 'OCT AVG TEMP', sortKey: 'temp_high', default: true }
     ];
 
     // Column Definitions for Mode 2 (Raw Sectors)
@@ -1216,8 +1215,7 @@
 
     function hideWeatherAndTemp() {
       if (currentMode === 'roundtrip') {
-        visRT['temp'] = false;
-        visRT['weather'] = false;
+        visRT['weather_temp'] = false;
       } else {
         visRaw['weather_temp'] = false;
       }
@@ -1408,11 +1406,11 @@
       outbound: 'Outbound (SIN &rarr; Dest) & Dep Time',
       inbound: 'Inbound (Dest &rarr; SIN) & Dep Time',
       notes: 'Date Validity & Destination Highlights',
-      temp: 'OCT AVG TEMP', weather: 'Seasonal Weather'
+      weather_temp: 'OCT AVG TEMP'
     };
     const rtHeaderSort = {
       destination: 'destination', cabin: 'cabin', miles: 'miles', duration: 'flight_dur_min',
-      pph: 'pts_per_hr', temp: 'temp_high', weather: 'weather'
+      pph: 'pts_per_hr', weather_temp: 'temp_high'
     };
     const rawHeaderHTML = {
       route: 'Flight Route', direction: 'Direction', cabin: 'Cabin', miles: 'One-Way Miles',
@@ -1641,8 +1639,12 @@
               </td>
             `;
           },
-          temp: (row) => `<td><b>${row.temp_low}°C &ndash; ${row.temp_high}°C</b></td>`,
-          weather: (row) => `<td><span class="badge ${getWeatherBadgeClass(row.weather_type)}">${row.weather}</span></td>`
+          weather_temp: (row) => `
+              <td>
+                <b>${row.temp_low}°C&ndash;${row.temp_high}°C</b><br>
+                <span style="font-size:11px; color:var(--text-muted);">${row.weather}</span>
+              </td>
+            `
         };
         filtered.forEach(row => {
           const tr = document.createElement('tr');
