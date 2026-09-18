@@ -24,6 +24,7 @@ import airlines_index  # noqa: E402
 import airline_entry  # noqa: E402
 import limfam_holidays  # noqa: E402
 import krisflyer_dashboard_2026_10  # noqa: E402
+import krisflyer_kfescapes_landing  # noqa: E402
 from chrome import SITE_URL  # noqa: E402
 from web_artifact import month_label, SOURCE_LABEL  # noqa: E402
 from entries import build_entries as build_airline_entries  # noqa: E402
@@ -186,7 +187,7 @@ def main():
     # module instead of editing functions/index.js.
     kfescapes_alias_dir = DIST / "_kfescapes-landing"
     kfescapes_alias_dir.mkdir(parents=True, exist_ok=True)
-    (kfescapes_alias_dir / "index.html").write_text(krisflyer_dashboard_2026_10.render())
+    (kfescapes_alias_dir / "index.html").write_text(krisflyer_kfescapes_landing.render())
     print("wrote /_kfescapes-landing/ (serving alias for kfescapes.thethinkthank.com)")
 
     write_sitemap(url_paths)
