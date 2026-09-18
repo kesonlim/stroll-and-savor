@@ -1120,30 +1120,30 @@
 
     // Column Definitions for Mode 1 (Two-Way Itineraries)
     const colsModeRT = [
-      { id: 'destination', label: 'Destination', sortKey: 'destination', default: true },
-      { id: 'cabin', label: 'Cabin Class', sortKey: 'cabin', default: true },
-      { id: 'miles', label: 'Total Miles', sortKey: 'miles', default: true },
-      { id: 'duration', label: 'Flight Time (RT)', sortKey: 'flight_dur_min', default: true },
-      { id: 'pph', label: 'Points / Hour', sortKey: 'pts_per_hr', default: true },
-      { id: 'outbound', label: 'Outbound Flight & Schedule', sortKey: null, default: true },
-      { id: 'inbound', label: 'Inbound Flight & Schedule', sortKey: null, default: true },
-      { id: 'notes', label: 'Validity & Destination Highlights', sortKey: null, default: true },
-      { id: 'weather_temp', label: 'OCT AVG TEMP', sortKey: 'temp_high', default: true }
+      { id: 'destination', label: 'Destination', sortKey: 'destination', default: true, tooltip: 'The city or destination for this round-trip itinerary.' },
+      { id: 'cabin', label: 'Cabin Class', sortKey: 'cabin', default: true, tooltip: 'Cabin class for the outbound and inbound legs together (Economy, Mixed, or Business).' },
+      { id: 'miles', label: 'Total Miles', sortKey: 'miles', default: true, tooltip: 'Total KrisFlyer miles for the full round trip, both legs combined.' },
+      { id: 'duration', label: 'Flight Time', sortKey: 'flight_dur_min', default: true, tooltip: 'Combined flight time for the outbound and inbound legs.' },
+      { id: 'pph', label: 'Pts / Hour', sortKey: 'pts_per_hr', default: true, tooltip: 'Miles required per hour of flight time; lower is a better redemption value.' },
+      { id: 'outbound', label: 'Outbound (SIN &rarr; Dest) & Dep Time', sortKey: null, default: true, tooltip: 'Departure schedule and flight numbers from Singapore to the destination.' },
+      { id: 'inbound', label: 'Inbound (Dest &rarr; SIN) & Dep Time', sortKey: null, default: true, tooltip: 'Departure schedule and flight numbers on the return to Singapore.' },
+      { id: 'notes', label: 'Date Validity & Destination Highlights', sortKey: null, default: true, tooltip: 'Whether this itinerary is bookable on your selected dates, plus a short note about the destination.' },
+      { id: 'weather_temp', label: 'OCT AVG TEMP', sortKey: 'temp_high', default: true, tooltip: 'Average October temperature range and typical weather for this destination.' }
     ];
 
     // Column Definitions for Mode 2 (Raw Sectors)
     const colsModeRaw = [
-      { id: 'route', label: 'Flight Route', sortKey: 'route', default: true },
-      { id: 'direction', label: 'Direction', sortKey: 'direction', default: true },
-      { id: 'cabin', label: 'Cabin Class', sortKey: 'cabin', default: true },
-      { id: 'miles', label: 'One-Way Miles', sortKey: 'miles', default: true },
-      { id: 'flight_nos', label: 'Flight Number', sortKey: 'flight_nos', default: true },
-      { id: 'dep_time', label: 'Departure Time', sortKey: 'dep_time', default: true },
-      { id: 'duration', label: 'Duration', sortKey: 'flight_dur_min', default: true },
-      { id: 'pph', label: 'Points / Hr', sortKey: 'pts_per_hr', default: true },
-      { id: 'blackouts', label: 'Promotional Blackouts', sortKey: null, default: true },
-      { id: 'date_status', label: 'Selected Date Status', sortKey: null, default: true },
-      { id: 'weather_temp', label: 'OCT AVG TEMP', sortKey: 'temp_high', default: true }
+      { id: 'route', label: 'Flight Route', sortKey: 'route', default: true, tooltip: 'The one-way flight sector: origin to destination.' },
+      { id: 'direction', label: 'Direction', sortKey: 'direction', default: true, tooltip: 'Whether this sector flies out from Singapore (Outbound) or back to Singapore (Inbound).' },
+      { id: 'cabin', label: 'Cabin', sortKey: 'cabin', default: true, tooltip: 'Cabin class for this individual flight sector.' },
+      { id: 'miles', label: 'One-Way Miles', sortKey: 'miles', default: true, tooltip: 'KrisFlyer miles required for this one-way sector alone.' },
+      { id: 'flight_nos', label: 'Flight No.', sortKey: 'flight_nos', default: true, tooltip: 'Singapore Airlines flight number(s) operating this sector.' },
+      { id: 'dep_time', label: 'Dep. Time', sortKey: 'dep_time', default: true, tooltip: 'Scheduled departure time for this sector.' },
+      { id: 'duration', label: 'Duration', sortKey: 'flight_dur_min', default: true, tooltip: 'Flight time for this one-way sector.' },
+      { id: 'pph', label: 'Pts / Hr', sortKey: 'pts_per_hr', default: true, tooltip: 'Miles required per hour of flight time; lower is a better redemption value.' },
+      { id: 'blackouts', label: 'Promotional Blackout Period', sortKey: null, default: true, tooltip: 'Dates this month when the 30% discount does not apply to this sector.' },
+      { id: 'date_status', label: 'Selected Date Status', sortKey: '_targetValid', default: true, tooltip: 'Whether this sector is bookable on your selected outbound or inbound date.' },
+      { id: 'weather_temp', label: 'OCT AVG TEMP', sortKey: 'temp_high', default: true, tooltip: 'Average October temperature range and typical weather for this destination.' }
     ];
 
     let visRT = {};
@@ -1189,6 +1189,7 @@
         const pill = document.createElement('div');
         pill.className = 'col-pill ' + (isVis ? 'active' : '');
         pill.innerHTML = `<span>${isVis ? '✓' : '✕'}</span> <span>${col.label}</span>`;
+        pill.title = col.tooltip || '';
         pill.onclick = () => toggleColVisibility(col.id);
         container.appendChild(pill);
       });
@@ -1400,29 +1401,9 @@
     let orderRaw = colsModeRaw.map(c => c.id);
     let dragColId = null;
 
-    const rtHeaderHTML = {
-      destination: 'Destination', cabin: 'Cabin Class', miles: 'Total Miles',
-      duration: 'Flight Time', pph: 'Pts / Hour',
-      outbound: 'Outbound (SIN &rarr; Dest) & Dep Time',
-      inbound: 'Inbound (Dest &rarr; SIN) & Dep Time',
-      notes: 'Date Validity & Destination Highlights',
-      weather_temp: 'OCT AVG TEMP'
-    };
-    const rtHeaderSort = {
-      destination: 'destination', cabin: 'cabin', miles: 'miles', duration: 'flight_dur_min',
-      pph: 'pts_per_hr', weather_temp: 'temp_high'
-    };
-    const rawHeaderHTML = {
-      route: 'Flight Route', direction: 'Direction', cabin: 'Cabin', miles: 'One-Way Miles',
-      flight_nos: 'Flight No.', dep_time: 'Dep. Time', duration: 'Duration', pph: 'Pts / Hr',
-      blackouts: 'Promotional Blackout Period', date_status: 'Selected Date Status',
-      weather_temp: 'OCT AVG TEMP'
-    };
-    const rawHeaderSort = {
-      route: 'route', direction: 'direction', cabin: 'cabin', miles: 'miles',
-      flight_nos: 'flight_nos', dep_time: 'dep_time', duration: 'flight_dur_min',
-      pph: 'pts_per_hr', weather_temp: 'temp_high'
-    };
+    function colsFor(mode) {
+      return (mode === 'roundtrip') ? colsModeRT : colsModeRaw;
+    }
 
     function onColDragStart(ev, colId) {
       dragColId = colId;
@@ -1449,18 +1430,19 @@
       const th = document.getElementById('tableHead');
       const order = (currentMode === 'roundtrip') ? orderRT : orderRaw;
       const vis = (currentMode === 'roundtrip') ? visRT : visRaw;
-      const headerHTML = (currentMode === 'roundtrip') ? rtHeaderHTML : rawHeaderHTML;
-      const headerSort = (currentMode === 'roundtrip') ? rtHeaderSort : rawHeaderSort;
+      const cols = colsFor(currentMode);
 
       let html = '<tr>';
       order.forEach(colId => {
         if (!vis[colId]) return;
-        const sortKey = headerSort[colId];
-        const label = headerHTML[colId] || colId;
+        const col = cols.find(c => c.id === colId);
+        if (!col) return;
+        const sortKey = col.sortKey;
+        const tooltip = (col.tooltip || '').replace(/"/g, '&quot;');
         const labelSpan = sortKey
-          ? `<span onclick="handleSort('${sortKey}')" style="cursor:pointer;">${label} <span class="sort-arrow" id="s-${sortKey}">▲▼</span></span>`
-          : `<span>${label}</span>`;
-        html += `<th ondragover="onColDragOver(event)" ondrop="onColDrop(event,'${colId}')"><span class="col-grip" draggable="true" ondragstart="onColDragStart(event,'${colId}')" title="Drag to reorder columns">⠿</span>${labelSpan}</th>`;
+          ? `<span onclick="handleSort('${sortKey}')" style="cursor:pointer;">${col.label} <span class="sort-arrow" id="s-${sortKey}">▲▼</span></span>`
+          : `<span>${col.label}</span>`;
+        html += `<th ondragover="onColDragOver(event)" ondrop="onColDrop(event,'${colId}')" title="${tooltip}"><span class="col-grip" draggable="true" ondragstart="onColDragStart(event,'${colId}')" title="Drag to reorder columns">⠿</span>${labelSpan}</th>`;
       });
       html += '</tr>';
       th.innerHTML = html;
