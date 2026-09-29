@@ -45,5 +45,5 @@ existing one), run the "Before shipping a new page type" checklist in
   anything visual or tonal; if this file and any other doc disagree, this
   one wins.
 - [`site/README.md`](site/README.md), [`content/README.md`](content/README.md),
-  [`scraper/README.md`](scraper/README.md) — how each subsystem's build/
-  deploy pipeline actually works.
+  [`scraper/README.md`](scraper/README.md), [`video/README.md`](video/README.md)
+  — how each subsystem's build/deploy pipeline actually works.
