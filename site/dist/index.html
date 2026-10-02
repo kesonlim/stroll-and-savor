@@ -43,6 +43,25 @@
   .site-footer .social { display: flex; gap: 1.2rem; }
   .site-footer .social a { color: var(--ink-soft); text-decoration: none; }
   .site-footer .social a:hover { color: var(--rust-text); }
+
+  @media (max-width: 640px) {
+    .site-header {
+      padding: 1.25rem 1rem 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.85rem;
+    }
+    .site-header nav {
+      gap: 1.1rem;
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+    }
+    .site-footer {
+      padding: 2rem 1rem 2.5rem;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+  }
   
   /* ---- Deal-feed theme tokens, scoped to this page only ---- */
   body.theme-dealfeed {
@@ -76,6 +95,12 @@
     background: var(--paper-2); border: 1px solid var(--rule);
     border-radius: 999px; padding: 0.4rem 0.9rem 0.4rem 0.7rem;
     margin-bottom: 1.6rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .tracking-strip span.text {
+    min-width: 0;
+    line-height: 1.35;
   }
   .tracking-strip .dot {
     width: 7px; height: 7px; border-radius: 50%; background: var(--rust);
@@ -164,6 +189,36 @@
   }
   .social-grid a:hover { border-color: var(--rust-soft); }
 
+  @media (max-width: 640px) {
+    .hero { padding: 1.8rem 1rem 1.6rem; }
+    .hero h1 { font-size: 1.55rem; line-height: 1.2; margin: 0 0 0.8rem; max-width: 100%; }
+    .hero p.lede { font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.3rem; max-width: 100%; }
+    .tracking-strip {
+      display: inline-flex;
+      max-width: 100%;
+      border-radius: 12px;
+      line-height: 1.35;
+      font-size: 0.74rem;
+      padding: 0.45rem 0.7rem;
+      box-sizing: border-box;
+    }
+    .tracking-strip span.text {
+      white-space: normal;
+      word-break: break-word;
+    }
+    .email-capture { width: 100%; max-width: 100%; flex-direction: column; gap: 0.6rem; }
+    .email-capture input[type=email] { width: 100%; flex: none; font-size: 0.95rem; }
+    .email-capture button { width: 100%; padding: 0.8rem; font-size: 0.95rem; }
+    section.dealfeed-section { padding: 1.8rem 1rem; }
+    section.dealfeed-section > .section-head { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+    section.dealfeed-section > .section-head a { white-space: normal; }
+    .deal-grid { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .glossary-teaser { padding: 1.3rem 1.1rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .glossary-teaser a.button { width: 100%; text-align: center; }
+    .social-grid { grid-template-columns: 1fr 1fr; }
+  }
+
 </style>
 </head>
 <body class="theme-dealfeed">
@@ -181,7 +236,7 @@
   </header>
   
     <div class="hero">
-      <span class="tracking-strip"><span class="dot"></span>Tracking SIA KrisFlyer Spontaneous Escapes, 34 routes live</span>
+      <span class="tracking-strip"><span class="dot"></span><span class="text">Tracking SIA KrisFlyer Spontaneous Escapes • Next drop mid-October</span></span>
       <h1>Deals worth your miles, tracked live.</h1>
       <p class="lede">
         Exact routes, exact miles, exact dates. We flag a deal the moment
@@ -206,11 +261,11 @@
       <div class="deal-grid">
         
       <a class="deal-card" href="singapore-airlines/spontaneous-escapes/2026-09/">
-        <span class="badge">30% off</span>
+        <span class="badge" style="background:var(--rust-deep);">Next Drop: Mid-Oct</span>
         <h3>SIA KrisFlyer Spontaneous Escapes</h3>
         <span class="stat">34 routes <small>from 15,400 miles</small></span>
-        <span class="meta">Business class, book by 31 Aug 2026.<br>Verified via MileLion.</span>
-        <span class="cta">See every route &rarr;</span>
+        <span class="meta">Latest monthly cycle: 34 routes from 15,400 miles.<br><strong>Next drop expected ~15 Oct 2026</strong> for November escapes.</span>
+        <span class="cta">Review past routes archive &rarr;</span>
       </a>
     
         

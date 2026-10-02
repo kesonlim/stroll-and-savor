@@ -63,6 +63,12 @@ STYLE = """
     background: var(--paper-2); border: 1px solid var(--rule);
     border-radius: 999px; padding: 0.4rem 0.9rem 0.4rem 0.7rem;
     margin-bottom: 1.6rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .tracking-strip span.text {
+    min-width: 0;
+    line-height: 1.35;
   }
   .tracking-strip .dot {
     width: 7px; height: 7px; border-radius: 50%; background: var(--rust);
@@ -150,6 +156,36 @@ STYLE = """
     padding: 1.1rem 1.3rem; font-weight: 700; font-size: 1rem;
   }
   .social-grid a:hover { border-color: var(--rust-soft); }
+
+  @media (max-width: 640px) {
+    .hero { padding: 1.8rem 1rem 1.6rem; }
+    .hero h1 { font-size: 1.55rem; line-height: 1.2; margin: 0 0 0.8rem; max-width: 100%; }
+    .hero p.lede { font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.3rem; max-width: 100%; }
+    .tracking-strip {
+      display: inline-flex;
+      max-width: 100%;
+      border-radius: 12px;
+      line-height: 1.35;
+      font-size: 0.74rem;
+      padding: 0.45rem 0.7rem;
+      box-sizing: border-box;
+    }
+    .tracking-strip span.text {
+      white-space: normal;
+      word-break: break-word;
+    }
+    .email-capture { width: 100%; max-width: 100%; flex-direction: column; gap: 0.6rem; }
+    .email-capture input[type=email] { width: 100%; flex: none; font-size: 0.95rem; }
+    .email-capture button { width: 100%; padding: 0.8rem; font-size: 0.95rem; }
+    section.dealfeed-section { padding: 1.8rem 1rem; }
+    section.dealfeed-section > .section-head { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+    section.dealfeed-section > .section-head a { white-space: normal; }
+    .deal-grid { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .glossary-teaser { padding: 1.3rem 1.1rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .glossary-teaser a.button { width: 100%; text-align: center; }
+    .social-grid { grid-template-columns: 1fr 1fr; }
+  }
 """
 
 
@@ -182,13 +218,28 @@ def render(latest_tracker: dict, airline_count: int = 0) -> str:
     source = source_labels.get(data.get("source"), data.get("source", "the source"))
     book_by = datetime.strptime(data["booking_window"]["end"], "%Y-%m-%d").strftime("%-d %b %Y")
 
+    today_date = datetime.now().date()
+    book_end_date = datetime.strptime(data["booking_window"]["end"], "%Y-%m-%d").date()
+    is_cycle_ended = today_date > book_end_date
+
+    if is_cycle_ended:
+        tracking_text = "Tracking SIA KrisFlyer Spontaneous Escapes • Next drop mid-October"
+        badge_html = '<span class="badge" style="background:var(--rust-deep);">Next Drop: Mid-Oct</span>'
+        deal_meta = f"Latest monthly cycle: {routes} routes from {min_miles:,} miles.<br><strong>Next drop expected ~15 Oct 2026</strong> for November escapes."
+        deal_cta = "Review past routes archive &rarr;"
+    else:
+        tracking_text = f"Tracking SIA KrisFlyer Spontaneous Escapes, {routes} routes live"
+        badge_html = f'<span class="badge">{data.get("discount_pct", 30)}% off</span>'
+        deal_meta = f"Business class, book by {book_by}.<br>Verified via {source}."
+        deal_cta = "See every route &rarr;"
+
     deal_card = f"""
       <a class="deal-card" href="singapore-airlines/spontaneous-escapes/{latest_tracker['slug']}/">
-        <span class="badge">{data.get('discount_pct', 30)}% off</span>
+        {badge_html}
         <h3>SIA KrisFlyer Spontaneous Escapes</h3>
         <span class="stat">{routes} routes <small>from {min_miles:,} miles</small></span>
-        <span class="meta">Business class, book by {book_by}.<br>Verified via {source}.</span>
-        <span class="cta">See every route &rarr;</span>
+        <span class="meta">{deal_meta}</span>
+        <span class="cta">{deal_cta}</span>
       </a>
     """
     placeholder_card = """
@@ -201,7 +252,7 @@ def render(latest_tracker: dict, airline_count: int = 0) -> str:
 
     body = f"""
     <div class="hero">
-      <span class="tracking-strip"><span class="dot"></span>Tracking SIA KrisFlyer Spontaneous Escapes, {routes} routes live</span>
+      <span class="tracking-strip"><span class="dot"></span><span class="text">{tracking_text}</span></span>
       <h1>Deals worth your miles, tracked live.</h1>
       <p class="lede">
         Exact routes, exact miles, exact dates. We flag a deal the moment
