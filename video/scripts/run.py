@@ -2,7 +2,7 @@
 
   python3 video/scripts/run.py process "<shoot folder>"   # steps 1-3 for one shoot, now
   python3 video/scripts/run.py watch                      # launchd: auto-plan new shoots
-  python3 video/scripts/run.py approve "<shoot folder>"   # steps 4-5 (not built yet)
+  python3 video/scripts/run.py approve "<shoot folder>"   # steps 4-5: render 4K video & package for YouTube
 """
 import datetime
 import fcntl
@@ -13,7 +13,9 @@ import analyze
 import config
 import drive
 import ingest
+import package
 import plan
+import render
 
 
 def process(shoot: str) -> None:
@@ -35,6 +37,36 @@ def process(shoot: str) -> None:
     files = plan.run(shoot, job, clip_meta, analysis)
     drive.push_files(files, shoot)
     print(f"[{shoot}] plan uploaded to '{config.OUTBOX}/{shoot}/' -- review plan.md, then approve")
+
+
+def approve(shoot: str) -> None:
+    job = config.SCRATCH / shoot
+    out_dir = job / "out"
+    plan_file = out_dir / "plan.json"
+
+    if not plan_file.exists():
+        print(f"[{shoot}] local plan not found; checking Drive '{config.OUTBOX}/{shoot}/plan.json'...")
+        out_dir.mkdir(parents=True, exist_ok=True)
+        try:
+            drive.pull_file(shoot, "plan.json", out_dir)
+        except Exception as e:
+            sys.exit(f"Could not locate plan.json on local disk or Drive for '{shoot}': {e}")
+
+    plan_data = json.loads(plan_file.read_text())
+
+    print(f"[{shoot}] 4/5 render: cutting and compositing overlays ({len(plan_data.get('clips', []))} clips)")
+    video_path = render.run(shoot, job, plan_data)
+
+    print(f"[{shoot}] 5/5 package: generating YouTube metadata & timestamps")
+    pkg_files = package.run(shoot, job, plan_data)
+
+    plan_data["status"] = "rendered"
+    plan_file.write_text(json.dumps(plan_data, indent=2, ensure_ascii=False))
+
+    all_upload_files = [video_path, plan_file] + pkg_files
+    print(f"[{shoot}] uploading completed video and publication package to Drive '{config.OUTBOX}/{shoot}/'...")
+    drive.push_files(all_upload_files, shoot)
+    print(f"[{shoot}] SUCCESS: 4K video rendered and uploaded to Drive with publication package.")
 
 
 def watch() -> None:
@@ -68,8 +100,8 @@ def main() -> None:
         sys.exit(f"usage: run.py {cmd} \"<shoot folder>\"")
     elif cmd == "process":
         process(sys.argv[2])
-    else:
-        sys.exit("approve (render + package) is the next build stage -- not implemented yet")
+    elif cmd == "approve":
+        approve(sys.argv[2])
 
 
 if __name__ == "__main__":

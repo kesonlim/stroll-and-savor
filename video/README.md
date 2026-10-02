@@ -14,8 +14,8 @@ Drive: 01 - Footage/<shoot>/        (photos + clips, as uploaded)
   2 Analyze  freezedetect (standing still) + claude -p on frame contact sheets (place names)
   3 Plan     plan.json + plan.md + contact.jpg -> uploaded to the outbox
   --- you review and approve ---
-  4 Render   (not built yet) re-pull originals, apply cuts, overlays, music
-  5 Package  (not built yet) title/description/chapters draft
+  4 Render   re-pull originals, apply cuts, composite brand overlays
+  5 Package  generate YouTube publication package (title, description, timestamps, tags)
 Drive: 02 - Edited Footage/01 - Edited by Claude/<shoot>/
 ```
 

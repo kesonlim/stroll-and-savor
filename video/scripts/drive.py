@@ -63,3 +63,13 @@ def push_files(files: list, shoot: str) -> None:
             ["rclone", "copyto", str(f), _remote(f"{config.OUTBOX}/{shoot}/{Path(f).name}")],
             check=True,
         )
+
+
+def pull_file(shoot: str, filename: str, dest_dir: Path) -> Path:
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    dest = dest_dir / filename
+    subprocess.run(
+        ["rclone", "copyto", _remote(f"{config.OUTBOX}/{shoot}/{filename}"), str(dest)],
+        check=True,
+    )
+    return dest
