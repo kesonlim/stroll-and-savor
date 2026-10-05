@@ -8,6 +8,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "content" / "script
 from brand import MONOGRAM_INK, ROUTE_LINE_SVG  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from chrome import page  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import image_provider  # noqa: E402
 
 ASSET_PREFIX = "../../"
 
@@ -17,6 +19,19 @@ STYLE = """
     text-transform: uppercase; color: var(--rust-text); display: block; margin-bottom: 0.8rem; }
   main h1 { margin: 0 0 0.6rem; }
   .subline { font-family: var(--font-data); font-size: 0.88rem; color: var(--ink-soft); }
+  .airline-hero {
+    margin: 1.8rem 0 2rem; border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--rule); position: relative; background: #e2dfd6;
+  }
+  .airline-hero img {
+    width: 100%; height: auto; max-height: 320px; object-fit: cover; display: block;
+  }
+  .airline-hero .caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(12,19,34,0.8));
+    padding: 1.1rem 1.4rem; color: #fff; display: flex;
+    justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem;
+  }
   .route-line-motif { margin: 1.6rem 0 2rem; }
   .route-line-motif svg { width: 180px; height: auto; }
 
@@ -44,11 +59,23 @@ def render(entry: dict) -> str:
         f"{entry['alliance']} (member since {entry['alliance_joined']})"
         if entry.get("alliance_joined") else entry["alliance"]
     )
+
+    hero_img = image_provider.resolve_image(entry.get("hub", entry["name"]), width=1100)
+
     body = f"""
     <main>
       <span class="eyebrow">Airlines &middot; {entry['alliance']}</span>
       <h1>{entry['name']}</h1>
       <span class="subline">{entry['iata']} &middot; {alliance_line} &middot; hub: {entry['hub']}</span>
+      
+      <div class="airline-hero">
+        <img src="{hero_img['url']}" alt="{hero_img['alt']}" width="1100" height="320" loading="eager">
+        <div class="caption">
+          <span style="font-family:var(--font-data); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); font-weight:700;">Hub &bull; {entry['hub']}</span>
+          <span style="font-family:var(--font-data); font-size:0.68rem; color:rgba(255,255,255,0.75);">Photo by {hero_img['photographer']} &bull; Unsplash</span>
+        </div>
+      </div>
+
       <div class="route-line-motif">{ROUTE_LINE_SVG}</div>
 
       <p class="blurb">{entry['blurb']}</p>
@@ -80,6 +107,7 @@ def render(entry: dict) -> str:
         body=body,
         asset_prefix=ASSET_PREFIX,
         extra_style=STYLE,
+        og_image=hero_img["url"],
         url_path=url_path,
         og_type="website",
         breadcrumbs=[("Home", ""), ("Airlines", "airlines/"), (entry["name"], url_path)],

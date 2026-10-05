@@ -8,16 +8,35 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "content" / "script
 from brand import WORDMARK_INK, ROUTE_LINE_SVG  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from chrome import page  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import image_provider  # noqa: E402
 
 ASSET_PREFIX = "../../"
 
 STYLE = """
-  .hero { max-width: 900px; margin: 0 auto; padding: 3rem 1.75rem 3rem; }
+  .hero { max-width: 900px; margin: 0 auto; padding: 3rem 1.75rem 2rem; }
   .hero .mark { width: 260px; max-width: 60vw; margin-bottom: 1.6rem; }
   .hero h1 { font-size: clamp(1.7rem, 3vw, 2.3rem); margin: 0 0 1rem; max-width: 20ch; }
   .hero p.lede { font-size: 1.05rem; max-width: 56ch; color: var(--ink-soft); }
   .hero .route-line-motif { margin: 1.6rem 0 0; }
   .hero .route-line-motif svg { width: 200px; height: auto; }
+
+  .hero-banner {
+    max-width: 900px; margin: 0 auto 1rem; padding: 0 1.75rem;
+  }
+  .hero-banner .frame {
+    border-radius: 14px; overflow: hidden; border: 1px solid var(--rule);
+    position: relative; background: #e2dfd6;
+  }
+  .hero-banner img {
+    width: 100%; height: auto; max-height: 340px; object-fit: cover; display: block;
+  }
+  .hero-banner .caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(12,19,34,0.8));
+    padding: 1.1rem 1.5rem; color: #fff; display: flex;
+    justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem;
+  }
 
   section { max-width: 900px; margin: 0 auto; padding: 2.6rem 1.75rem; border-top: 1px solid var(--rule); }
   section h2 { font-size: 1.3rem; margin-bottom: 1rem; }
@@ -38,6 +57,8 @@ def render(posts: list) -> str:
     """`posts` newest first: [{slug, eyebrow, title, meta}, ...]"""
     latest = posts[0]
     older = posts[1:]
+
+    hero_img = image_provider.resolve_image("flight", width=1200)
 
     older_html = ""
     if older:
@@ -67,6 +88,16 @@ def render(posts: list) -> str:
       <div class="route-line-motif">{ROUTE_LINE_SVG}</div>
     </div>
 
+    <div class="hero-banner">
+      <div class="frame">
+        <img src="{hero_img['url']}" alt="{hero_img['alt']}" width="1200" height="340" loading="eager">
+        <div class="caption">
+          <span style="font-family:var(--font-data); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); font-weight:700;">Award Travel Dispatch</span>
+          <span style="font-family:var(--font-data); font-size:0.68rem; color:rgba(255,255,255,0.75);">Photo by {hero_img['photographer']} &bull; Unsplash</span>
+        </div>
+      </div>
+    </div>
+
     <section>
       <h2>Latest</h2>
       <a class="post-card" href="{latest['slug']}/">
@@ -92,6 +123,7 @@ def render(posts: list) -> str:
         body=body,
         asset_prefix=ASSET_PREFIX,
         extra_style=STYLE,
+        og_image=hero_img["url"],
         url_path="singapore-airlines/spontaneous-escapes/",
         og_type="website",
         breadcrumbs=[("Home", ""), ("Singapore Airlines", "singapore-airlines/spontaneous-escapes/")],

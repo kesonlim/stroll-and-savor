@@ -7,6 +7,8 @@ from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import image_provider  # noqa: E402
 from chrome import page, SOCIAL_LINKS  # noqa: E402
 
 BUTTONDOWN_USERNAME = "klim"
@@ -200,18 +202,30 @@ STYLE = """
     gap: 1.6rem; margin-top: 1rem;
   }
   .walk-card {
-    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 14px;
-    padding: 2rem 1.8rem; text-decoration: none; color: inherit;
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 16px;
+    overflow: hidden; text-decoration: none; color: inherit;
     display: flex; flex-direction: column; justify-content: space-between;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .walk-card:hover {
-    transform: translateY(-3px); box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+    transform: translateY(-4px); box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  }
+  .walk-card .card-thumb {
+    width: 100%; height: 210px; overflow: hidden; position: relative; background: #e2dfd6;
+  }
+  .walk-card .card-thumb img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block;
+  }
+  .walk-card:hover .card-thumb img {
+    transform: scale(1.05);
+  }
+  .walk-card .card-content {
+    padding: 1.8rem 1.7rem; display: flex; flex-direction: column; flex: 1; justify-content: space-between;
   }
   .walk-card .card-label {
     font-family: var(--font-data); font-size: 0.7rem; font-weight: 700;
     letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
   }
   .walk-card h3 {
     font-family: var(--font-display); font-size: 1.45rem; font-weight: 800;
@@ -226,13 +240,22 @@ STYLE = """
     font-family: var(--font-data); font-size: 0.76rem; color: var(--ink-soft);
   }
 
-  /* Airlines Directory Teaser */
+  /* Airlines Directory Teaser with Photography */
   .directory-teaser {
-    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 14px;
-    padding: 2.5rem 2.8rem; display: flex; justify-content: space-between;
-    align-items: center; gap: 2rem; flex-wrap: wrap;
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 16px;
+    overflow: hidden; display: flex; justify-content: space-between;
+    align-items: stretch; gap: 0; flex-wrap: wrap;
   }
-  .directory-teaser .copy { max-width: 54ch; }
+  .directory-teaser .copy {
+    padding: 2.8rem 3rem; flex: 1 1 360px; max-width: 58ch;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .directory-teaser .teaser-image {
+    flex: 1 1 300px; min-height: 260px; position: relative; overflow: hidden; background: #e2dfd6;
+  }
+  .directory-teaser .teaser-image img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
   .directory-teaser h3 {
     font-family: var(--font-display); font-size: 1.8rem; font-weight: 800;
     margin: 0 0 0.6rem; color: var(--ink);
@@ -319,6 +342,11 @@ def render(latest_tracker: dict, airline_count: int = 0) -> str:
         status_sub = f"Currently tracking {routes} discounted routes starting from {min_miles:,} miles in Business class."
         date_badge = f"Book by {data['booking_window']['end']}"
 
+    tokyo_img = image_provider.resolve_image("tokyo", width=800)
+    kyoto_img = image_provider.resolve_image("kyoto", width=800)
+    sg_img = image_provider.resolve_image("singapore", width=800)
+    changi_img = image_provider.resolve_image("changi", width=900)
+
     body = f"""
     <div class="masthead-strip">
       <span class="vol">Issue 01 &bull; Autumn 2026</span>
@@ -399,38 +427,53 @@ def render(latest_tracker: dict, airline_count: int = 0) -> str:
 
       <div class="walks-grid">
         <article class="walk-card">
-          <div>
-            <div class="card-label">Tokyo, Japan &bull; Night Walk</div>
-            <h3>Tokyo After Dark: Shinjuku Alleys &amp; Late-Night Ramen</h3>
-            <p>From the glowing lanterns of Omoide Yokocho to the quiet residential backstreets of Yanaka. A 6-kilometer pedestrian guide to Tokyo's best standing sake bars and midnight broths.</p>
+          <div class="card-thumb">
+            <img src="{tokyo_img['url']}" alt="{tokyo_img['alt']}" loading="lazy" width="600" height="340">
           </div>
-          <div class="meta-footer">
-            <span>6.2 km walk &bull; 4 food stops</span>
-            <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
-          </div>
-        </article>
-
-        <article class="walk-card">
-          <div>
-            <div class="card-label">Kyoto, Japan &bull; Morning Trail</div>
-            <h3>Dawn Along Shirakawa Canal: Pour-Overs &amp; Heritage Bakeries</h3>
-            <p>Walking the stone paths of Gion at 6:00 AM before the tour buses arrive. We map the third-generation kissatens, matcha roasters, and unheralded artisanal sourdough stalls.</p>
-          </div>
-          <div class="meta-footer">
-            <span>4.8 km walk &bull; 3 coffee stops</span>
-            <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+          <div class="card-content">
+            <div>
+              <div class="card-label">Tokyo, Japan &bull; Night Walk</div>
+              <h3>Tokyo After Dark: Shinjuku Alleys &amp; Late-Night Ramen</h3>
+              <p>From the glowing lanterns of Omoide Yokocho to the quiet residential backstreets of Yanaka. A 6-kilometer pedestrian guide to Tokyo's best standing sake bars and midnight broths.</p>
+            </div>
+            <div class="meta-footer">
+              <span>6.2 km walk &bull; 4 food stops</span>
+              <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+            </div>
           </div>
         </article>
 
         <article class="walk-card">
-          <div>
-            <div class="card-label">Singapore &bull; Heritage Corridor</div>
-            <h3>The Spice Corridors: Joo Chiat Shophouses to Little India</h3>
-            <p>An architectural and culinary cross-section through Singapore's vibrant heritage districts. Traditional kopi gu you, charcoal popiah, and twilight roti prata stops.</p>
+          <div class="card-thumb">
+            <img src="{kyoto_img['url']}" alt="{kyoto_img['alt']}" loading="lazy" width="600" height="340">
           </div>
-          <div class="meta-footer">
-            <span>5.5 km walk &bull; 5 culinary stops</span>
-            <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+          <div class="card-content">
+            <div>
+              <div class="card-label">Kyoto, Japan &bull; Morning Trail</div>
+              <h3>Dawn Along Shirakawa Canal: Pour-Overs &amp; Heritage Bakeries</h3>
+              <p>Walking the stone paths of Gion at 6:00 AM before the tour buses arrive. We map the third-generation kissatens, matcha roasters, and unheralded artisanal sourdough stalls.</p>
+            </div>
+            <div class="meta-footer">
+              <span>4.8 km walk &bull; 3 coffee stops</span>
+              <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="walk-card">
+          <div class="card-thumb">
+            <img src="{sg_img['url']}" alt="{sg_img['alt']}" loading="lazy" width="600" height="340">
+          </div>
+          <div class="card-content">
+            <div>
+              <div class="card-label">Singapore &bull; Heritage Corridor</div>
+              <h3>The Spice Corridors: Joo Chiat Shophouses to Little India</h3>
+              <p>An architectural and culinary cross-section through Singapore's vibrant heritage districts. Traditional kopi gu you, charcoal popiah, and twilight roti prata stops.</p>
+            </div>
+            <div class="meta-footer">
+              <span>5.5 km walk &bull; 5 culinary stops</span>
+              <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+            </div>
           </div>
         </article>
       </div>
@@ -443,8 +486,13 @@ def render(latest_tracker: dict, airline_count: int = 0) -> str:
         <div class="copy">
           <h3>{airline_count} Global Airlines Operating Changi, Decoded.</h3>
           <p>Alliance alignments (Star Alliance, oneworld, SkyTeam), dedicated terminal maps, lounge access rules, and loyalty program transfer partners. The reference you check before you book.</p>
+          <div style="margin-top:1.8rem;">
+            <a class="button-brass" href="airlines/">Explore the Airline Glossary &rarr;</a>
+          </div>
         </div>
-        <a class="button-brass" href="airlines/">Explore the Airline Glossary &rarr;</a>
+        <div class="teaser-image">
+          <img src="{changi_img['url']}" alt="{changi_img['alt']}" loading="lazy" width="800" height="500">
+        </div>
       </div>
     </section>
 

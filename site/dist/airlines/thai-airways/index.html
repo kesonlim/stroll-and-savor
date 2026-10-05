@@ -10,8 +10,8 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://strollsavor.com/airlines/thai-airways/">
 <meta property="og:site_name" content="Stroll & Savor">
-
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1100&q=80">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Thai Airways — Stroll & Savor">
 <meta name="twitter:description" content="Thai Airways (TG), Star Alliance member since May 1997, hubbed at Bangkok Suvarnabhumi.">
 <link rel="icon" href="../../assets/favicon.ico">
@@ -75,6 +75,19 @@
     text-transform: uppercase; color: var(--rust-text); display: block; margin-bottom: 0.8rem; }
   main h1 { margin: 0 0 0.6rem; }
   .subline { font-family: var(--font-data); font-size: 0.88rem; color: var(--ink-soft); }
+  .airline-hero {
+    margin: 1.8rem 0 2rem; border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--rule); position: relative; background: #e2dfd6;
+  }
+  .airline-hero img {
+    width: 100%; height: auto; max-height: 320px; object-fit: cover; display: block;
+  }
+  .airline-hero .caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(12,19,34,0.8));
+    padding: 1.1rem 1.4rem; color: #fff; display: flex;
+    justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.5rem;
+  }
   .route-line-motif { margin: 1.6rem 0 2rem; }
   .route-line-motif svg { width: 180px; height: auto; }
 
@@ -117,6 +130,15 @@
       <span class="eyebrow">Airlines &middot; Star Alliance</span>
       <h1>Thai Airways</h1>
       <span class="subline">TG &middot; Star Alliance member since May 1997 &middot; hub: Bangkok Suvarnabhumi</span>
+      
+      <div class="airline-hero">
+        <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1100&q=80" alt="Wat Arun temple spire illuminated over Chao Phraya River" width="1100" height="320" loading="eager">
+        <div class="caption">
+          <span style="font-family:var(--font-data); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); font-weight:700;">Hub &bull; Bangkok Suvarnabhumi</span>
+          <span style="font-family:var(--font-data); font-size:0.68rem; color:rgba(255,255,255,0.75);">Photo by Aleksandar Pasaric &bull; Unsplash</span>
+        </div>
+      </div>
+
       <div class="route-line-motif"><svg width="120" height="40" viewBox="0 0 90 30" xmlns="http://www.w3.org/2000/svg"><path d="M4 15 C25 15 20 25 45 15 C65 7 70 20 86 15" fill="none" stroke="var(--rust)" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="0.2 5"/></svg></div>
 
       <p class="blurb">A near-neighbour Star Alliance carrier, useful for onward connections across Thailand and mainland Southeast Asia.</p>
