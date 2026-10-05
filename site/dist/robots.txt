@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://strollsavor.thethinkthank.com/sitemap.xml
+Sitemap: https://strollsavor.com/sitemap.xml

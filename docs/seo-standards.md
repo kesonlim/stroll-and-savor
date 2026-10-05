@@ -63,7 +63,7 @@ Every page's `<head>` must include:
 2. **Unique `<meta name="description">`** — one to two sentences,
    specific to that page, front-loaded with the concrete fact (route
    count, airline name + IATA code, etc.) rather than generic brand copy.
-3. **Canonical URL**: `<link rel="canonical" href="https://strollsavor.thethinkthank.com/...">`.
+3. **Canonical URL**: `<link rel="canonical" href="https://strollsavor.com/...">`.
    Prevents duplicate-content ambiguity if a page is ever reachable at
    more than one path, and is a directness signal both Google and AI
    crawlers use to establish the authoritative version of a page.

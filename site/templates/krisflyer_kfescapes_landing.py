@@ -42,7 +42,7 @@ def render() -> str:
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{TITLE}">
 <meta name="twitter:description" content="{DESCRIPTION}">
-<script type="application/ld+json">{{"@context": "https://schema.org", "@type": "WebPage", "name": 'KrisFlyer Spontaneous Escapes October 2026 | Master Dashboard', "url": 'https://kfescapes.thethinkthank.com/', "isPartOf": {{"@type": "WebSite", "name": "Stroll & Savor", "url": "https://strollsavor.thethinkthank.com/"}}}}</script>
+<script type="application/ld+json">{{"@context": "https://schema.org", "@type": "WebPage", "name": 'KrisFlyer Spontaneous Escapes October 2026 | Master Dashboard', "url": 'https://kfescapes.thethinkthank.com/', "isPartOf": {{"@type": "WebSite", "name": "Stroll & Savor", "url": "https://strollsavor.com/"}}}}</script>
 <style>
 {STYLE}
 </style>

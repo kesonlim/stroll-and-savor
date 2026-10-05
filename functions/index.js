@@ -13,10 +13,18 @@
 // output, unchanged.
 export async function onRequest(context) {
   const host = context.request.headers.get("host") || "";
+  const url = new URL(context.request.url);
+
+  // 301 redirect old subdomain to new branded domain
+  if (host === "strollsavor.thethinkthank.com") {
+    return Response.redirect(`https://strollsavor.com${url.pathname}${url.search}`, 301);
+  }
+
+  // Alias kfescapes subdomain to the dedicated master dashboard
   if (host === "kfescapes.thethinkthank.com") {
-    const url = new URL(context.request.url);
     url.pathname = "/_kfescapes-landing/";
     return context.env.ASSETS.fetch(new Request(url.toString(), context.request));
   }
+
   return context.next();
 }

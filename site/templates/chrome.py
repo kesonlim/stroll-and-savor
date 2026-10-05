@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "content" / "scripts"))
 from brand import MONOGRAM_INK  # noqa: E402
 
-SITE_URL = "https://strollsavor.thethinkthank.com"
+SITE_URL = "https://strollsavor.com"
 
 # Trim to what actually has content at each phase -- don't link to empty
 # sections. Add "News" once that ships (see docs/growth-plan.md).
