@@ -22,41 +22,51 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Korean Air", "identifier": "KE", "url": "https://www.koreanair.com/", "sameAs": ["https://www.koreanair.com/"]}</script>
 <style>
   .site-header {
-    max-width: 980px; margin: 0 auto; padding: 2rem 1.75rem 0;
+    max-width: 1040px; margin: 0 auto; padding: 2.2rem 2rem 1.4rem;
     display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--rule);
   }
-  .site-header .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-  .site-header .brand svg { width: 28px; height: auto; display: block; }
-  .site-header .brand span { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--ink); }
-  .site-header nav { display: flex; gap: 1.6rem; font-family: var(--font-data); font-size: 0.82rem; }
-  .site-header nav a { color: var(--ink-soft); text-decoration: none; }
-  .site-header nav a:hover { color: var(--rust-text); }
+  .site-header .brand { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
+  .site-header .brand svg { width: 34px; height: auto; display: block; }
+  .site-header .brand-text { display: flex; flex-direction: column; }
+  .site-header .brand-text .title {
+    font-family: var(--font-display); font-weight: 800; font-size: 1.22rem;
+    letter-spacing: 0.06em; color: var(--ink); line-height: 1.1;
+  }
+  .site-header .brand-text .kicker {
+    font-family: var(--font-data); font-size: 0.58rem; letter-spacing: 0.16em;
+    color: var(--brass-deep); margin-top: 0.25rem; text-transform: uppercase; font-weight: 700;
+  }
+  .site-header nav { display: flex; gap: 1.8rem; font-family: var(--font-body); font-weight: 600; font-size: 0.88rem; }
+  .site-header nav a { color: var(--ink-soft); text-decoration: none; transition: color 0.15s ease; }
+  .site-header nav a:hover { color: var(--brass-deep); }
   .site-footer {
-    max-width: 980px; margin: 5rem auto 0; padding: 2rem 1.75rem 3rem;
-    border-top: 1px solid var(--rule); font-family: var(--font-data);
-    font-size: 0.76rem; color: var(--ink-soft); display: flex;
-    justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    max-width: 1040px; margin: 5rem auto 0; padding: 2.5rem 2rem 4rem;
+    border-top: 1px solid var(--rule); font-family: var(--font-body);
+    font-size: 0.84rem; color: var(--ink-soft); display: flex;
+    justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
   }
-  .site-footer .social { display: flex; gap: 1.2rem; }
-  .site-footer .social a { color: var(--ink-soft); text-decoration: none; }
-  .site-footer .social a:hover { color: var(--rust-text); }
+  .site-footer .disclaimer { max-width: 52ch; line-height: 1.6; }
+  .site-footer .social { display: flex; gap: 1.4rem; font-family: var(--font-data); font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .site-footer .social a { color: var(--ink-soft); text-decoration: none; transition: color 0.15s ease; }
+  .site-footer .social a:hover { color: var(--brass-deep); }
 
   @media (max-width: 640px) {
     .site-header {
-      padding: 1.25rem 1rem 0;
+      padding: 1.4rem 1.2rem 1.1rem;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.85rem;
+      gap: 1.1rem;
     }
     .site-header nav {
-      gap: 1.1rem;
-      font-size: 0.82rem;
+      gap: 1.2rem;
+      font-size: 0.85rem;
       flex-wrap: wrap;
     }
     .site-footer {
-      padding: 2rem 1rem 2.5rem;
+      padding: 2rem 1.2rem 3rem;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.4rem;
     }
   }
   
@@ -85,7 +95,8 @@
 </head>
 <body class="">
   <header class="site-header">
-    <a class="brand" href="../../"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4236 2852">
+    <a class="brand" href="../../">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4236 2852">
 
 <g transform="translate(276,1876) scale(1,-1)">
 <g fill="#2e2e2c"><g transform="translate(0,0)"><path d="M1024 883V672Q1024 638 1002.5 623.5Q981 609 932 609Q879 609 859 630Q800 693 724.0 719.5Q648 746 548 746Q489 746 455.5 725.0Q422 704 422 669Q422 627 496 609Q535 599 629 590Q722 579 783.5 568.0Q845 557 900 535Q980 502 1025.0 443.0Q1070 384 1070 287Q1070 192 1023.5 122.5Q977 53 887.5 15.5Q798 -22 672 -22Q533 -22 414 49V41Q414 7 385.0 -7.5Q356 -22 292 -22Q228 -22 201.0 -7.5Q174 7 174 41V264Q174 297 197.5 312.0Q221 327 270 327Q331 327 353 299Q403 236 481.0 207.0Q559 178 652 178Q812 178 812 261Q812 286 789.5 301.0Q767 316 723 326Q698 331 607 344Q506 356 433.5 371.5Q361 387 302 420Q164 496 164 660Q164 747 211.0 812.0Q258 877 340.5 911.5Q423 946 526 946Q677 946 794 873V883Q794 917 818.5 931.5Q843 946 906 946Q970 946 997.0 931.5Q1024 917 1024 883Z"/></g></g>
@@ -93,8 +104,13 @@
 <g fill="#2e2e2c" transform="translate(2456,0)"><g transform="translate(0,0)"><path d="M1024 883V672Q1024 638 1002.5 623.5Q981 609 932 609Q879 609 859 630Q800 693 724.0 719.5Q648 746 548 746Q489 746 455.5 725.0Q422 704 422 669Q422 627 496 609Q535 599 629 590Q722 579 783.5 568.0Q845 557 900 535Q980 502 1025.0 443.0Q1070 384 1070 287Q1070 192 1023.5 122.5Q977 53 887.5 15.5Q798 -22 672 -22Q533 -22 414 49V41Q414 7 385.0 -7.5Q356 -22 292 -22Q228 -22 201.0 -7.5Q174 7 174 41V264Q174 297 197.5 312.0Q221 327 270 327Q331 327 353 299Q403 236 481.0 207.0Q559 178 652 178Q812 178 812 261Q812 286 789.5 301.0Q767 316 723 326Q698 331 607 344Q506 356 433.5 371.5Q361 387 302 420Q164 496 164 660Q164 747 211.0 812.0Q258 877 340.5 911.5Q423 946 526 946Q677 946 794 873V883Q794 917 818.5 931.5Q843 946 906 946Q970 946 997.0 931.5Q1024 917 1024 883Z"/></g></g>
 </g>
 </svg>
-<span>stroll &amp; savor</span></a>
-    <nav><a href="../../">Home</a><a href="../../singapore-airlines/spontaneous-escapes/">Singapore Airlines</a><a href="../../airlines/">Airlines</a></nav>
+
+      <div class="brand-text">
+        <span class="title">STROLL &amp; SAVOR</span>
+        <span class="kicker">Urban Walks &bull; Flight Intelligence</span>
+      </div>
+    </a>
+    <nav><a href="../../">Home</a><a href="../../singapore-airlines/spontaneous-escapes/">Flight Escapes</a><a href="../../airlines/">Airlines Directory</a></nav>
   </header>
   
     <main>
@@ -116,7 +132,7 @@
       <a class="back-link" href="../">&larr; All airlines</a>
     </main>
   <footer class="site-footer">
-    <span>Stroll &amp; Savor. Independent, not affiliated with any airline, hotel, or attraction we cover.</span>
+    <span class="disclaimer">Stroll &amp; Savor &bull; Independent journal of urban walks, culinary discovery, and airline loyalty intelligence. Not affiliated with any carrier or venue covered.</span>
     <span class="social"><a href="https://www.facebook.com/profile.php?id=61581034831451" rel="noopener" target="_blank">Facebook</a><a href="https://www.instagram.com/stroll_savor/" rel="noopener" target="_blank">Instagram</a><a href="https://www.tiktok.com/@stroll_savor" rel="noopener" target="_blank">TikTok</a><a href="https://www.youtube.com/@StrollAndSavor" rel="noopener" target="_blank">YouTube</a></span>
   </footer>
 </body></html>

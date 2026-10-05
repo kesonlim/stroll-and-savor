@@ -2,228 +2,351 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stroll & Savor - Travel deals, tracked with precision</title>
-<meta name="description" content="We track the travel deals and loyalty programs worth paying attention to: exact routes, exact miles, exact dates. Starting with Singapore Airlines KrisFlyer Spontaneous Escapes.">
+<title>Stroll & Savor — Urban Walks & Flight Intelligence</title>
+<meta name="description" content="Curated slow urban walks, neighborhood culinary guides, and insider airline loyalty intelligence. Track Singapore Airlines KrisFlyer Spontaneous Escapes with precision.">
 <link rel="canonical" href="https://strollsavor.com/">
-<meta property="og:title" content="Stroll & Savor - Travel deals, tracked with precision">
-<meta property="og:description" content="We track the travel deals and loyalty programs worth paying attention to: exact routes, exact miles, exact dates. Starting with Singapore Airlines KrisFlyer Spontaneous Escapes.">
+<meta property="og:title" content="Stroll & Savor — Urban Walks & Flight Intelligence">
+<meta property="og:description" content="Curated slow urban walks, neighborhood culinary guides, and insider airline loyalty intelligence. Track Singapore Airlines KrisFlyer Spontaneous Escapes with precision.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://strollsavor.com/">
 <meta property="og:site_name" content="Stroll & Savor">
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stroll & Savor - Travel deals, tracked with precision">
-<meta name="twitter:description" content="We track the travel deals and loyalty programs worth paying attention to: exact routes, exact miles, exact dates. Starting with Singapore Airlines KrisFlyer Spontaneous Escapes.">
+<meta name="twitter:title" content="Stroll & Savor — Urban Walks & Flight Intelligence">
+<meta name="twitter:description" content="Curated slow urban walks, neighborhood culinary guides, and insider airline loyalty intelligence. Track Singapore Airlines KrisFlyer Spontaneous Escapes with precision.">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="stylesheet" href="assets/style.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Stroll & Savor", "url": "https://strollsavor.com/", "logo": "https://strollsavor.com/assets/favicon.ico", "sameAs": ["https://www.facebook.com/profile.php?id=61581034831451", "https://www.instagram.com/stroll_savor/", "https://www.tiktok.com/@stroll_savor", "https://www.youtube.com/@StrollAndSavor"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://strollsavor.com/"}]}</script>
 <style>
   .site-header {
-    max-width: 980px; margin: 0 auto; padding: 2rem 1.75rem 0;
+    max-width: 1040px; margin: 0 auto; padding: 2.2rem 2rem 1.4rem;
     display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--rule);
   }
-  .site-header .brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-  .site-header .brand svg { width: 28px; height: auto; display: block; }
-  .site-header .brand span { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--ink); }
-  .site-header nav { display: flex; gap: 1.6rem; font-family: var(--font-data); font-size: 0.82rem; }
-  .site-header nav a { color: var(--ink-soft); text-decoration: none; }
-  .site-header nav a:hover { color: var(--rust-text); }
+  .site-header .brand { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
+  .site-header .brand svg { width: 34px; height: auto; display: block; }
+  .site-header .brand-text { display: flex; flex-direction: column; }
+  .site-header .brand-text .title {
+    font-family: var(--font-display); font-weight: 800; font-size: 1.22rem;
+    letter-spacing: 0.06em; color: var(--ink); line-height: 1.1;
+  }
+  .site-header .brand-text .kicker {
+    font-family: var(--font-data); font-size: 0.58rem; letter-spacing: 0.16em;
+    color: var(--brass-deep); margin-top: 0.25rem; text-transform: uppercase; font-weight: 700;
+  }
+  .site-header nav { display: flex; gap: 1.8rem; font-family: var(--font-body); font-weight: 600; font-size: 0.88rem; }
+  .site-header nav a { color: var(--ink-soft); text-decoration: none; transition: color 0.15s ease; }
+  .site-header nav a:hover { color: var(--brass-deep); }
   .site-footer {
-    max-width: 980px; margin: 5rem auto 0; padding: 2rem 1.75rem 3rem;
-    border-top: 1px solid var(--rule); font-family: var(--font-data);
-    font-size: 0.76rem; color: var(--ink-soft); display: flex;
-    justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    max-width: 1040px; margin: 5rem auto 0; padding: 2.5rem 2rem 4rem;
+    border-top: 1px solid var(--rule); font-family: var(--font-body);
+    font-size: 0.84rem; color: var(--ink-soft); display: flex;
+    justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
   }
-  .site-footer .social { display: flex; gap: 1.2rem; }
-  .site-footer .social a { color: var(--ink-soft); text-decoration: none; }
-  .site-footer .social a:hover { color: var(--rust-text); }
+  .site-footer .disclaimer { max-width: 52ch; line-height: 1.6; }
+  .site-footer .social { display: flex; gap: 1.4rem; font-family: var(--font-data); font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .site-footer .social a { color: var(--ink-soft); text-decoration: none; transition: color 0.15s ease; }
+  .site-footer .social a:hover { color: var(--brass-deep); }
 
   @media (max-width: 640px) {
     .site-header {
-      padding: 1.25rem 1rem 0;
+      padding: 1.4rem 1.2rem 1.1rem;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.85rem;
+      gap: 1.1rem;
     }
     .site-header nav {
-      gap: 1.1rem;
-      font-size: 0.82rem;
+      gap: 1.2rem;
+      font-size: 0.85rem;
       flex-wrap: wrap;
     }
     .site-footer {
-      padding: 2rem 1rem 2.5rem;
+      padding: 2rem 1.2rem 3rem;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.4rem;
     }
   }
   
-  /* ---- Deal-feed theme tokens, scoped to this page only ---- */
-  body.theme-dealfeed {
-    --paper: #fcfcfa;
-    --paper-2: #f5f4f0;
-    --ink: #1c1b18;
-    --ink-soft: #6b6862;
-    --rule: #e6e3da;
-    --rust-deep: #7a3a1f;
-    --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-data: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    background-image: none;
-    font-feature-settings: "tnum" 1;
+  /* ---- Global Modern Editorial (Direction B) ---- */
+  body.theme-editorial {
+    --paper: #f6f5f0;
+    --paper-2: #ffffff;
+    --paper-dark: #0c1322;
+    --ink: #0f172a;
+    --ink-soft: #475569;
+    --rule: #e2dfd6;
+    --brass: #c89446;
+    --brass-deep: #966a23;
+    --brass-soft: #f5e9d5;
+    --navy: #0c1322;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-data: 'Space Mono', monospace;
+    background-color: var(--paper);
+    color: var(--ink);
   }
-  body.theme-dealfeed h1, body.theme-dealfeed h2 { letter-spacing: -0.02em; }
-  body.theme-dealfeed p { color: var(--ink-soft); }
-  body.theme-dealfeed a { color: var(--rust-text); }
-  body.theme-dealfeed a:hover { color: var(--rust-deep); }
-  body.theme-dealfeed .site-header { padding-top: 1.6rem; }
-  body.theme-dealfeed .site-header .brand span { font-weight: 800; }
-  body.theme-dealfeed .site-header nav a { font-weight: 500; text-transform: none; letter-spacing: 0; }
-  body.theme-dealfeed .site-header nav a:hover { color: var(--rust-text); }
-  body.theme-dealfeed .site-footer { border-top-color: var(--rule); }
 
-  .hero { max-width: 720px; margin: 0 auto; padding: 3.4rem 1.75rem 3rem; }
+  .masthead-strip {
+    max-width: 1040px; margin: 0 auto; padding: 1rem 2rem 0;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-data); font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem;
+  }
+  .masthead-strip .vol { font-weight: 700; color: var(--brass-deep); }
 
-  .tracking-strip {
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    font-size: 0.82rem; font-weight: 500; color: var(--ink-soft);
-    background: var(--paper-2); border: 1px solid var(--rule);
-    border-radius: 999px; padding: 0.4rem 0.9rem 0.4rem 0.7rem;
-    margin-bottom: 1.6rem;
-    max-width: 100%;
-    box-sizing: border-box;
+  .hero {
+    max-width: 1040px; margin: 0 auto; padding: 4.5rem 2rem 3.5rem;
   }
-  .tracking-strip span.text {
-    min-width: 0;
-    line-height: 1.35;
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: var(--font-data); font-size: 0.76rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--brass-deep); font-weight: 700;
+    margin-bottom: 1.4rem;
   }
-  .tracking-strip .dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--rust);
-    flex-shrink: 0;
+  .hero-eyebrow .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--brass);
+    display: inline-block;
   }
   @media (prefers-reduced-motion: no-preference) {
-    .tracking-strip .dot { animation: pulse 2.4s ease-in-out infinite; }
+    .hero-eyebrow .dot { animation: pulse-brass 2.2s infinite; }
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(180, 85, 47, 0.35); }
-    50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(180, 85, 47, 0); }
+  @keyframes pulse-brass {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.25); }
   }
 
   .hero h1 {
-    font-size: clamp(2.1rem, 1.4rem + 3vw, 3.2rem);
-    font-weight: 800; line-height: 1.1; margin: 0 0 1.1rem; max-width: 22ch;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 1.8rem + 3.2vw, 4.2rem);
+    font-weight: 900; line-height: 1.08; letter-spacing: -0.01em;
+    color: var(--ink); margin: 0 0 1.5rem; max-width: 20ch;
   }
-  .hero p.lede { font-size: 1.12rem; line-height: 1.55; max-width: 46ch; margin-bottom: 1.8rem; }
+  .hero p.lede {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+    line-height: 1.6; color: var(--ink-soft); max-width: 44ch;
+    margin: 0 0 2.2rem; font-weight: 400;
+  }
 
-  .email-capture { display: flex; gap: 0.6rem; max-width: 420px; flex-wrap: wrap; }
-  .email-capture input[type=email] {
-    flex: 1 1 220px; min-width: 0; padding: 0.85rem 1rem; font-size: 1rem;
-    font-family: var(--font-body); border: 1.5px solid var(--rule); border-radius: 9px;
-    background: var(--paper); color: var(--ink);
+  .hero-dispatch-box {
+    background: var(--paper-2); border: 1px solid var(--rule);
+    border-left: 3px solid var(--brass); border-radius: 12px;
+    padding: 1.6rem 2rem; max-width: 580px; box-shadow: 0 8px 30px rgba(15, 23, 42, 0.03);
   }
-  .email-capture input[type=email]:focus-visible {
-    outline: 2px solid var(--rust); outline-offset: 2px; border-color: var(--rust);
+  .hero-dispatch-box .box-title {
+    font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
+    color: var(--ink); margin: 0 0 0.35rem;
+  }
+  .hero-dispatch-box p {
+    font-size: 0.88rem; color: var(--ink-soft); margin: 0 0 1.2rem; line-height: 1.5;
+  }
+  .email-capture { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .email-capture input[type=email] {
+    flex: 1 1 240px; min-width: 0; padding: 0.85rem 1.1rem; font-size: 0.95rem;
+    font-family: var(--font-body); border: 1px solid var(--rule); border-radius: 8px;
+    background: var(--paper); color: var(--ink); outline: none; transition: border-color 0.15s ease;
+  }
+  .email-capture input[type=email]:focus {
+    border-color: var(--brass); background: #fff;
   }
   .email-capture button {
-    padding: 0.85rem 1.35rem; font-size: 1rem; font-weight: 700; font-family: var(--font-body);
-    background: var(--rust); color: #fff; border: none; border-radius: 9px; cursor: pointer;
-    white-space: nowrap;
+    padding: 0.85rem 1.5rem; font-size: 0.92rem; font-weight: 700;
+    font-family: var(--font-body); background: var(--ink); color: #fff;
+    border: none; border-radius: 8px; cursor: pointer; transition: background 0.15s ease;
   }
-  .email-capture button:hover { background: var(--rust-deep); }
-  .email-capture button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .fine-print { font-size: 0.8rem; color: var(--ink-soft); margin: 0.6rem 0 0; }
+  .email-capture button:hover { background: var(--brass-deep); }
 
-  section.dealfeed-section { max-width: 980px; margin: 0 auto; padding: 3rem 1.75rem; border-top: 1px solid var(--rule); }
-  section.dealfeed-section > .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
-  section.dealfeed-section h2 { font-size: 1.5rem; font-weight: 800; margin: 0; }
-  section.dealfeed-section > .section-head a { font-size: 0.9rem; font-weight: 600; white-space: nowrap; }
-
-  .deal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.1rem; }
-  .deal-card {
-    background: var(--paper); border: 1px solid var(--rule); border-radius: 16px;
-    padding: 1.6rem 1.7rem; display: flex; flex-direction: column; gap: 0.7rem;
-    text-decoration: none; color: inherit; transition: border-color 0.15s ease, transform 0.15s ease;
+  /* Sections */
+  section.editorial-section {
+    max-width: 1040px; margin: 0 auto; padding: 4rem 2rem;
+    border-top: 1px solid var(--rule);
   }
-  .deal-card:hover { border-color: var(--rust-soft); transform: translateY(-2px); }
-  .deal-card .badge {
-    align-self: flex-start; background: var(--rust); color: #fff; font-weight: 800;
-    font-size: 0.85rem; padding: 0.28rem 0.65rem; border-radius: 6px;
+  .section-eyebrow {
+    font-family: var(--font-data); font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--brass-deep); font-weight: 700; margin-bottom: 0.5rem;
   }
-  .deal-card .badge.muted { background: var(--ink-soft); }
-  .deal-card h3 { font-size: 1.2rem; font-weight: 700; margin: 0; color: var(--ink); }
-  .deal-card .stat { font-size: 1.5rem; font-weight: 800; color: var(--ink); }
-  .deal-card .stat small { font-size: 0.95rem; font-weight: 500; color: var(--ink-soft); }
-  .deal-card .meta { font-size: 0.86rem; color: var(--ink-soft); }
-  .deal-card .cta { font-weight: 700; font-size: 0.92rem; margin-top: 0.3rem; }
-  .deal-card.placeholder { border-style: dashed; justify-content: center; align-items: flex-start; }
-  .deal-card.placeholder h3 { color: var(--ink-soft); font-weight: 600; }
-
-  .principles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.4rem; }
-  .principles-grid .p b { display: block; color: var(--ink); margin-bottom: 0.35rem; font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; }
-  .principles-grid .p span { font-size: 0.92rem; color: var(--ink-soft); }
-
-  .glossary-teaser {
-    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
-    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 16px;
-    padding: 1.8rem 2rem; flex-wrap: wrap;
+  .section-header-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; margin-bottom: 2.2rem; flex-wrap: wrap;
   }
-  .glossary-teaser .copy { max-width: 46ch; }
-  .glossary-teaser h2 { font-size: 1.25rem; margin: 0 0 0.4rem; }
-  .glossary-teaser p { margin: 0; }
-  .glossary-teaser a.button {
-    flex-shrink: 0; background: var(--ink); color: var(--paper); text-decoration: none;
-    font-weight: 700; padding: 0.75rem 1.3rem; border-radius: 9px; font-size: 0.92rem;
+  .section-header-row h2 {
+    font-family: var(--font-display); font-size: 2.2rem; font-weight: 800;
+    margin: 0; color: var(--ink); letter-spacing: -0.01em;
   }
-  .glossary-teaser a.button:hover { background: var(--rust-deep); color: #fff; }
-
-  .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; }
-  .social-grid a {
-    display: block; text-decoration: none; color: var(--ink);
-    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 16px;
-    padding: 1.1rem 1.3rem; font-weight: 700; font-size: 1rem;
+  .section-header-row a.view-all {
+    font-family: var(--font-body); font-weight: 600; font-size: 0.9rem;
+    color: var(--brass-deep); text-decoration: none;
   }
-  .social-grid a:hover { border-color: var(--rust-soft); }
+  .section-header-row a.view-all:hover { text-decoration: underline; }
 
-  @media (max-width: 640px) {
-    .hero { padding: 1.8rem 1rem 1.6rem; }
-    .hero h1 { font-size: 1.55rem; line-height: 1.2; margin: 0 0 0.8rem; max-width: 100%; }
-    .hero p.lede { font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.3rem; max-width: 100%; }
-    .tracking-strip {
-      display: inline-flex;
-      max-width: 100%;
-      border-radius: 12px;
-      line-height: 1.35;
-      font-size: 0.74rem;
-      padding: 0.45rem 0.7rem;
-      box-sizing: border-box;
+  /* Departure Board Flight Card */
+  .flight-radar-card {
+    background: var(--paper-dark); color: #fff; border-radius: 16px;
+    padding: 2.4rem 2.6rem; margin-bottom: 2rem;
+    position: relative; overflow: hidden;
+    box-shadow: 0 16px 40px rgba(12, 19, 34, 0.12);
+  }
+  .flight-radar-card::after {
+    content: ""; position: absolute; top: 0; right: 0; width: 300px; height: 100%;
+    background: radial-gradient(circle at top right, rgba(200, 148, 70, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+  .flight-radar-card .card-top {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 1.2rem;
+    margin-bottom: 1.8rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .flight-radar-card .tag-badge {
+    background: var(--brass); color: #0c1322; font-family: var(--font-data);
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em;
+    padding: 0.35rem 0.8rem; border-radius: 6px; text-transform: uppercase;
+  }
+  .flight-radar-card .date-indicator {
+    font-family: var(--font-data); font-size: 0.78rem; color: rgba(255, 255, 255, 0.6);
+  }
+  .flight-radar-card h3 {
+    font-family: var(--font-display); font-size: 2.1rem; font-weight: 700;
+    margin: 0 0 0.8rem; color: #fff; line-height: 1.2;
+  }
+  .flight-radar-card p.summary {
+    font-size: 1.05rem; line-height: 1.6; color: rgba(255, 255, 255, 0.75);
+    max-width: 58ch; margin: 0 0 2rem;
+  }
+  .flight-route-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; margin-bottom: 2rem;
+  }
+  .flight-route-chip {
+    background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px; padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: 0.25rem;
+  }
+  .flight-route-chip .sector {
+    font-family: var(--font-data); font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.05em; color: var(--brass);
+  }
+  .flight-route-chip .destination { font-size: 0.95rem; font-weight: 600; color: #fff; }
+  .flight-route-chip .miles { font-family: var(--font-data); font-size: 0.78rem; color: rgba(255, 255, 255, 0.55); }
+
+  .flight-radar-card .action-row {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  }
+  .button-brass {
+    background: var(--brass); color: #0c1322; text-decoration: none;
+    font-weight: 700; font-size: 0.94rem; padding: 0.85rem 1.6rem;
+    border-radius: 8px; transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .button-brass:hover { background: #dcb065; transform: translateY(-1px); }
+  .button-outline {
+    background: transparent; border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff; text-decoration: none; font-weight: 600; font-size: 0.92rem;
+    padding: 0.85rem 1.4rem; border-radius: 8px; transition: border-color 0.15s ease;
+  }
+  .button-outline:hover { border-color: #fff; }
+
+  /* Urban Walks Grid */
+  .walks-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.6rem; margin-top: 1rem;
+  }
+  .walk-card {
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 2rem 1.8rem; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .walk-card:hover {
+    transform: translateY(-3px); box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  }
+  .walk-card .card-label {
+    font-family: var(--font-data); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep);
+    margin-bottom: 0.8rem;
+  }
+  .walk-card h3 {
+    font-family: var(--font-display); font-size: 1.45rem; font-weight: 800;
+    margin: 0 0 0.8rem; line-height: 1.25; color: var(--ink);
+  }
+  .walk-card p {
+    font-size: 0.94rem; line-height: 1.6; color: var(--ink-soft); margin: 0 0 1.5rem;
+  }
+  .walk-card .meta-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--rule); padding-top: 1rem;
+    font-family: var(--font-data); font-size: 0.76rem; color: var(--ink-soft);
+  }
+
+  /* Airlines Directory Teaser */
+  .directory-teaser {
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 2.5rem 2.8rem; display: flex; justify-content: space-between;
+    align-items: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .directory-teaser .copy { max-width: 54ch; }
+  .directory-teaser h3 {
+    font-family: var(--font-display); font-size: 1.8rem; font-weight: 800;
+    margin: 0 0 0.6rem; color: var(--ink);
+  }
+  .directory-teaser p { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--ink-soft); }
+
+  /* Manifesto / Principles Grid */
+  .principles-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem; margin-top: 1.5rem;
+  }
+  .principle-box {
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 12px;
+    padding: 1.8rem;
+  }
+  .principle-box .num {
+    font-family: var(--font-data); font-size: 0.8rem; font-weight: 700;
+    color: var(--brass-deep); margin-bottom: 0.6rem; display: block;
+  }
+  .principle-box h4 {
+    font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
+    margin: 0 0 0.5rem; color: var(--ink);
+  }
+  .principle-box p {
+    font-size: 0.92rem; line-height: 1.6; color: var(--ink-soft); margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .masthead-strip {
+      padding: 0.8rem 1.2rem; font-size: 0.64rem;
+      flex-direction: column; gap: 0.35rem; align-items: flex-start;
+      line-height: 1.4;
     }
-    .tracking-strip span.text {
-      white-space: normal;
-      word-break: break-word;
+    .hero { padding: 2.2rem 1.25rem 1.8rem; }
+    .hero h1 {
+      font-size: clamp(1.55rem, 1.25rem + 1.8vw, 1.95rem);
+      line-height: 1.16; word-break: break-word;
     }
-    .email-capture { width: 100%; max-width: 100%; flex-direction: column; gap: 0.6rem; }
-    .email-capture input[type=email] { width: 100%; flex: none; font-size: 0.95rem; }
-    .email-capture button { width: 100%; padding: 0.8rem; font-size: 0.95rem; }
-    section.dealfeed-section { padding: 1.8rem 1rem; }
-    section.dealfeed-section > .section-head { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
-    section.dealfeed-section > .section-head a { white-space: normal; }
-    .deal-grid { grid-template-columns: 1fr; }
-    .principles-grid { grid-template-columns: 1fr; }
-    .glossary-teaser { padding: 1.3rem 1.1rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
-    .glossary-teaser a.button { width: 100%; text-align: center; }
-    .social-grid { grid-template-columns: 1fr 1fr; }
+    .hero-dispatch-box { padding: 1.4rem 1.1rem; }
+    .flight-radar-card { padding: 1.6rem 1.2rem; }
+    .flight-radar-card .card-top {
+      flex-direction: column; align-items: flex-start; gap: 0.6rem;
+    }
+    .flight-radar-card h3 {
+      font-size: 1.35rem; word-break: break-word; line-height: 1.25;
+    }
+    .flight-route-grid { grid-template-columns: 1fr; }
+    .section-header-row h2 { font-size: 1.65rem; }
+    .walks-grid { grid-template-columns: 1fr; }
+    .directory-teaser { padding: 1.8rem 1.2rem; flex-direction: column; align-items: flex-start; }
+    .directory-teaser a.button-brass { width: 100%; text-align: center; }
   }
 
 </style>
 </head>
-<body class="theme-dealfeed">
+<body class="theme-editorial">
   <header class="site-header">
-    <a class="brand" href=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4236 2852">
+    <a class="brand" href="">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4236 2852">
 
 <g transform="translate(276,1876) scale(1,-1)">
 <g fill="#2e2e2c"><g transform="translate(0,0)"><path d="M1024 883V672Q1024 638 1002.5 623.5Q981 609 932 609Q879 609 859 630Q800 693 724.0 719.5Q648 746 548 746Q489 746 455.5 725.0Q422 704 422 669Q422 627 496 609Q535 599 629 590Q722 579 783.5 568.0Q845 557 900 535Q980 502 1025.0 443.0Q1070 384 1070 287Q1070 192 1023.5 122.5Q977 53 887.5 15.5Q798 -22 672 -22Q533 -22 414 49V41Q414 7 385.0 -7.5Q356 -22 292 -22Q228 -22 201.0 -7.5Q174 7 174 41V264Q174 297 197.5 312.0Q221 327 270 327Q331 327 353 299Q403 236 481.0 207.0Q559 178 652 178Q812 178 812 261Q812 286 789.5 301.0Q767 316 723 326Q698 331 607 344Q506 356 433.5 371.5Q361 387 302 420Q164 496 164 660Q164 747 211.0 812.0Q258 877 340.5 911.5Q423 946 526 946Q677 946 794 873V883Q794 917 818.5 931.5Q843 946 906 946Q970 946 997.0 931.5Q1024 917 1024 883Z"/></g></g>
@@ -231,80 +354,177 @@
 <g fill="#2e2e2c" transform="translate(2456,0)"><g transform="translate(0,0)"><path d="M1024 883V672Q1024 638 1002.5 623.5Q981 609 932 609Q879 609 859 630Q800 693 724.0 719.5Q648 746 548 746Q489 746 455.5 725.0Q422 704 422 669Q422 627 496 609Q535 599 629 590Q722 579 783.5 568.0Q845 557 900 535Q980 502 1025.0 443.0Q1070 384 1070 287Q1070 192 1023.5 122.5Q977 53 887.5 15.5Q798 -22 672 -22Q533 -22 414 49V41Q414 7 385.0 -7.5Q356 -22 292 -22Q228 -22 201.0 -7.5Q174 7 174 41V264Q174 297 197.5 312.0Q221 327 270 327Q331 327 353 299Q403 236 481.0 207.0Q559 178 652 178Q812 178 812 261Q812 286 789.5 301.0Q767 316 723 326Q698 331 607 344Q506 356 433.5 371.5Q361 387 302 420Q164 496 164 660Q164 747 211.0 812.0Q258 877 340.5 911.5Q423 946 526 946Q677 946 794 873V883Q794 917 818.5 931.5Q843 946 906 946Q970 946 997.0 931.5Q1024 917 1024 883Z"/></g></g>
 </g>
 </svg>
-<span>stroll &amp; savor</span></a>
-    <nav><a href="">Home</a><a href="singapore-airlines/spontaneous-escapes/">Singapore Airlines</a><a href="airlines/">Airlines</a></nav>
+
+      <div class="brand-text">
+        <span class="title">STROLL &amp; SAVOR</span>
+        <span class="kicker">Urban Walks &bull; Flight Intelligence</span>
+      </div>
+    </a>
+    <nav><a href="">Home</a><a href="singapore-airlines/spontaneous-escapes/">Flight Escapes</a><a href="airlines/">Airlines Directory</a></nav>
   </header>
   
+    <div class="masthead-strip">
+      <span class="vol">Issue 01 &bull; Autumn 2026</span>
+      <span>The Art of Departure &amp; The Slow Walk</span>
+      <span>Dispatches from Singapore, Tokyo &amp; Beyond</span>
+    </div>
+
     <div class="hero">
-      <span class="tracking-strip"><span class="dot"></span><span class="text">Tracking SIA KrisFlyer Spontaneous Escapes • Next drop mid-October</span></span>
-      <h1>Deals worth your miles, tracked live.</h1>
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        <span>Independent Travel &bull; Field Notes</span>
+      </div>
+      <h1>Where Slow Urban Walks Meet High-Value Flight Intelligence.</h1>
       <p class="lede">
-        Exact routes, exact miles, exact dates. We flag a deal the moment
-        it's actually worth booking. No hype, no guesswork.
+        We map the quiet back-alley food trails worth lingering in, and decode the airline loyalty sweet spots that get you there in business class for 30% fewer miles.
       </p>
-      
+
+      <div class="hero-dispatch-box">
+        <div class="box-title">The Departure Dispatch</div>
+        <p>Curated pedestrian walking guides, quiet neighborhood supper spots, and immediate alerts whenever high-value redemption seats drop.</p>
+        
       <form action="https://buttondown.com/api/emails/embed-subscribe/klim"
             method="post" target="popupwindow" class="email-capture" id="hero-alerts"
             onsubmit="window.open('https://buttondown.com/klim', 'popupwindow')">
-        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
-        <button type="submit">Get alerts</button>
+        <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
+        <button type="submit">Join the Dispatch</button>
       </form>
-      <p class="fine-print">One email per deal that clears the bar. No spam, unsubscribe anytime.</p>
     
+      </div>
     </div>
 
-    <section class="dealfeed-section">
-      <div class="section-head">
-        <h2>Latest deals</h2>
-        <a href="singapore-airlines/spontaneous-escapes/">All Spontaneous Escapes posts &rarr;</a>
+    <!-- Section 1: Flight Intelligence Desk -->
+    <section class="editorial-section">
+      <div class="section-eyebrow">01 / Flight Intelligence</div>
+      <div class="section-header-row">
+        <h2>Spontaneous Escapes Radar</h2>
+        <a class="view-all" href="singapore-airlines/spontaneous-escapes/">View All Escapes Reports &rarr;</a>
       </div>
-      <div class="deal-grid">
-        
-      <a class="deal-card" href="singapore-airlines/spontaneous-escapes/2026-09/">
-        <span class="badge" style="background:var(--rust-deep);">Next Drop: Mid-Oct</span>
-        <h3>SIA KrisFlyer Spontaneous Escapes</h3>
-        <span class="stat">34 routes <small>from 15,400 miles</small></span>
-        <span class="meta">Latest monthly cycle: 34 routes from 15,400 miles.<br><strong>Next drop expected ~15 Oct 2026</strong> for November escapes.</span>
-        <span class="cta">Review past routes archive &rarr;</span>
-      </a>
-    
-        
-      <div class="deal-card placeholder">
-        <span class="badge muted">More soon</span>
-        <h3>We're expanding past Singapore Airlines</h3>
-        <span class="meta">More loyalty programs are getting tracked as we add them. Use the form above to hear first.</span>
-      </div>
-    
-      </div>
-    </section>
 
-    <section class="dealfeed-section">
-      <h2>How we work</h2>
-      <div class="principles-grid">
-        <div class="p"><b>Numbers do the persuading</b><span>Miles, taxes, dates. No adjectives standing in for a good fare.</span></div>
-        <div class="p"><b>Precision over hype</b><span>Exact routes, exact fare classes. If a deal is one-direction only, we say so.</span></div>
-        <div class="p"><b>Sourced, not spun</b><span>Every list is cross-checked against the airline's own reveal before it goes up.</span></div>
-      </div>
-    </section>
-
-    <section class="dealfeed-section">
-      <div class="glossary-teaser">
-        <div class="copy">
-          <h2>34 airlines flying Changi, decoded</h2>
-          <p>Alliance, hub, terminal, official site. The reference you check before you book.</p>
+      <div class="flight-radar-card">
+        <div class="card-top">
+          <span class="tag-badge">NEXT CYCLE: MID-OCTOBER</span>
+          <span class="date-indicator">Expected ~15 Oct 2026</span>
         </div>
-        <a class="button" href="airlines/">Browse the glossary &rarr;</a>
+        <h3>Singapore Airlines Spontaneous Escapes</h3>
+        <p class="summary">Discounted 30% Saver Awards across Business & Economy. The next drop is expected ~15 October 2026 for November flights. Review our 92-sector planner while awaiting the drop.</p>
+
+        <div class="flight-route-grid">
+          <div class="flight-route-chip">
+            <span class="sector">SIN &rarr; NRT / HND</span>
+            <span class="destination">Tokyo, Japan</span>
+            <span class="miles">36,400 miles Business</span>
+          </div>
+          <div class="flight-route-chip">
+            <span class="sector">SIN &rarr; ICN</span>
+            <span class="destination">Seoul, Korea</span>
+            <span class="miles">36,400 miles Business</span>
+          </div>
+          <div class="flight-route-chip">
+            <span class="sector">SIN &rarr; FRA / LHR</span>
+            <span class="destination">Frankfurt / London</span>
+            <span class="miles">72,450 miles Business</span>
+          </div>
+          <div class="flight-route-chip">
+            <span class="sector">SIN &rarr; SYD / MEL</span>
+            <span class="destination">Sydney / Melbourne</span>
+            <span class="miles">47,950 miles Business</span>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <a class="button-brass" href="singapore-airlines/spontaneous-escapes/2026-10/dashboard/">Open 92-Sector Master Dashboard &rarr;</a>
+          <a class="button-outline" href="singapore-airlines/spontaneous-escapes/2026-09/">Past Month Breakdown</a>
+        </div>
       </div>
     </section>
 
-    <section class="dealfeed-section">
-      <h2>Follow along</h2>
-      <p>New lists go up on Instagram and TikTok first, usually within hours of the reveal.</p>
-      <div class="social-grid"><a href="https://www.facebook.com/profile.php?id=61581034831451" rel="noopener" target="_blank">Facebook</a><a href="https://www.instagram.com/stroll_savor/" rel="noopener" target="_blank">Instagram</a><a href="https://www.tiktok.com/@stroll_savor" rel="noopener" target="_blank">TikTok</a><a href="https://www.youtube.com/@StrollAndSavor" rel="noopener" target="_blank">YouTube</a></div>
+    <!-- Section 2: Curated Urban Walks -->
+    <section class="editorial-section" id="walks">
+      <div class="section-eyebrow">02 / Field Guides</div>
+      <div class="section-header-row">
+        <h2>Curated Urban Walks</h2>
+        <a class="view-all" href="https://www.youtube.com/@StrollAndSavor" target="_blank" rel="noopener">Watch 4K Walking Films &rarr;</a>
+      </div>
+
+      <div class="walks-grid">
+        <article class="walk-card">
+          <div>
+            <div class="card-label">Tokyo, Japan &bull; Night Walk</div>
+            <h3>Tokyo After Dark: Shinjuku Alleys &amp; Late-Night Ramen</h3>
+            <p>From the glowing lanterns of Omoide Yokocho to the quiet residential backstreets of Yanaka. A 6-kilometer pedestrian guide to Tokyo's best standing sake bars and midnight broths.</p>
+          </div>
+          <div class="meta-footer">
+            <span>6.2 km walk &bull; 4 food stops</span>
+            <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+          </div>
+        </article>
+
+        <article class="walk-card">
+          <div>
+            <div class="card-label">Kyoto, Japan &bull; Morning Trail</div>
+            <h3>Dawn Along Shirakawa Canal: Pour-Overs &amp; Heritage Bakeries</h3>
+            <p>Walking the stone paths of Gion at 6:00 AM before the tour buses arrive. We map the third-generation kissatens, matcha roasters, and unheralded artisanal sourdough stalls.</p>
+          </div>
+          <div class="meta-footer">
+            <span>4.8 km walk &bull; 3 coffee stops</span>
+            <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+          </div>
+        </article>
+
+        <article class="walk-card">
+          <div>
+            <div class="card-label">Singapore &bull; Heritage Corridor</div>
+            <h3>The Spice Corridors: Joo Chiat Shophouses to Little India</h3>
+            <p>An architectural and culinary cross-section through Singapore's vibrant heritage districts. Traditional kopi gu you, charcoal popiah, and twilight roti prata stops.</p>
+          </div>
+          <div class="meta-footer">
+            <span>5.5 km walk &bull; 5 culinary stops</span>
+            <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 3: Airlines Directory -->
+    <section class="editorial-section">
+      <div class="section-eyebrow">03 / Changi Airport Terminal Reference</div>
+      <div class="directory-teaser">
+        <div class="copy">
+          <h3>34 Global Airlines Operating Changi, Decoded.</h3>
+          <p>Alliance alignments (Star Alliance, oneworld, SkyTeam), dedicated terminal maps, lounge access rules, and loyalty program transfer partners. The reference you check before you book.</p>
+        </div>
+        <a class="button-brass" href="airlines/">Explore the Airline Glossary &rarr;</a>
+      </div>
+    </section>
+
+    <!-- Section 4: Editorial Code -->
+    <section class="editorial-section">
+      <div class="section-eyebrow">04 / Our Editorial Standard</div>
+      <div class="section-header-row">
+        <h2>How We Work</h2>
+      </div>
+      <div class="principles-row">
+        <div class="principle-box">
+          <span class="num">01 / METRICS FIRST</span>
+          <h4>Numbers Do the Persuading</h4>
+          <p>Exact miles, exact taxes, exact dates. No generic travel-blogger adjectives standing in for a genuine redemption deal.</p>
+        </div>
+        <div class="principle-box">
+          <span class="num">02 / ON FOOT AUTHENTICITY</span>
+          <h4>Walked, Timed &amp; Eaten</h4>
+          <p>Every urban route is walked at human pace. We only feature eateries, coffee houses, and bakeries where we've personally paid and dined.</p>
+        </div>
+        <div class="principle-box">
+          <span class="num">03 / UNSPONSORED INTEGRITY</span>
+          <h4>Zero Airline or Hotel PR</h4>
+          <p>No free stays, no junkets, no sponsored airline tickets. Independent reporting for discerning travelers.</p>
+        </div>
+      </div>
     </section>
     
   <footer class="site-footer">
-    <span>Stroll &amp; Savor. Independent, not affiliated with any airline, hotel, or attraction we cover.</span>
+    <span class="disclaimer">Stroll &amp; Savor &bull; Independent journal of urban walks, culinary discovery, and airline loyalty intelligence. Not affiliated with any carrier or venue covered.</span>
     <span class="social"><a href="https://www.facebook.com/profile.php?id=61581034831451" rel="noopener" target="_blank">Facebook</a><a href="https://www.instagram.com/stroll_savor/" rel="noopener" target="_blank">Instagram</a><a href="https://www.tiktok.com/@stroll_savor" rel="noopener" target="_blank">TikTok</a><a href="https://www.youtube.com/@StrollAndSavor" rel="noopener" target="_blank">YouTube</a></span>
   </footer>
 </body></html>

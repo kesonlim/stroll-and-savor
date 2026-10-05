@@ -24,8 +24,8 @@ SITE_URL = "https://strollsavor.com"
 # sections. Add "News" once that ships (see docs/growth-plan.md).
 NAV_LINKS = [
     ("Home", ""),
-    ("Singapore Airlines", "singapore-airlines/spontaneous-escapes/"),
-    ("Airlines", "airlines/"),
+    ("Flight Escapes", "singapore-airlines/spontaneous-escapes/"),
+    ("Airlines Directory", "airlines/"),
 ]
 
 SOCIAL_LINKS = [
@@ -120,41 +120,51 @@ def page(
 {json_ld_html}
 <style>
   .site-header {{
-    max-width: 980px; margin: 0 auto; padding: 2rem 1.75rem 0;
+    max-width: 1040px; margin: 0 auto; padding: 2.2rem 2rem 1.4rem;
     display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--rule);
   }}
-  .site-header .brand {{ display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }}
-  .site-header .brand svg {{ width: 28px; height: auto; display: block; }}
-  .site-header .brand span {{ font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--ink); }}
-  .site-header nav {{ display: flex; gap: 1.6rem; font-family: var(--font-data); font-size: 0.82rem; }}
-  .site-header nav a {{ color: var(--ink-soft); text-decoration: none; }}
-  .site-header nav a:hover {{ color: var(--rust-text); }}
+  .site-header .brand {{ display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }}
+  .site-header .brand svg {{ width: 34px; height: auto; display: block; }}
+  .site-header .brand-text {{ display: flex; flex-direction: column; }}
+  .site-header .brand-text .title {{
+    font-family: var(--font-display); font-weight: 800; font-size: 1.22rem;
+    letter-spacing: 0.06em; color: var(--ink); line-height: 1.1;
+  }}
+  .site-header .brand-text .kicker {{
+    font-family: var(--font-data); font-size: 0.58rem; letter-spacing: 0.16em;
+    color: var(--brass-deep); margin-top: 0.25rem; text-transform: uppercase; font-weight: 700;
+  }}
+  .site-header nav {{ display: flex; gap: 1.8rem; font-family: var(--font-body); font-weight: 600; font-size: 0.88rem; }}
+  .site-header nav a {{ color: var(--ink-soft); text-decoration: none; transition: color 0.15s ease; }}
+  .site-header nav a:hover {{ color: var(--brass-deep); }}
   .site-footer {{
-    max-width: 980px; margin: 5rem auto 0; padding: 2rem 1.75rem 3rem;
-    border-top: 1px solid var(--rule); font-family: var(--font-data);
-    font-size: 0.76rem; color: var(--ink-soft); display: flex;
-    justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    max-width: 1040px; margin: 5rem auto 0; padding: 2.5rem 2rem 4rem;
+    border-top: 1px solid var(--rule); font-family: var(--font-body);
+    font-size: 0.84rem; color: var(--ink-soft); display: flex;
+    justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
   }}
-  .site-footer .social {{ display: flex; gap: 1.2rem; }}
-  .site-footer .social a {{ color: var(--ink-soft); text-decoration: none; }}
-  .site-footer .social a:hover {{ color: var(--rust-text); }}
+  .site-footer .disclaimer {{ max-width: 52ch; line-height: 1.6; }}
+  .site-footer .social {{ display: flex; gap: 1.4rem; font-family: var(--font-data); font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; }}
+  .site-footer .social a {{ color: var(--ink-soft); text-decoration: none; transition: color 0.15s ease; }}
+  .site-footer .social a:hover {{ color: var(--brass-deep); }}
 
   @media (max-width: 640px) {{
     .site-header {{
-      padding: 1.25rem 1rem 0;
+      padding: 1.4rem 1.2rem 1.1rem;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.85rem;
+      gap: 1.1rem;
     }}
     .site-header nav {{
-      gap: 1.1rem;
-      font-size: 0.82rem;
+      gap: 1.2rem;
+      font-size: 0.85rem;
       flex-wrap: wrap;
     }}
     .site-footer {{
-      padding: 2rem 1rem 2.5rem;
+      padding: 2rem 1.2rem 3rem;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.4rem;
     }}
   }}
   {extra_style}
@@ -162,12 +172,18 @@ def page(
 </head>
 <body class="{body_class}">
   <header class="site-header">
-    <a class="brand" href="{asset_prefix}">{MONOGRAM_INK}<span>stroll &amp; savor</span></a>
+    <a class="brand" href="{asset_prefix}">
+      {MONOGRAM_INK}
+      <div class="brand-text">
+        <span class="title">STROLL &amp; SAVOR</span>
+        <span class="kicker">Urban Walks &bull; Flight Intelligence</span>
+      </div>
+    </a>
     <nav>{nav_html}</nav>
   </header>
   {body}
   <footer class="site-footer">
-    <span>Stroll &amp; Savor. Independent, not affiliated with any airline, hotel, or attraction we cover.</span>
+    <span class="disclaimer">Stroll &amp; Savor &bull; Independent journal of urban walks, culinary discovery, and airline loyalty intelligence. Not affiliated with any carrier or venue covered.</span>
     <span class="social">{social_html}</span>
   </footer>
 </body></html>"""

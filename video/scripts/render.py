@@ -104,7 +104,7 @@ def render_overlay_png(text: str, out_png: Path, width: int = 3840, height: int 
 <head>
 <meta charset="utf-8">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=IBM+Plex+Sans:wght@600;700&family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Playfair+Display:wght@700;800&family=Space+Mono:wght@700&display=swap');
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{
     width: {width}px;
@@ -115,47 +115,50 @@ def render_overlay_png(text: str, out_png: Path, width: int = 3840, height: int 
   }}
   .lower-third {{
     position: absolute;
-    left: 120px;
-    bottom: 120px;
+    left: 140px;
+    bottom: 130px;
     display: inline-flex;
     flex-direction: column;
-    gap: 12px;
-    background: rgba(241, 240, 234, 0.94);
-    border: 2px solid #d7d5c8;
-    border-radius: 24px;
-    padding: 28px 48px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
-    max-width: 1400px;
+    gap: 14px;
+    background: rgba(12, 19, 34, 0.92);
+    border: 2px solid rgba(200, 148, 70, 0.7);
+    border-radius: 20px;
+    padding: 32px 52px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    max-width: 1500px;
+    backdrop-filter: blur(12px);
   }}
   .eyebrow {{
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     font-family: 'Space Mono', monospace;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 700;
-    color: #994827;
-    letter-spacing: 0.12em;
+    color: #c89446;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }}
   .dot {{
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #b4552f;
+    background: #c89446;
+    box-shadow: 0 0 12px rgba(200, 148, 70, 0.6);
   }}
   .title {{
-    font-family: 'Courier Prime', monospace;
-    font-size: 54px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 56px;
     font-weight: 700;
-    color: #2e2e2c;
-    line-height: 1.15;
+    color: #ffffff;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
   }}
 </style>
 </head>
 <body>
   <div class="lower-third">
-    <div class="eyebrow"><span class="dot"></span>Stroll &amp; Savor &middot; Singapore</div>
+    <div class="eyebrow"><span class="dot"></span>Stroll &amp; Savor &middot; Field Guide</div>
     <div class="title">{text}</div>
   </div>
 </body>

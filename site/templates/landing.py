@@ -1,19 +1,6 @@
-"""Brand-general root landing page (docs/growth-plan.md). Not SIA-specific
--- that content lives at /singapore-airlines/spontaneous-escapes/. Points
-to whatever sections actually have content (currently just Singapore
-Airlines) and to the confirmed-live social accounts.
-
-Visual direction: deal-alert/newsletter style (Going.com primary anchor,
-Thrifty Traveler/Dollar Flight Club for card punch), decided 2026-08-11.
-Scoped to this page only via the `theme-dealfeed` body class -- every
-CSS custom property it touches is redefined at that scope, so
-brand/website-style-guide.css (and every other page, still Field Notes)
-is untouched. See docs/seo-standards.md for the shared SEO contract this
-still has to satisfy.
-
-Field Notes (Courier Prime / IBM Plex Sans / Space Mono, warm paper bg)
-stays the identity for social media posts -- content/templates/ -- by
-deliberate choice, not oversight.
+"""Brand-general root landing page (docs/growth-plan.md).
+Redesigned to Direction B: The Global Modern Editorial (Monocle / Afar style).
+Unifies the two core pillars: Slow Culinary Urban Walks and High-Value Flight Intelligence.
 """
 import sys
 from datetime import datetime
@@ -27,164 +14,276 @@ BUTTONDOWN_USERNAME = "klim"
 GOOGLE_FONTS_HEAD = """
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 """
 
 STYLE = """
-  /* ---- Deal-feed theme tokens, scoped to this page only ---- */
-  body.theme-dealfeed {
-    --paper: #fcfcfa;
-    --paper-2: #f5f4f0;
-    --ink: #1c1b18;
-    --ink-soft: #6b6862;
-    --rule: #e6e3da;
-    --rust-deep: #7a3a1f;
-    --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-data: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    background-image: none;
-    font-feature-settings: "tnum" 1;
+  /* ---- Global Modern Editorial (Direction B) ---- */
+  body.theme-editorial {
+    --paper: #f6f5f0;
+    --paper-2: #ffffff;
+    --paper-dark: #0c1322;
+    --ink: #0f172a;
+    --ink-soft: #475569;
+    --rule: #e2dfd6;
+    --brass: #c89446;
+    --brass-deep: #966a23;
+    --brass-soft: #f5e9d5;
+    --navy: #0c1322;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-data: 'Space Mono', monospace;
+    background-color: var(--paper);
+    color: var(--ink);
   }
-  body.theme-dealfeed h1, body.theme-dealfeed h2 { letter-spacing: -0.02em; }
-  body.theme-dealfeed p { color: var(--ink-soft); }
-  body.theme-dealfeed a { color: var(--rust-text); }
-  body.theme-dealfeed a:hover { color: var(--rust-deep); }
-  body.theme-dealfeed .site-header { padding-top: 1.6rem; }
-  body.theme-dealfeed .site-header .brand span { font-weight: 800; }
-  body.theme-dealfeed .site-header nav a { font-weight: 500; text-transform: none; letter-spacing: 0; }
-  body.theme-dealfeed .site-header nav a:hover { color: var(--rust-text); }
-  body.theme-dealfeed .site-footer { border-top-color: var(--rule); }
 
-  .hero { max-width: 720px; margin: 0 auto; padding: 3.4rem 1.75rem 3rem; }
+  .masthead-strip {
+    max-width: 1040px; margin: 0 auto; padding: 1rem 2rem 0;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-data); font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem;
+  }
+  .masthead-strip .vol { font-weight: 700; color: var(--brass-deep); }
 
-  .tracking-strip {
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    font-size: 0.82rem; font-weight: 500; color: var(--ink-soft);
-    background: var(--paper-2); border: 1px solid var(--rule);
-    border-radius: 999px; padding: 0.4rem 0.9rem 0.4rem 0.7rem;
-    margin-bottom: 1.6rem;
-    max-width: 100%;
-    box-sizing: border-box;
+  .hero {
+    max-width: 1040px; margin: 0 auto; padding: 4.5rem 2rem 3.5rem;
   }
-  .tracking-strip span.text {
-    min-width: 0;
-    line-height: 1.35;
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: var(--font-data); font-size: 0.76rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--brass-deep); font-weight: 700;
+    margin-bottom: 1.4rem;
   }
-  .tracking-strip .dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--rust);
-    flex-shrink: 0;
+  .hero-eyebrow .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--brass);
+    display: inline-block;
   }
   @media (prefers-reduced-motion: no-preference) {
-    .tracking-strip .dot { animation: pulse 2.4s ease-in-out infinite; }
+    .hero-eyebrow .dot { animation: pulse-brass 2.2s infinite; }
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(180, 85, 47, 0.35); }
-    50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(180, 85, 47, 0); }
+  @keyframes pulse-brass {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.25); }
   }
 
   .hero h1 {
-    font-size: clamp(2.1rem, 1.4rem + 3vw, 3.2rem);
-    font-weight: 800; line-height: 1.1; margin: 0 0 1.1rem; max-width: 22ch;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 1.8rem + 3.2vw, 4.2rem);
+    font-weight: 900; line-height: 1.08; letter-spacing: -0.01em;
+    color: var(--ink); margin: 0 0 1.5rem; max-width: 20ch;
   }
-  .hero p.lede { font-size: 1.12rem; line-height: 1.55; max-width: 46ch; margin-bottom: 1.8rem; }
+  .hero p.lede {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+    line-height: 1.6; color: var(--ink-soft); max-width: 44ch;
+    margin: 0 0 2.2rem; font-weight: 400;
+  }
 
-  .email-capture { display: flex; gap: 0.6rem; max-width: 420px; flex-wrap: wrap; }
-  .email-capture input[type=email] {
-    flex: 1 1 220px; min-width: 0; padding: 0.85rem 1rem; font-size: 1rem;
-    font-family: var(--font-body); border: 1.5px solid var(--rule); border-radius: 9px;
-    background: var(--paper); color: var(--ink);
+  .hero-dispatch-box {
+    background: var(--paper-2); border: 1px solid var(--rule);
+    border-left: 3px solid var(--brass); border-radius: 12px;
+    padding: 1.6rem 2rem; max-width: 580px; box-shadow: 0 8px 30px rgba(15, 23, 42, 0.03);
   }
-  .email-capture input[type=email]:focus-visible {
-    outline: 2px solid var(--rust); outline-offset: 2px; border-color: var(--rust);
+  .hero-dispatch-box .box-title {
+    font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
+    color: var(--ink); margin: 0 0 0.35rem;
+  }
+  .hero-dispatch-box p {
+    font-size: 0.88rem; color: var(--ink-soft); margin: 0 0 1.2rem; line-height: 1.5;
+  }
+  .email-capture { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .email-capture input[type=email] {
+    flex: 1 1 240px; min-width: 0; padding: 0.85rem 1.1rem; font-size: 0.95rem;
+    font-family: var(--font-body); border: 1px solid var(--rule); border-radius: 8px;
+    background: var(--paper); color: var(--ink); outline: none; transition: border-color 0.15s ease;
+  }
+  .email-capture input[type=email]:focus {
+    border-color: var(--brass); background: #fff;
   }
   .email-capture button {
-    padding: 0.85rem 1.35rem; font-size: 1rem; font-weight: 700; font-family: var(--font-body);
-    background: var(--rust); color: #fff; border: none; border-radius: 9px; cursor: pointer;
-    white-space: nowrap;
+    padding: 0.85rem 1.5rem; font-size: 0.92rem; font-weight: 700;
+    font-family: var(--font-body); background: var(--ink); color: #fff;
+    border: none; border-radius: 8px; cursor: pointer; transition: background 0.15s ease;
   }
-  .email-capture button:hover { background: var(--rust-deep); }
-  .email-capture button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .fine-print { font-size: 0.8rem; color: var(--ink-soft); margin: 0.6rem 0 0; }
+  .email-capture button:hover { background: var(--brass-deep); }
 
-  section.dealfeed-section { max-width: 980px; margin: 0 auto; padding: 3rem 1.75rem; border-top: 1px solid var(--rule); }
-  section.dealfeed-section > .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
-  section.dealfeed-section h2 { font-size: 1.5rem; font-weight: 800; margin: 0; }
-  section.dealfeed-section > .section-head a { font-size: 0.9rem; font-weight: 600; white-space: nowrap; }
-
-  .deal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.1rem; }
-  .deal-card {
-    background: var(--paper); border: 1px solid var(--rule); border-radius: 16px;
-    padding: 1.6rem 1.7rem; display: flex; flex-direction: column; gap: 0.7rem;
-    text-decoration: none; color: inherit; transition: border-color 0.15s ease, transform 0.15s ease;
+  /* Sections */
+  section.editorial-section {
+    max-width: 1040px; margin: 0 auto; padding: 4rem 2rem;
+    border-top: 1px solid var(--rule);
   }
-  .deal-card:hover { border-color: var(--rust-soft); transform: translateY(-2px); }
-  .deal-card .badge {
-    align-self: flex-start; background: var(--rust); color: #fff; font-weight: 800;
-    font-size: 0.85rem; padding: 0.28rem 0.65rem; border-radius: 6px;
+  .section-eyebrow {
+    font-family: var(--font-data); font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--brass-deep); font-weight: 700; margin-bottom: 0.5rem;
   }
-  .deal-card .badge.muted { background: var(--ink-soft); }
-  .deal-card h3 { font-size: 1.2rem; font-weight: 700; margin: 0; color: var(--ink); }
-  .deal-card .stat { font-size: 1.5rem; font-weight: 800; color: var(--ink); }
-  .deal-card .stat small { font-size: 0.95rem; font-weight: 500; color: var(--ink-soft); }
-  .deal-card .meta { font-size: 0.86rem; color: var(--ink-soft); }
-  .deal-card .cta { font-weight: 700; font-size: 0.92rem; margin-top: 0.3rem; }
-  .deal-card.placeholder { border-style: dashed; justify-content: center; align-items: flex-start; }
-  .deal-card.placeholder h3 { color: var(--ink-soft); font-weight: 600; }
-
-  .principles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.4rem; }
-  .principles-grid .p b { display: block; color: var(--ink); margin-bottom: 0.35rem; font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; }
-  .principles-grid .p span { font-size: 0.92rem; color: var(--ink-soft); }
-
-  .glossary-teaser {
-    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
-    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 16px;
-    padding: 1.8rem 2rem; flex-wrap: wrap;
+  .section-header-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; margin-bottom: 2.2rem; flex-wrap: wrap;
   }
-  .glossary-teaser .copy { max-width: 46ch; }
-  .glossary-teaser h2 { font-size: 1.25rem; margin: 0 0 0.4rem; }
-  .glossary-teaser p { margin: 0; }
-  .glossary-teaser a.button {
-    flex-shrink: 0; background: var(--ink); color: var(--paper); text-decoration: none;
-    font-weight: 700; padding: 0.75rem 1.3rem; border-radius: 9px; font-size: 0.92rem;
+  .section-header-row h2 {
+    font-family: var(--font-display); font-size: 2.2rem; font-weight: 800;
+    margin: 0; color: var(--ink); letter-spacing: -0.01em;
   }
-  .glossary-teaser a.button:hover { background: var(--rust-deep); color: #fff; }
-
-  .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; }
-  .social-grid a {
-    display: block; text-decoration: none; color: var(--ink);
-    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 16px;
-    padding: 1.1rem 1.3rem; font-weight: 700; font-size: 1rem;
+  .section-header-row a.view-all {
+    font-family: var(--font-body); font-weight: 600; font-size: 0.9rem;
+    color: var(--brass-deep); text-decoration: none;
   }
-  .social-grid a:hover { border-color: var(--rust-soft); }
+  .section-header-row a.view-all:hover { text-decoration: underline; }
 
-  @media (max-width: 640px) {
-    .hero { padding: 1.8rem 1rem 1.6rem; }
-    .hero h1 { font-size: 1.55rem; line-height: 1.2; margin: 0 0 0.8rem; max-width: 100%; }
-    .hero p.lede { font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.3rem; max-width: 100%; }
-    .tracking-strip {
-      display: inline-flex;
-      max-width: 100%;
-      border-radius: 12px;
-      line-height: 1.35;
-      font-size: 0.74rem;
-      padding: 0.45rem 0.7rem;
-      box-sizing: border-box;
+  /* Departure Board Flight Card */
+  .flight-radar-card {
+    background: var(--paper-dark); color: #fff; border-radius: 16px;
+    padding: 2.4rem 2.6rem; margin-bottom: 2rem;
+    position: relative; overflow: hidden;
+    box-shadow: 0 16px 40px rgba(12, 19, 34, 0.12);
+  }
+  .flight-radar-card::after {
+    content: ""; position: absolute; top: 0; right: 0; width: 300px; height: 100%;
+    background: radial-gradient(circle at top right, rgba(200, 148, 70, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+  .flight-radar-card .card-top {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 1.2rem;
+    margin-bottom: 1.8rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .flight-radar-card .tag-badge {
+    background: var(--brass); color: #0c1322; font-family: var(--font-data);
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em;
+    padding: 0.35rem 0.8rem; border-radius: 6px; text-transform: uppercase;
+  }
+  .flight-radar-card .date-indicator {
+    font-family: var(--font-data); font-size: 0.78rem; color: rgba(255, 255, 255, 0.6);
+  }
+  .flight-radar-card h3 {
+    font-family: var(--font-display); font-size: 2.1rem; font-weight: 700;
+    margin: 0 0 0.8rem; color: #fff; line-height: 1.2;
+  }
+  .flight-radar-card p.summary {
+    font-size: 1.05rem; line-height: 1.6; color: rgba(255, 255, 255, 0.75);
+    max-width: 58ch; margin: 0 0 2rem;
+  }
+  .flight-route-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; margin-bottom: 2rem;
+  }
+  .flight-route-chip {
+    background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px; padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: 0.25rem;
+  }
+  .flight-route-chip .sector {
+    font-family: var(--font-data); font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.05em; color: var(--brass);
+  }
+  .flight-route-chip .destination { font-size: 0.95rem; font-weight: 600; color: #fff; }
+  .flight-route-chip .miles { font-family: var(--font-data); font-size: 0.78rem; color: rgba(255, 255, 255, 0.55); }
+
+  .flight-radar-card .action-row {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  }
+  .button-brass {
+    background: var(--brass); color: #0c1322; text-decoration: none;
+    font-weight: 700; font-size: 0.94rem; padding: 0.85rem 1.6rem;
+    border-radius: 8px; transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .button-brass:hover { background: #dcb065; transform: translateY(-1px); }
+  .button-outline {
+    background: transparent; border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff; text-decoration: none; font-weight: 600; font-size: 0.92rem;
+    padding: 0.85rem 1.4rem; border-radius: 8px; transition: border-color 0.15s ease;
+  }
+  .button-outline:hover { border-color: #fff; }
+
+  /* Urban Walks Grid */
+  .walks-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.6rem; margin-top: 1rem;
+  }
+  .walk-card {
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 2rem 1.8rem; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .walk-card:hover {
+    transform: translateY(-3px); box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  }
+  .walk-card .card-label {
+    font-family: var(--font-data); font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-deep);
+    margin-bottom: 0.8rem;
+  }
+  .walk-card h3 {
+    font-family: var(--font-display); font-size: 1.45rem; font-weight: 800;
+    margin: 0 0 0.8rem; line-height: 1.25; color: var(--ink);
+  }
+  .walk-card p {
+    font-size: 0.94rem; line-height: 1.6; color: var(--ink-soft); margin: 0 0 1.5rem;
+  }
+  .walk-card .meta-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--rule); padding-top: 1rem;
+    font-family: var(--font-data); font-size: 0.76rem; color: var(--ink-soft);
+  }
+
+  /* Airlines Directory Teaser */
+  .directory-teaser {
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 2.5rem 2.8rem; display: flex; justify-content: space-between;
+    align-items: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .directory-teaser .copy { max-width: 54ch; }
+  .directory-teaser h3 {
+    font-family: var(--font-display); font-size: 1.8rem; font-weight: 800;
+    margin: 0 0 0.6rem; color: var(--ink);
+  }
+  .directory-teaser p { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--ink-soft); }
+
+  /* Manifesto / Principles Grid */
+  .principles-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem; margin-top: 1.5rem;
+  }
+  .principle-box {
+    background: var(--paper-2); border: 1px solid var(--rule); border-radius: 12px;
+    padding: 1.8rem;
+  }
+  .principle-box .num {
+    font-family: var(--font-data); font-size: 0.8rem; font-weight: 700;
+    color: var(--brass-deep); margin-bottom: 0.6rem; display: block;
+  }
+  .principle-box h4 {
+    font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
+    margin: 0 0 0.5rem; color: var(--ink);
+  }
+  .principle-box p {
+    font-size: 0.92rem; line-height: 1.6; color: var(--ink-soft); margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .masthead-strip {
+      padding: 0.8rem 1.2rem; font-size: 0.64rem;
+      flex-direction: column; gap: 0.35rem; align-items: flex-start;
+      line-height: 1.4;
     }
-    .tracking-strip span.text {
-      white-space: normal;
-      word-break: break-word;
+    .hero { padding: 2.2rem 1.25rem 1.8rem; }
+    .hero h1 {
+      font-size: clamp(1.55rem, 1.25rem + 1.8vw, 1.95rem);
+      line-height: 1.16; word-break: break-word;
     }
-    .email-capture { width: 100%; max-width: 100%; flex-direction: column; gap: 0.6rem; }
-    .email-capture input[type=email] { width: 100%; flex: none; font-size: 0.95rem; }
-    .email-capture button { width: 100%; padding: 0.8rem; font-size: 0.95rem; }
-    section.dealfeed-section { padding: 1.8rem 1rem; }
-    section.dealfeed-section > .section-head { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
-    section.dealfeed-section > .section-head a { white-space: normal; }
-    .deal-grid { grid-template-columns: 1fr; }
-    .principles-grid { grid-template-columns: 1fr; }
-    .glossary-teaser { padding: 1.3rem 1.1rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
-    .glossary-teaser a.button { width: 100%; text-align: center; }
-    .social-grid { grid-template-columns: 1fr 1fr; }
+    .hero-dispatch-box { padding: 1.4rem 1.1rem; }
+    .flight-radar-card { padding: 1.6rem 1.2rem; }
+    .flight-radar-card .card-top {
+      flex-direction: column; align-items: flex-start; gap: 0.6rem;
+    }
+    .flight-radar-card h3 {
+      font-size: 1.35rem; word-break: break-word; line-height: 1.25;
+    }
+    .flight-route-grid { grid-template-columns: 1fr; }
+    .section-header-row h2 { font-size: 1.65rem; }
+    .walks-grid { grid-template-columns: 1fr; }
+    .directory-teaser { padding: 1.8rem 1.2rem; flex-direction: column; align-items: flex-start; }
+    .directory-teaser a.button-brass { width: 100%; text-align: center; }
   }
 """
 
@@ -194,118 +293,195 @@ def _email_form(username: str, form_id: str) -> str:
       <form action="https://buttondown.com/api/emails/embed-subscribe/{username}"
             method="post" target="popupwindow" class="email-capture" id="{form_id}"
             onsubmit="window.open('https://buttondown.com/{username}', 'popupwindow')">
-        <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address">
-        <button type="submit">Get alerts</button>
+        <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
+        <button type="submit">Join the Dispatch</button>
       </form>
-      <p class="fine-print">One email per deal that clears the bar. No spam, unsubscribe anytime.</p>
     """
 
 
 def render(latest_tracker: dict, airline_count: int = 0) -> str:
-    social_html = "".join(
-        f'<a href="{url}" rel="noopener" target="_blank">{label}</a>' for label, url in SOCIAL_LINKS
-    )
-
     data = latest_tracker["data"]
     deals = data["deals"]
     routes = len(deals)
     min_miles = min(d["miles"] for d in deals)
-    source_labels = {
-        "sia_direct": "Singapore Airlines directly",
-        "milelion": "MileLion",
-        "omaat": "One Mile at a Time",
-    }
-    source = source_labels.get(data.get("source"), data.get("source", "the source"))
-    book_by = datetime.strptime(data["booking_window"]["end"], "%Y-%m-%d").strftime("%-d %b %Y")
-
     today_date = datetime.now().date()
     book_end_date = datetime.strptime(data["booking_window"]["end"], "%Y-%m-%d").date()
     is_cycle_ended = today_date > book_end_date
 
     if is_cycle_ended:
-        tracking_text = "Tracking SIA KrisFlyer Spontaneous Escapes • Next drop mid-October"
-        badge_html = '<span class="badge" style="background:var(--rust-deep);">Next Drop: Mid-Oct</span>'
-        deal_meta = f"Latest monthly cycle: {routes} routes from {min_miles:,} miles.<br><strong>Next drop expected ~15 Oct 2026</strong> for November escapes."
-        deal_cta = "Review past routes archive &rarr;"
+        status_tag = "NEXT CYCLE: MID-OCTOBER"
+        status_headline = "Singapore Airlines Spontaneous Escapes"
+        status_sub = "Discounted 30% Saver Awards across Business & Economy. The next drop is expected ~15 October 2026 for November flights. Review our 92-sector planner while awaiting the drop."
+        date_badge = "Expected ~15 Oct 2026"
     else:
-        tracking_text = f"Tracking SIA KrisFlyer Spontaneous Escapes, {routes} routes live"
-        badge_html = f'<span class="badge">{data.get("discount_pct", 30)}% off</span>'
-        deal_meta = f"Business class, book by {book_by}.<br>Verified via {source}."
-        deal_cta = "See every route &rarr;"
-
-    deal_card = f"""
-      <a class="deal-card" href="singapore-airlines/spontaneous-escapes/{latest_tracker['slug']}/">
-        {badge_html}
-        <h3>SIA KrisFlyer Spontaneous Escapes</h3>
-        <span class="stat">{routes} routes <small>from {min_miles:,} miles</small></span>
-        <span class="meta">{deal_meta}</span>
-        <span class="cta">{deal_cta}</span>
-      </a>
-    """
-    placeholder_card = """
-      <div class="deal-card placeholder">
-        <span class="badge muted">More soon</span>
-        <h3>We're expanding past Singapore Airlines</h3>
-        <span class="meta">More loyalty programs are getting tracked as we add them. Use the form above to hear first.</span>
-      </div>
-    """
+        status_tag = "30% OFF SAVER AWARDS"
+        status_headline = "KrisFlyer Spontaneous Escapes Active"
+        status_sub = f"Currently tracking {routes} discounted routes starting from {min_miles:,} miles in Business class."
+        date_badge = f"Book by {data['booking_window']['end']}"
 
     body = f"""
-    <div class="hero">
-      <span class="tracking-strip"><span class="dot"></span><span class="text">{tracking_text}</span></span>
-      <h1>Deals worth your miles, tracked live.</h1>
-      <p class="lede">
-        Exact routes, exact miles, exact dates. We flag a deal the moment
-        it's actually worth booking. No hype, no guesswork.
-      </p>
-      {_email_form(BUTTONDOWN_USERNAME, 'hero-alerts')}
+    <div class="masthead-strip">
+      <span class="vol">Issue 01 &bull; Autumn 2026</span>
+      <span>The Art of Departure &amp; The Slow Walk</span>
+      <span>Dispatches from Singapore, Tokyo &amp; Beyond</span>
     </div>
 
-    <section class="dealfeed-section">
-      <div class="section-head">
-        <h2>Latest deals</h2>
-        <a href="singapore-airlines/spontaneous-escapes/">All Spontaneous Escapes posts &rarr;</a>
+    <div class="hero">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        <span>Independent Travel &bull; Field Notes</span>
       </div>
-      <div class="deal-grid">
-        {deal_card}
-        {placeholder_card}
-      </div>
-    </section>
+      <h1>Where Slow Urban Walks Meet High-Value Flight Intelligence.</h1>
+      <p class="lede">
+        We map the quiet back-alley food trails worth lingering in, and decode the airline loyalty sweet spots that get you there in business class for 30% fewer miles.
+      </p>
 
-    <section class="dealfeed-section">
-      <h2>How we work</h2>
-      <div class="principles-grid">
-        <div class="p"><b>Numbers do the persuading</b><span>Miles, taxes, dates. No adjectives standing in for a good fare.</span></div>
-        <div class="p"><b>Precision over hype</b><span>Exact routes, exact fare classes. If a deal is one-direction only, we say so.</span></div>
-        <div class="p"><b>Sourced, not spun</b><span>Every list is cross-checked against the airline's own reveal before it goes up.</span></div>
+      <div class="hero-dispatch-box">
+        <div class="box-title">The Departure Dispatch</div>
+        <p>Curated pedestrian walking guides, quiet neighborhood supper spots, and immediate alerts whenever high-value redemption seats drop.</p>
+        {_email_form(BUTTONDOWN_USERNAME, 'hero-alerts')}
       </div>
-    </section>
+    </div>
 
-    <section class="dealfeed-section">
-      <div class="glossary-teaser">
-        <div class="copy">
-          <h2>{airline_count} airlines flying Changi, decoded</h2>
-          <p>Alliance, hub, terminal, official site. The reference you check before you book.</p>
+    <!-- Section 1: Flight Intelligence Desk -->
+    <section class="editorial-section">
+      <div class="section-eyebrow">01 / Flight Intelligence</div>
+      <div class="section-header-row">
+        <h2>Spontaneous Escapes Radar</h2>
+        <a class="view-all" href="singapore-airlines/spontaneous-escapes/">View All Escapes Reports &rarr;</a>
+      </div>
+
+      <div class="flight-radar-card">
+        <div class="card-top">
+          <span class="tag-badge">{status_tag}</span>
+          <span class="date-indicator">{date_badge}</span>
         </div>
-        <a class="button" href="airlines/">Browse the glossary &rarr;</a>
+        <h3>{status_headline}</h3>
+        <p class="summary">{status_sub}</p>
+
+        <div class="flight-route-grid">
+          <div class="flight-route-chip">
+            <span class="sector">SIN &rarr; NRT / HND</span>
+            <span class="destination">Tokyo, Japan</span>
+            <span class="miles">36,400 miles Business</span>
+          </div>
+          <div class="flight-route-chip">
+            <span class="sector">SIN &rarr; ICN</span>
+            <span class="destination">Seoul, Korea</span>
+            <span class="miles">36,400 miles Business</span>
+          </div>
+          <div class="flight-route-chip">
+            <span class="sector">SIN &rarr; FRA / LHR</span>
+            <span class="destination">Frankfurt / London</span>
+            <span class="miles">72,450 miles Business</span>
+          </div>
+          <div class="flight-route-chip">
+            <span class="sector">SIN &rarr; SYD / MEL</span>
+            <span class="destination">Sydney / Melbourne</span>
+            <span class="miles">47,950 miles Business</span>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <a class="button-brass" href="singapore-airlines/spontaneous-escapes/2026-10/dashboard/">Open 92-Sector Master Dashboard &rarr;</a>
+          <a class="button-outline" href="singapore-airlines/spontaneous-escapes/{latest_tracker['slug']}/">Past Month Breakdown</a>
+        </div>
       </div>
     </section>
 
-    <section class="dealfeed-section">
-      <h2>Follow along</h2>
-      <p>New lists go up on Instagram and TikTok first, usually within hours of the reveal.</p>
-      <div class="social-grid">{social_html}</div>
+    <!-- Section 2: Curated Urban Walks -->
+    <section class="editorial-section" id="walks">
+      <div class="section-eyebrow">02 / Field Guides</div>
+      <div class="section-header-row">
+        <h2>Curated Urban Walks</h2>
+        <a class="view-all" href="https://www.youtube.com/@StrollAndSavor" target="_blank" rel="noopener">Watch 4K Walking Films &rarr;</a>
+      </div>
+
+      <div class="walks-grid">
+        <article class="walk-card">
+          <div>
+            <div class="card-label">Tokyo, Japan &bull; Night Walk</div>
+            <h3>Tokyo After Dark: Shinjuku Alleys &amp; Late-Night Ramen</h3>
+            <p>From the glowing lanterns of Omoide Yokocho to the quiet residential backstreets of Yanaka. A 6-kilometer pedestrian guide to Tokyo's best standing sake bars and midnight broths.</p>
+          </div>
+          <div class="meta-footer">
+            <span>6.2 km walk &bull; 4 food stops</span>
+            <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+          </div>
+        </article>
+
+        <article class="walk-card">
+          <div>
+            <div class="card-label">Kyoto, Japan &bull; Morning Trail</div>
+            <h3>Dawn Along Shirakawa Canal: Pour-Overs &amp; Heritage Bakeries</h3>
+            <p>Walking the stone paths of Gion at 6:00 AM before the tour buses arrive. We map the third-generation kissatens, matcha roasters, and unheralded artisanal sourdough stalls.</p>
+          </div>
+          <div class="meta-footer">
+            <span>4.8 km walk &bull; 3 coffee stops</span>
+            <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+          </div>
+        </article>
+
+        <article class="walk-card">
+          <div>
+            <div class="card-label">Singapore &bull; Heritage Corridor</div>
+            <h3>The Spice Corridors: Joo Chiat Shophouses to Little India</h3>
+            <p>An architectural and culinary cross-section through Singapore's vibrant heritage districts. Traditional kopi gu you, charcoal popiah, and twilight roti prata stops.</p>
+          </div>
+          <div class="meta-footer">
+            <span>5.5 km walk &bull; 5 culinary stops</span>
+            <span style="color:var(--brass-deep); font-weight:700;">Field Guide &rarr;</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 3: Airlines Directory -->
+    <section class="editorial-section">
+      <div class="section-eyebrow">03 / Changi Airport Terminal Reference</div>
+      <div class="directory-teaser">
+        <div class="copy">
+          <h3>{airline_count} Global Airlines Operating Changi, Decoded.</h3>
+          <p>Alliance alignments (Star Alliance, oneworld, SkyTeam), dedicated terminal maps, lounge access rules, and loyalty program transfer partners. The reference you check before you book.</p>
+        </div>
+        <a class="button-brass" href="airlines/">Explore the Airline Glossary &rarr;</a>
+      </div>
+    </section>
+
+    <!-- Section 4: Editorial Code -->
+    <section class="editorial-section">
+      <div class="section-eyebrow">04 / Our Editorial Standard</div>
+      <div class="section-header-row">
+        <h2>How We Work</h2>
+      </div>
+      <div class="principles-row">
+        <div class="principle-box">
+          <span class="num">01 / METRICS FIRST</span>
+          <h4>Numbers Do the Persuading</h4>
+          <p>Exact miles, exact taxes, exact dates. No generic travel-blogger adjectives standing in for a genuine redemption deal.</p>
+        </div>
+        <div class="principle-box">
+          <span class="num">02 / ON FOOT AUTHENTICITY</span>
+          <h4>Walked, Timed &amp; Eaten</h4>
+          <p>Every urban route is walked at human pace. We only feature eateries, coffee houses, and bakeries where we've personally paid and dined.</p>
+        </div>
+        <div class="principle-box">
+          <span class="num">03 / UNSPONSORED INTEGRITY</span>
+          <h4>Zero Airline or Hotel PR</h4>
+          <p>No free stays, no junkets, no sponsored airline tickets. Independent reporting for discerning travelers.</p>
+        </div>
+      </div>
     </section>
     """
     return page(
-        title="Stroll & Savor - Travel deals, tracked with precision",
-        description="We track the travel deals and loyalty programs worth paying attention to: exact routes, exact miles, exact dates. Starting with Singapore Airlines KrisFlyer Spontaneous Escapes.",
+        title="Stroll & Savor — Urban Walks & Flight Intelligence",
+        description="Curated slow urban walks, neighborhood culinary guides, and insider airline loyalty intelligence. Track Singapore Airlines KrisFlyer Spontaneous Escapes with precision.",
         body=body,
         asset_prefix="",
         extra_style=STYLE,
         url_path="",
         og_type="website",
         breadcrumbs=[("Home", "")],
-        body_class="theme-dealfeed",
+        body_class="theme-editorial",
         head_extra=GOOGLE_FONTS_HEAD,
     )
