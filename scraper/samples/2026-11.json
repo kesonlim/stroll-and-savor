@@ -1,0 +1,234 @@
+{
+  "travel_month": "2026-11",
+  "generated_at": "2026-10-16T04:21:37+00:00",
+  "source": "milelion",
+  "source_url": "https://milelion.com/2026/10/15/singapore-airlines-krisflyer-spontaneous-escapes-for-november-2026-announced/",
+  "booking_window": {
+    "start": "2026-10-15",
+    "end": "2026-10-31"
+  },
+  "travel_window": {
+    "start": "2026-11-01",
+    "end": "2026-11-30"
+  },
+  "discount_pct": 30,
+  "deals": [
+    {
+      "origin": "Denpasar",
+      "destination": "Singapore",
+      "route_label": "Denpasar → Singapore",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ947. Blackout dates: 1-3, 8-10, 15-16, 19, 22-23 Nov 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Jakarta",
+      "route_label": "Singapore → Jakarta",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ950, SQ952."
+    },
+    {
+      "origin": "Jakarta",
+      "destination": "Singapore",
+      "route_label": "Jakarta → Singapore",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ951, SQ963, SQ965, SQ967."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Kuala Lumpur",
+      "route_label": "Singapore → Kuala Lumpur",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ122, SQ126. Blackout dates: 5-7 Nov 2026."
+    },
+    {
+      "origin": "Kuala Lumpur",
+      "destination": "Singapore",
+      "route_label": "Kuala Lumpur → Singapore",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ105, SQ107, SQ125. Blackout dates: 7-10 Nov 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Surabaya",
+      "route_label": "Singapore → Surabaya",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ922, SQ928."
+    },
+    {
+      "origin": "Surabaya",
+      "destination": "Singapore",
+      "route_label": "Surabaya → Singapore",
+      "cabin": "business",
+      "miles": 15400,
+      "notes": "Flights: SQ923, SQ929."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Bangkok",
+      "route_label": "Singapore → Bangkok",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ714. Blackout dates: 4-9, 14, 18-20, 26 Nov 2026."
+    },
+    {
+      "origin": "Bangkok",
+      "destination": "Singapore",
+      "route_label": "Bangkok → Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ719. Blackout dates: 1, 8-10, 15, 25, 29-30 Nov 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Da Nang",
+      "route_label": "Singapore → Da Nang",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ176. Blackout dates: 3-6, 11, 17, 19, 21, 24, 26, 30 Nov 2026."
+    },
+    {
+      "origin": "Da Nang",
+      "destination": "Singapore",
+      "route_label": "Da Nang → Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ175. Blackout dates: 2-4, 6, 9, 11-12, 17, 19, 24-26 Nov 2026."
+    },
+    {
+      "origin": "Hanoi",
+      "destination": "Singapore",
+      "route_label": "Hanoi → Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ191. Blackout dates: 1-3, 6-10, 13-16, 20-23, 26-29 Nov 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Ho Chi Minh City",
+      "route_label": "Singapore → Ho Chi Minh City",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ184, SQ186, SQ188. Blackout dates: 6 Nov 2026."
+    },
+    {
+      "origin": "Ho Chi Minh City",
+      "destination": "Singapore",
+      "route_label": "Ho Chi Minh City → Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ185, SQ187. Blackout dates: 9 Nov 2026."
+    },
+    {
+      "origin": "Manila",
+      "destination": "Singapore",
+      "route_label": "Manila → Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ915. Blackout dates: 1, 4, 6, 14, 18, 22-26, 28 Nov 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Phnom Penh",
+      "route_label": "Singapore → Phnom Penh",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ158. Blackout dates: 3-4, 6-7, 10-11, 13-14, 18, 24-25 Nov 2026."
+    },
+    {
+      "origin": "Phnom Penh",
+      "destination": "Singapore",
+      "route_label": "Phnom Penh → Singapore",
+      "cabin": "business",
+      "miles": 17500,
+      "notes": "Flights: SQ153, SQ157. Blackout dates: 3-4, 6-7, 10, 13-14, 17-18, 22, 24 Nov 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Hangzhou",
+      "route_label": "Singapore → Hangzhou",
+      "cabin": "business",
+      "miles": 24850,
+      "notes": "Flights: SQ838. Blackout dates: 5-6, 12, 29 Nov 2026."
+    },
+    {
+      "origin": "Hangzhou",
+      "destination": "Singapore",
+      "route_label": "Hangzhou → Singapore",
+      "cabin": "business",
+      "miles": 24850,
+      "notes": "Flights: SQ839. Blackout dates: 2, 9 Nov 2026."
+    },
+    {
+      "origin": "Ahmedabad",
+      "destination": "Singapore",
+      "route_label": "Ahmedabad → Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ505. Blackout dates: 4-15, 24 Nov 2026."
+    },
+    {
+      "origin": "Colombo",
+      "destination": "Singapore",
+      "route_label": "Colombo → Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ469."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Colombo",
+      "route_label": "Singapore → Colombo",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ468."
+    },
+    {
+      "origin": "Dhaka",
+      "destination": "Singapore",
+      "route_label": "Dhaka → Singapore",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ447."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Dhaka",
+      "route_label": "Singapore → Dhaka",
+      "cabin": "business",
+      "miles": 31500,
+      "notes": "Flights: SQ446."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Darwin",
+      "route_label": "Singapore → Darwin",
+      "cabin": "business",
+      "miles": 29750,
+      "notes": "Flights: SQ251, SQ253. Blackout dates: 1-9 Nov 2026."
+    },
+    {
+      "origin": "Singapore",
+      "destination": "Cairns",
+      "route_label": "Singapore → Cairns",
+      "cabin": "business",
+      "miles": 50400,
+      "notes": "Flights: SQ203. Blackout dates: 1-8 Nov 2026."
+    },
+    {
+      "origin": "Cairns",
+      "destination": "Singapore",
+      "route_label": "Cairns → Singapore",
+      "cabin": "business",
+      "miles": 50400,
+      "notes": "Flights: SQ204. Blackout dates: 24-30 Nov 2026."
+    }
+  ],
+  "extraction_notes": "sia-official (tier 1) not attempted — no JS-rendering browser tool in this scheduled context; fell through to MileLion. Extracted from the embedded Flourish business-class table (visualisation 30470106, 'Spontaneous Escapes November 2026 (Business)'), _Flourish_data balanced-brace scan. This month MileLion split Business/Premium Economy/Economy into separate tables, so all 27 rows are business. Booking window start (2026-10-15) inferred from article publish date; end (31 Oct 2026) stated in article."
+}
