@@ -179,16 +179,18 @@ def main():
     url_paths.append("singapore-airlines/spontaneous-escapes/2026-10/dashboard/")
     print("wrote /singapore-airlines/spontaneous-escapes/2026-10/dashboard/")
 
-    # kfescapes.thethinkthank.com is a second custom domain on this same
-    # Cloudflare Pages project (not its own project/build) -- functions/index.js
-    # serves this exact file at its "/" for that host only. Not added to
-    # url_paths: it's an internal serving alias, not its own indexable URL.
-    # Each month: point this at that month's newest krisflyer_dashboard_*
-    # module instead of editing functions/index.js.
+    # Dedicated KrisFlyer Escapes Master Dashboard at /kfescapes/ on strollsavor.com
+    kfescapes_dir = DIST / "kfescapes"
+    kfescapes_dir.mkdir(parents=True, exist_ok=True)
+    (kfescapes_dir / "index.html").write_text(krisflyer_kfescapes_landing.render())
+    url_paths.append("kfescapes/")
+    print("wrote /kfescapes/ (dedicated KrisFlyer Master Dashboard)")
+
+    # Legacy alias file retained for backward compatibility
     kfescapes_alias_dir = DIST / "_kfescapes-landing"
     kfescapes_alias_dir.mkdir(parents=True, exist_ok=True)
     (kfescapes_alias_dir / "index.html").write_text(krisflyer_kfescapes_landing.render())
-    print("wrote /_kfescapes-landing/ (serving alias for kfescapes.thethinkthank.com)")
+    print("wrote /_kfescapes-landing/ (legacy internal alias)")
 
     write_sitemap(url_paths)
     write_robots()

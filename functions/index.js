@@ -1,29 +1,22 @@
 // Cloudflare Pages Function, matches the root route ("/") only.
 //
-// kfescapes.thethinkthank.com is a second custom domain on this same Pages
-// project (stroll-and-savor) -- see site/scripts/build.py's "kfescapes
-// landing alias" step and docs/growth-plan.md. Cloudflare Pages serves the
-// identical static build to every custom domain attached to a project, so
-// this function is what makes kfescapes.thethinkthank.com/ show the current
-// month's KrisFlyer dashboard instead of the normal Stroll & Savor landing
-// page, without duplicating any files or builds.
-//
-// Every other domain (strollsavor.thethinkthank.com, the .pages.dev URL)
-// falls through via context.next() and gets the normal static landing.py
-// output, unchanged.
+// 1. 301 Redirect old thethinkthank.com domains to strollsavor.com:
+//    - kfescapes.thethinkthank.com -> https://strollsavor.com/kfescapes/
+//    - strollsavor.thethinkthank.com -> https://strollsavor.com/...
+// 2. Normal strollsavor.com requests fall through to static assets.
+
 export async function onRequest(context) {
   const host = context.request.headers.get("host") || "";
   const url = new URL(context.request.url);
 
-  // 301 redirect old subdomain to new branded domain
-  if (host === "strollsavor.thethinkthank.com") {
-    return Response.redirect(`https://strollsavor.com${url.pathname}${url.search}`, 301);
+  // 301 redirect kfescapes.thethinkthank.com to strollsavor.com/kfescapes/
+  if (host === "kfescapes.thethinkthank.com") {
+    return Response.redirect("https://strollsavor.com/kfescapes/", 301);
   }
 
-  // Alias kfescapes subdomain to the dedicated master dashboard
-  if (host === "kfescapes.thethinkthank.com") {
-    url.pathname = "/_kfescapes-landing/";
-    return context.env.ASSETS.fetch(new Request(url.toString(), context.request));
+  // 301 redirect old strollsavor subdomain to root domain
+  if (host === "strollsavor.thethinkthank.com") {
+    return Response.redirect(`https://strollsavor.com${url.pathname}${url.search}`, 301);
   }
 
   return context.next();
