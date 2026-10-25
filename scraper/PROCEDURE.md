@@ -55,11 +55,15 @@ time rather than silently masked.
 
    To get the full table (confirmed working 2026-08-08, see
    `scraper/samples/2026-08.json`):
-   1. Load the article in a rendering browser and find the two
-      `flo.uri.sh/visualisation/<id>/embed` iframe URLs via
-      `document.querySelectorAll('iframe')` — the one whose surrounding
-      heading says "Business & Economy Class" is the one that matters
-      (there's a second, separate one for Premium Economy).
+   1. Find the article's `flo.uri.sh/visualisation/<id>/embed` (or
+      `public.flourish.studio/visualisation/<id>`) table ids — a plain fetch
+      of the article HTML has them, no rendering browser needed. The layout
+      changes month to month: through October 2026 it was one
+      "Business & Economy Class" table plus a Premium Economy one; from
+      November 2026 it is **one table per cabin** (Business, Premium
+      Economy, Economy — each table's `<title>` ends in the cabin, e.g.
+      "Spontaneous Escapes November 2026 (Business)"). For this extract use
+      whichever table carries the Business column.
    2. Fetch `https://flo.uri.sh/visualisation/<id>/embed?auto=1` directly
       (plain HTTP fetch is fine for this endpoint — it's Flourish's CDN,
       not SIA's WAF).
@@ -93,6 +97,44 @@ time rather than silently masked.
    extract is ready for a quick glance, with the source tier and route count
    in the notification (e.g. "12 business-class routes extracted from
    sia-official for Sept 2026 travel — ready to review").
+
+9. **Refresh the master dashboard (all cabins, publishes automatically).**
+   A fire is only a no-op once **both** `scraper/samples/<travel_month>.json`
+   and `site/data/kfescapes/<travel_month>.json` exist — if the extract is
+   already there but the dashboard file isn't, skip straight to this step.
+   This step is *not* behind the review gate above — the owner decided
+   (2026-10-25) the dashboard at strollsavor.com/kfescapes/ goes live by
+   itself every month, regardless of route count, so visitors never land
+   on last month's expired fares. Only social content waits for review.
+   1. Run `python3 site/scripts/kfescapes_fetch.py <travel_month>`. It reads
+      `source_url` from the `scraper/samples/<travel_month>.json` written in
+      step 7, pulls **every** cabin's Flourish table from that article, and
+      writes `site/data/kfescapes/<travel_month>.json`. If step 7's source
+      was not MileLion, pass the MileLion article with `--source-url` (the
+      dashboard needs its per-cabin tables). If it exits with an error
+      (e.g. "titled ... not <Month Year>" = MileLion hasn't swapped the
+      tables yet), retry on the routine's next firing; don't hand-write data.
+   2. Read its `WARNING` lines:
+      - *cities missing from cities.json* — add each one to
+        `site/data/kfescapes/cities.json` (region from the existing set;
+        lat/lon of its main airport), then re-run step 9.1 so its weather
+        gets filled in.
+      - *flight numbers with no known times* — fine to leave; the page
+        shows "-". Only add one to `site/data/kfescapes/flights.json` if you
+        have a schedule from a citable source (note it in `source`) — never
+        estimate.
+   3. Run `python3 site/scripts/build.py` to confirm the site builds.
+   4. Commit `site/data/kfescapes/` (and any `cities.json`/`flights.json`
+      edits) together with step 7's extract, and push to `main`. The
+      "Build and deploy site" GitHub Action (`.github/workflows/deploy.yml`)
+      rebuilds and deploys to Cloudflare Pages on that push.
+   5. Include the dashboard's sector count per cabin and the warning
+      counts in the step 8 notification.
+
+   The previous month's dashboard stays live at
+   `/singapore-airlines/spontaneous-escapes/<YYYY-MM>/dashboard/` and gets a
+   "see the latest month" banner automatically — nothing to do by hand. No
+   family itinerary (limfam-holidays) page is made for new months.
 
 ## Failure handling
 

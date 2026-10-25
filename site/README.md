@@ -2,8 +2,8 @@
 
 The public Stroll & Savor site: a brand-general landing page plus
 per-topic sections (currently just Singapore Airlines), deployed to
-Cloudflare Pages. Live at **https://strollsavor.thethinkthank.com** (custom
-domain confirmed working 2026-08-09) and
+Cloudflare Pages. Live at **https://strollsavor.com** (moved from
+strollsavor.thethinkthank.com, which now 301-redirects) and
 `https://stroll-and-savor.pages.dev`.
 
 ## Site structure (IA)
@@ -98,8 +98,9 @@ correct immediately; this is Cloudflare's edge cache, not a deploy failure.
   content lives in `content/posts/<month>/`, downloaded and posted
   manually. See that folder's `caption.txt` / `*.caption.txt` files for
   proposed post copy.
-- **No auto-deploy** — a new month's data landing (via the scheduled
-  extraction routine) does not automatically rebuild or redeploy this
-  site. Run `build.py` + `wrangler pages deploy` by hand after reviewing
-  new content, consistent with the human-review-gate policy the rest of
-  this project follows.
+- **Auto-deploy on push to main** (since 2026-10-25) via
+  `.github/workflows/deploy.yml` (needs the `CLOUDFLARE_API_TOKEN` and
+  `CLOUDFLARE_ACCOUNT_ID` repo secrets; skips with a warning without
+  them). The monthly routine pushes the KrisFlyer dashboard data, so the
+  dashboard goes live without review; social content still waits for
+  review because nothing posts it automatically.

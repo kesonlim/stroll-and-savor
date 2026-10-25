@@ -16,6 +16,7 @@ sys.path.insert(0, str(REPO_ROOT / "site" / "templates"))
 sys.path.insert(0, str(REPO_ROOT / "content" / "templates"))
 sys.path.insert(0, str(REPO_ROOT / "content" / "scripts"))
 sys.path.insert(0, str(REPO_ROOT / "airlines" / "data"))
+sys.path.insert(0, str(REPO_ROOT / "site" / "scripts"))
 
 import landing  # noqa: E402
 import spontaneous_escapes  # noqa: E402
@@ -23,8 +24,8 @@ import monthly_post  # noqa: E402
 import airlines_index  # noqa: E402
 import airline_entry  # noqa: E402
 import limfam_holidays  # noqa: E402
-import krisflyer_dashboard_2026_10  # noqa: E402
-import krisflyer_kfescapes_landing  # noqa: E402
+import krisflyer_dashboard  # noqa: E402
+import kfescapes_data  # noqa: E402
 from chrome import SITE_URL  # noqa: E402
 from web_artifact import month_label, SOURCE_LABEL  # noqa: E402
 from entries import build_entries as build_airline_entries  # noqa: E402
@@ -87,7 +88,47 @@ def write_robots():
     )
 
 
-def write_llms_txt(posts: list, airline_entries: list):
+def latest_month_note(latest_ctx: dict) -> str:
+    """Injected at the top of month-specific pages that predate the current month."""
+    return (
+        '<div role="note" style="background:#FFF7E6;border:1px solid #FCB130;border-radius:10px;'
+        'padding:12px 16px;margin:12px auto;max-width:1100px;font:14px/1.5 system-ui,sans-serif;color:#1a1a1a;">'
+        f'Newer fares are out: <a href="/kfescapes/" style="color:#1D4886;font-weight:700;">'
+        f'see the {latest_ctx["label"]} Spontaneous Escapes dashboard &rarr;</a></div>'
+    )
+
+
+def build_dashboards(url_paths: list) -> dict:
+    """Every month in site/data/kfescapes/ at its own dated URL; the newest also
+    at /kfescapes/ (and the legacy /_kfescapes-landing/ alias). Returns the
+    newest month's enriched data."""
+    months = [kfescapes_data.enrich(json.loads(f.read_text())) for f in kfescapes_data.month_files()]
+    if not months:
+        raise SystemExit("No site/data/kfescapes/*.json found -- nothing to build")
+    nav = [m["ctx"] for m in months]
+    latest = months[-1]
+    for m in months:
+        slug = m["ctx"]["slug"]
+        is_latest = m is latest
+        # While a month is current, its dated page defers to /kfescapes/ as the
+        # canonical URL (same content); once superseded it is canonical itself.
+        canonical = "kfescapes/" if is_latest else krisflyer_dashboard.page_path(slug)
+        out_dir = DIST / krisflyer_dashboard.page_path(slug)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "index.html").write_text(krisflyer_dashboard.render(m, nav, latest["ctx"], canonical))
+        if not is_latest:
+            url_paths.append(canonical)
+        print(f"wrote /{krisflyer_dashboard.page_path(slug)} ({len(m['rawSectors'])} sectors)")
+    for path in ["kfescapes", "_kfescapes-landing"]:
+        d = DIST / path
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(krisflyer_dashboard.render(latest, nav, latest["ctx"], "kfescapes/"))
+    url_paths.append("kfescapes/")
+    print(f"wrote /kfescapes/ ({latest['ctx']['label']}, latest month)")
+    return latest
+
+
+def write_llms_txt(posts: list, airline_entries: list, dashboard: dict):
     latest = posts[0]
     airline_lines = "\n".join(
         f"- [{e['name']}]({SITE_URL}/airlines/{e['slug']}/) ({e['iata']}, {e['alliance']})"
@@ -103,6 +144,7 @@ Monthly business-class award fare list (30% off Saver Awards), published as clos
 
 - [Spontaneous Escapes tracker]({SITE_URL}/singapore-airlines/spontaneous-escapes/) -- section index, all months
 - Latest: [{latest['title']}]({SITE_URL}/{SE_PATH}/{latest['slug']}/) -- {latest['meta']}
+- [Master dashboard, every cabin]({SITE_URL}/kfescapes/) -- all {len(dashboard['rawSectors'])} {dashboard['ctx']['label']} fares (Economy, Premium Economy, Business) with blackout dates, filters and a round-trip / open-jaw planner; past months stay at /{SE_PATH}/<YYYY-MM>/dashboard/
 
 ## Airlines glossary
 
@@ -167,34 +209,23 @@ def main():
     url_paths.append("airlines/")
     print(f"wrote /airlines/ ({len(airline_entries)} entries)")
 
-    limfam_dir = DIST / "singapore-airlines" / "spontaneous-escapes" / "2026-10" / "limfam-holidays"
+    dashboard = build_dashboards(url_paths)
+
+    # Family itinerary page: October 2026 only -- no new ones are made for
+    # later months. It stays public, with a pointer to the current dashboard.
+    limfam_dir = DIST / SE_PATH / "2026-10" / "limfam-holidays"
     limfam_dir.mkdir(parents=True, exist_ok=True)
-    (limfam_dir / "index.html").write_text(limfam_holidays.render())
-    url_paths.append("singapore-airlines/spontaneous-escapes/2026-10/limfam-holidays/")
-    print("wrote /singapore-airlines/spontaneous-escapes/2026-10/limfam-holidays/")
-
-    kf_dashboard_dir = DIST / "singapore-airlines" / "spontaneous-escapes" / "2026-10" / "dashboard"
-    kf_dashboard_dir.mkdir(parents=True, exist_ok=True)
-    (kf_dashboard_dir / "index.html").write_text(krisflyer_dashboard_2026_10.render())
-    url_paths.append("singapore-airlines/spontaneous-escapes/2026-10/dashboard/")
-    print("wrote /singapore-airlines/spontaneous-escapes/2026-10/dashboard/")
-
-    # Dedicated KrisFlyer Escapes Master Dashboard at /kfescapes/ on strollsavor.com
-    kfescapes_dir = DIST / "kfescapes"
-    kfescapes_dir.mkdir(parents=True, exist_ok=True)
-    (kfescapes_dir / "index.html").write_text(krisflyer_kfescapes_landing.render())
-    url_paths.append("kfescapes/")
-    print("wrote /kfescapes/ (dedicated KrisFlyer Master Dashboard)")
-
-    # Legacy alias file retained for backward compatibility
-    kfescapes_alias_dir = DIST / "_kfescapes-landing"
-    kfescapes_alias_dir.mkdir(parents=True, exist_ok=True)
-    (kfescapes_alias_dir / "index.html").write_text(krisflyer_kfescapes_landing.render())
-    print("wrote /_kfescapes-landing/ (legacy internal alias)")
+    limfam_html = limfam_holidays.render()
+    if dashboard["ctx"]["slug"] != "2026-10":
+        body_at = limfam_html.index(">", limfam_html.index("<body")) + 1
+        limfam_html = limfam_html[:body_at] + latest_month_note(dashboard["ctx"]) + limfam_html[body_at:]
+    (limfam_dir / "index.html").write_text(limfam_html)
+    url_paths.append(f"{SE_PATH}/2026-10/limfam-holidays/")
+    print(f"wrote /{SE_PATH}/2026-10/limfam-holidays/")
 
     write_sitemap(url_paths)
     write_robots()
-    write_llms_txt(posts, airline_entries)
+    write_llms_txt(posts, airline_entries, dashboard)
     print(f"wrote /sitemap.xml, /robots.txt, /llms.txt ({len(url_paths)} URLs)")
 
     print(f"\nSite built at {DIST}")

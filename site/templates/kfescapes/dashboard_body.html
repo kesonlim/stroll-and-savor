@@ -1,0 +1,884 @@
+
+
+  <div class="container">
+    {{ARCHIVE_BANNER}}
+    <!-- Header -->
+    <div class="dashboard-header">
+      <div class="header-top">
+        <div class="wordmark-eyebrow" aria-hidden="true">SIngapore AIRLInes &middot; KrisFlyer</div>
+        <h1 class="header-title">
+          KrisFlyer Travel Master Dashboard
+          <span class="badge-gold">{{MONTH_LABEL}} Escapes</span>
+        </h1>
+        <div style="font-size: 12px; color: #E2E8F0;">
+          Promotion: {{DISCOUNT}}% Off Saver Awards &bull; Travel: {{TRAVEL_RANGE}} &bull; Book by {{BOOK_BY}}
+        </div>
+      </div>
+      <div class="header-subtitle">
+        Official published reference covering <b>all promotional destinations and flight sectors</b> from Singapore Airlines' Spontaneous Escapes program for {{MONTH_LABEL}}. Every sector is ticketed independently at {{DISCOUNT}}% off Saver rates.
+      </div>
+    </div>
+
+    <!-- Live KPI Summary -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-label">Matching Itineraries / Flights</div>
+        <div class="kpi-value" id="kpi-count">0</div>
+        <div class="kpi-desc">Meeting current active filters</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Lowest Mileage Deal</div>
+        <div class="kpi-value" id="kpi-lowest" style="color: var(--accent-blue);">-</div>
+        <div class="kpi-desc">Minimum miles required</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Best Redemption Value</div>
+        <div class="kpi-value" id="kpi-pph" style="color: var(--accent-purple);">-</div>
+        <div class="kpi-desc">Lowest miles per flight hour</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Selected Date Status</div>
+        <div class="kpi-value" id="kpi-valid-ratio" style="color: var(--accent-green);">-</div>
+        <div class="kpi-desc" id="kpi-valid-sub">Select dates below to check</div>
+      </div>
+    </div>
+
+    <!-- STEP 1: DATE SELECTOR (COMES FIRST) -->
+    <div class="date-first-panel">
+      <div class="date-panel-header">
+        <div class="date-panel-title">
+          <span>📅 Step 1: Select Your Travel Dates ({{MONTH_LABEL}})</span>
+        </div>
+        <div style="font-size: 12px; color: #1D4886; font-weight: 600;" id="dateSelectionSummary">
+          Flexible / Any Date
+        </div>
+      </div>
+
+      <div class="date-grid">
+        <div class="control-item">
+          <label class="control-label">
+            <span>Preferred Outbound Date</span>
+            <span class="date-highlight-label" id="lblOutDate">Flexible</span>
+          </label>
+          <select id="outDateSelect" class="date-select-primary" onchange="onDateChanged()" title="Pick an outbound date to instantly check blackout validity against your itinerary.">
+            <option value="0">Any / Flexible Outbound Date</option>
+          </select>
+        </div>
+
+        <div class="control-item">
+          <label class="control-label">
+            <span>Preferred Return Date</span>
+            <span class="date-highlight-label" id="lblInDate">Flexible</span>
+          </label>
+          <select id="inDateSelect" class="date-select-primary" onchange="onDateChanged()" title="Pick a return date to instantly check blackout validity against your itinerary.">
+            <option value="0">Any / Flexible Return Date</option>
+          </select>
+        </div>
+
+        <div class="control-item">
+          <label class="checkbox-group" style="padding-top: 10px;">
+            <input type="checkbox" id="chkStrictValid" onchange="renderView()" title="Hide any itinerary where either leg falls on a blacked-out date.">
+            <span>Only Show Valid (Hide Blackouts)</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: SECONDARY FILTERS & SEARCH -->
+    <div class="filters-panel">
+      <div class="filters-grid">
+        <div class="control-item">
+          <label class="control-label">Region</label>
+          <select id="regionSelect" class="select-control" onchange="renderView()" title="Filter by Singapore Airlines promotional region.">
+            <option value="ALL">All Global Regions</option>
+            {{REGION_OPTIONS}}
+          </select>
+        </div>
+
+        <div class="control-item">
+          <label class="control-label">Cabin Class</label>
+          <select id="cabinSelect" class="select-control" onchange="renderView()" title="Filter by cabin class.">
+            <option value="ALL">All Cabin Classes</option>
+            {{CABIN_OPTIONS}}
+          </select>
+        </div>
+
+        <div class="control-item">
+          <label class="control-label">Weather Condition</label>
+          <select id="weatherSelect" class="select-control" onchange="renderView()" title="Filter by expected seasonal weather at the destination.">
+            <option value="ALL">All Weather Types</option>
+            <option value="Sunny">Sunny / Clear</option>
+            <option value="Cloudy">Partly Cloudy</option>
+            <option value="Rainy">Showers / Rainy</option>
+          </select>
+        </div>
+
+        <div class="control-item">
+          <label class="control-label">Quick Search</label>
+          <input type="text" id="textSearch" class="input-control" placeholder="City, route, flight number..." oninput="renderView()" title="Search by city, route, or flight number.">
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTIONAL TOOL: CUSTOM OPEN-JAW BUILDER (COLLAPSED / HIDDEN BY DEFAULT) -->
+    <div class="builder-toggle-card">
+      <div class="builder-toggle-header" id="builderHeader" onclick="toggleBuilder()" title="Build a custom one-way plus one-way pairing outside the standard round-trip list.">
+        <div class="builder-toggle-title">
+          <span>🛠️ Interactive Custom Open-Jaw & Round-Trip Builder</span>
+          <span class="badge" style="background:#F1F5F9; color:#475569; font-size:11px;">Optional Route Pairer</span>
+        </div>
+        <div class="builder-toggle-btn" id="builderToggleText">
+          <span>Expand Custom Builder</span>
+          <span id="builderArrow">▼</span>
+        </div>
+      </div>
+
+      <div class="builder-body" id="builderBody">
+        <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Build any custom pairing by selecting an Outbound flight from Singapore and any Inbound return flight from another city. All Singapore Airlines promotional sectors are priced as individual one-way awards at 30% off.
+        </div>
+
+        <!-- In the Builder, Dates come first -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; background: #F1F5F9; padding: 14px 16px; border-radius: 8px;">
+          <div>
+            <label style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">Outbound Date (SIN &rarr; City A)</label>
+            <select id="ojOutDateSelect" class="select-control date-select-primary" onchange="updateOpenJawBuilder()" title="Outbound date for your custom-built pairing.">
+              <option value="0">Any / Flexible Date</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 11.5px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">Inbound Date (City B &rarr; SIN)</label>
+            <select id="ojInDateSelect" class="select-control date-select-primary" onchange="updateOpenJawBuilder()" title="Inbound date for your custom-built pairing.">
+              <option value="0">Any / Flexible Date</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="builder-grid">
+          <!-- Outbound Leg -->
+          <div class="leg-box">
+            <div class="leg-title">
+              <span>Leg 1: Outbound (Singapore &rarr; City A)</span>
+              <span id="ojOutTag" class="badge badge-econ">Economy</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div>
+                <label style="font-size: 11.5px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px;">Choose Outbound Flight Sector</label>
+                <select id="ojOutSelect" class="select-control" onchange="updateOpenJawBuilder()" title="Choose the outbound flight sector from Singapore.">
+                </select>
+              </div>
+              <div id="ojOutDetails" style="font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.4;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Inbound Leg -->
+          <div class="leg-box">
+            <div class="leg-title">
+              <span>Leg 2: Inbound (City B &rarr; Singapore)</span>
+              <span id="ojInTag" class="badge badge-econ">Economy</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div>
+                <label style="font-size: 11.5px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 4px;">Choose Inbound Flight Sector</label>
+                <select id="ojInSelect" class="select-control" onchange="updateOpenJawBuilder()" title="Choose the inbound flight sector back to Singapore.">
+                </select>
+              </div>
+              <div id="ojInDetails" style="font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.4;">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Bar -->
+        <div id="ojResultPanel" class="builder-result-panel">
+          <div class="builder-kpi-item">
+            <span class="builder-kpi-label">Combined Award Miles</span>
+            <span class="builder-kpi-val" id="ojTotalMiles" style="color: var(--accent-blue);">-</span>
+          </div>
+          <div class="builder-kpi-item">
+            <span class="builder-kpi-label">Total Flight Time</span>
+            <span class="builder-kpi-val" id="ojTotalTime">-</span>
+          </div>
+          <div class="builder-kpi-item">
+            <span class="builder-kpi-label">Burn Rate Efficiency</span>
+            <span class="builder-kpi-val" id="ojPph" style="color: var(--accent-purple);">-</span>
+          </div>
+          <div class="builder-kpi-item">
+            <span class="builder-kpi-label">Trip Pairing Type</span>
+            <span class="builder-kpi-val" id="ojPairingType" style="font-size: 15px;">-</span>
+          </div>
+          <div class="builder-kpi-item" style="max-width: 320px;">
+            <span class="builder-kpi-label">Date Availability Status</span>
+            <div id="ojValidityBadge" style="margin-top: 2px;">-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mode Tabs -->
+    <div class="mode-nav">
+      <button class="mode-tab active" id="tabModeRaw" onclick="switchMode('raw')" title="Advanced view: every individual promotional flight sector Singapore Airlines published, including one-way-only Europe and Southwest Pacific fares.">
+        Full Promotional Flight Network Database <span class="count-pill">All {{N_SECTORS}} Flight Sectors</span>
+      </button>
+      <button class="mode-tab" id="tabModeRT" onclick="switchMode('roundtrip')" title="Simple view: official round-trip vacation packages only.">
+        Two-Way Vacation Planner <span class="count-pill">{{N_DESTINATIONS}} Destinations &bull; {{N_ITINERARIES}} Itineraries</span>
+      </button>
+    </div>
+    {{REGION_HINT}}
+
+    <!-- ACTION BAR: COLUMN SELECTOR & PRINT -->
+    <div class="action-bar">
+      <div style="font-size: 13px; color: var(--text-muted);" id="resultsNotice">
+        Showing all promotional destinations. Click on any column header to toggle sort ascending or descending.
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button class="btn" id="btnToggleCols" onclick="toggleColumnPanel()" title="Show or hide table columns to declutter the view.">
+          <span>⚙️ Customize Columns</span>
+          <span class="badge" style="background:#E2E8F0; color:var(--text-main); font-size:10.5px;" id="colCountBadge">10/10</span>
+          <span id="colToggleArrow">▼</span>
+        </button>
+        <button class="btn btn-primary" onclick="window.print()" title="Print this list or save it as a PDF.">Print / Save as PDF</button>
+      </div>
+    </div>
+
+    <!-- CUSTOMIZE COLUMNS PANEL (EXPANDABLE) -->
+    <div class="column-selector-panel" id="columnSelectorPanel" style="display: none;">
+      <div class="col-panel-top">
+        <div class="col-panel-title">
+          <span>⚙️ Select Columns to Display in Table</span>
+          <span style="font-size: 11.5px; font-weight: normal; color: var(--text-muted);">(Toggle any column on or off)</span>
+        </div>
+        <div class="col-actions">
+          <button class="btn-xs" onclick="hideWeatherAndTemp()" title="Remove the weather and temperature columns from the table.">Hide Weather & Temp</button>
+          <button class="btn-xs" onclick="setAllColumns(true)" title="Show every available column.">Show All</button>
+          <button class="btn-xs" onclick="resetDefaultColumns()" title="Restore the default column selection.">Reset Defaults</button>
+        </div>
+      </div>
+      <div class="col-pills-grid" id="colPillsContainer">
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="view-container" id="viewContainer">
+      <table id="mainTable">
+        <thead id="tableHead">
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+      </table>
+    </div>
+    <p class="table-scroll-hint" id="tableScrollHint">Scroll the table sideways to see every column, or use Customize Columns above to trim it down.</p>
+
+    
+    <!-- Climate & Weather Data Footnote -->
+    <div style="margin-top: 14px; font-size: 11.5px; color: var(--text-muted); line-height: 1.5; background: #F8FAFC; border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px;">
+      ℹ️ <b>Climate Data Reference:</b> {{CLIMATE_NOTE}}
+    </div>
+
+    {{STATIC_FARES}}
+
+    {{MONTH_NAV}}
+
+    <div class="footer">
+      KrisFlyer Spontaneous Escapes &bull; Official Travel Window: {{TRAVEL_RANGE}} &bull; Published Master Reference
+    </div>
+
+    <div class="sia-disclaimer">
+      <b>strollsavor.com/kfescapes/ is an independent, unofficial tracker.</b>
+      It is not affiliated with, endorsed by, or connected to Singapore Airlines Limited
+      or the KrisFlyer program. {{SOURCE_NOTE}}; always confirm final pricing and availability
+      on <a href="https://www.singaporeair.com" rel="noopener" target="_blank">singaporeair.com</a>
+      before booking. An independent project by
+      <a href="https://strollsavor.com" rel="noopener" target="_blank">Stroll &amp; Savor</a>.
+    </div>
+  </div>
+
+  <script>
+    function updateTableScrollHint() {
+      var vc = document.getElementById('viewContainer');
+      var hint = document.getElementById('tableScrollHint');
+      if (!vc || !hint) return;
+      var overflowing = vc.scrollWidth > vc.clientWidth + 4;
+      vc.classList.toggle('has-overflow', overflowing);
+      hint.classList.toggle('visible', overflowing);
+    }
+    window.addEventListener('resize', updateTableScrollHint);
+    function fmtNum(v) { return (v == null || !Number.isFinite(v)) ? '-' : v.toLocaleString(); }
+    const rawSectors = {{RAWSECTORS}};
+    const rtItineraries = {{RTITINERARIES}};
+    const outboundOptions = {{OUTBOUNDOPTIONS}};
+    const inboundOptions = {{INBOUNDOPTIONS}};
+
+    // Column Definitions for Mode 1 (Two-Way Itineraries)
+    const colsModeRT = [
+      { id: 'destination', label: 'Destination', sortKey: 'destination', default: true, tooltip: 'The city or destination for this round-trip itinerary.' },
+      { id: 'cabin', label: 'Cabin Class', sortKey: 'cabin', default: true, tooltip: 'Cabin class for the outbound and inbound legs together.' },
+      { id: 'miles', label: 'Total Miles', sortKey: 'miles', default: true, tooltip: 'Total KrisFlyer miles for the full round trip, both legs combined.' },
+      { id: 'duration', label: 'Flight Time', sortKey: 'flight_dur_min', default: true, tooltip: 'Combined flight time for the outbound and inbound legs.' },
+      { id: 'pph', label: 'Pts / Hour', sortKey: 'pts_per_hr', default: true, tooltip: 'Miles required per hour of flight time; lower is a better redemption value.' },
+      { id: 'outbound', label: 'Outbound (SIN &rarr; Dest) & Dep Time', sortKey: null, default: true, tooltip: 'Departure schedule and flight numbers from Singapore to the destination.' },
+      { id: 'inbound', label: 'Inbound (Dest &rarr; SIN) & Dep Time', sortKey: null, default: true, tooltip: 'Departure schedule and flight numbers on the return to Singapore.' },
+      { id: 'notes', label: 'Date Validity & Destination Highlights', sortKey: null, default: true, tooltip: 'Whether this itinerary is bookable on your selected dates, plus a short note about the destination.' },
+      { id: 'weather_temp', label: '{{MON_UPPER}} AVG TEMP', sortKey: 'temp_high', default: true, tooltip: 'Average {{MONTH_NAME}} temperature range and typical weather for this destination.' }
+    ];
+
+    // Column Definitions for Mode 2 (Raw Sectors)
+    const colsModeRaw = [
+      { id: 'route', label: 'Flight Route', sortKey: 'route', default: true, tooltip: 'The one-way flight sector: origin to destination.' },
+      { id: 'direction', label: 'Direction', sortKey: 'direction', default: true, tooltip: 'Whether this sector flies out from Singapore (Outbound) or back to Singapore (Inbound).' },
+      { id: 'cabin', label: 'Cabin', sortKey: 'cabin', default: true, tooltip: 'Cabin class for this individual flight sector.' },
+      { id: 'miles', label: 'One-Way Miles', sortKey: 'miles', default: true, tooltip: 'KrisFlyer miles required for this one-way sector alone.' },
+      { id: 'flight_nos', label: 'Flight No.', sortKey: 'flight_nos', default: true, tooltip: 'Singapore Airlines flight number(s) operating this sector.' },
+      { id: 'dep_time', label: 'Dep. Time', sortKey: 'dep_time', default: true, tooltip: 'Scheduled departure time for this sector.' },
+      { id: 'duration', label: 'Duration', sortKey: 'flight_dur_min', default: true, tooltip: 'Flight time for this one-way sector.' },
+      { id: 'pph', label: 'Pts / Hr', sortKey: 'pts_per_hr', default: true, tooltip: 'Miles required per hour of flight time; lower is a better redemption value.' },
+      { id: 'blackouts', label: 'Promotional Blackout Period', sortKey: null, default: true, tooltip: 'Dates this month when the 30% discount does not apply to this sector.' },
+      { id: 'date_status', label: 'Selected Date Status', sortKey: '_targetValid', default: true, tooltip: 'Whether this sector is bookable on your selected outbound or inbound date.' },
+      { id: 'weather_temp', label: '{{MON_UPPER}} AVG TEMP', sortKey: 'temp_high', default: true, tooltip: 'Average {{MONTH_NAME}} temperature range and typical weather for this destination.' }
+    ];
+
+    let visRT = {};
+    colsModeRT.forEach(c => visRT[c.id] = c.default);
+
+    let visRaw = {};
+    colsModeRaw.forEach(c => visRaw[c.id] = c.default);
+
+    let currentMode = 'raw';
+    let currentSortCol = 'miles';
+    let sortAsc = true;
+    let builderOpen = false;
+    let colPanelOpen = false;
+
+    function toggleColumnPanel() {
+      colPanelOpen = !colPanelOpen;
+      const p = document.getElementById('columnSelectorPanel');
+      const arrow = document.getElementById('colToggleArrow');
+      const btn = document.getElementById('btnToggleCols');
+      if (colPanelOpen) {
+        p.style.display = 'block';
+        btn.classList.add('btn-active');
+        arrow.innerText = '▲';
+      } else {
+        p.style.display = 'none';
+        btn.classList.remove('btn-active');
+        arrow.innerText = '▼';
+      }
+    }
+
+    function renderColumnPills() {
+      const container = document.getElementById('colPillsContainer');
+      container.innerHTML = '';
+
+      const cols = (currentMode === 'roundtrip') ? colsModeRT : colsModeRaw;
+      const visMap = (currentMode === 'roundtrip') ? visRT : visRaw;
+
+      let visibleCount = 0;
+      cols.forEach(col => {
+        const isVis = visMap[col.id];
+        if (isVis) visibleCount++;
+
+        const pill = document.createElement('div');
+        pill.className = 'col-pill ' + (isVis ? 'active' : '');
+        pill.innerHTML = `<span>${isVis ? '✓' : '✕'}</span> <span>${col.label}</span>`;
+        pill.title = col.tooltip || '';
+        pill.onclick = () => toggleColVisibility(col.id);
+        container.appendChild(pill);
+      });
+
+      document.getElementById('colCountBadge').innerText = visibleCount + '/' + cols.length;
+    }
+
+    function toggleColVisibility(colId) {
+      const visMap = (currentMode === 'roundtrip') ? visRT : visRaw;
+      visMap[colId] = !visMap[colId];
+      renderColumnPills();
+      buildTableHeaders();
+      renderView();
+    }
+
+    function setAllColumns(state) {
+      const cols = (currentMode === 'roundtrip') ? colsModeRT : colsModeRaw;
+      const visMap = (currentMode === 'roundtrip') ? visRT : visRaw;
+      cols.forEach(c => visMap[c.id] = state);
+      renderColumnPills();
+      buildTableHeaders();
+      renderView();
+    }
+
+    function hideWeatherAndTemp() {
+      if (currentMode === 'roundtrip') {
+        visRT['weather_temp'] = false;
+      } else {
+        visRaw['weather_temp'] = false;
+      }
+      renderColumnPills();
+      buildTableHeaders();
+      renderView();
+    }
+
+    function resetDefaultColumns() {
+      if (currentMode === 'roundtrip') {
+        colsModeRT.forEach(c => visRT[c.id] = c.default);
+      } else {
+        colsModeRaw.forEach(c => visRaw[c.id] = c.default);
+      }
+      renderColumnPills();
+      buildTableHeaders();
+      renderView();
+    }
+
+    function toggleBuilder() {
+      builderOpen = !builderOpen;
+      const bBody = document.getElementById('builderBody');
+      const bHeader = document.getElementById('builderHeader');
+      const bText = document.getElementById('builderToggleText');
+
+      if (builderOpen) {
+        bBody.style.display = 'block';
+        bHeader.classList.add('expanded');
+        bText.innerHTML = '<span>Collapse Custom Builder</span> <span>▲</span>';
+      } else {
+        bBody.style.display = 'none';
+        bHeader.classList.remove('expanded');
+        bText.innerHTML = '<span>Expand Custom Builder</span> <span>▼</span>';
+      }
+    }
+
+    function initSelects() {
+      const outSel = document.getElementById('outDateSelect');
+      const inSel = document.getElementById('inDateSelect');
+      const ojOutDateSel = document.getElementById('ojOutDateSelect');
+      const ojInDateSel = document.getElementById('ojInDateSelect');
+
+      for (let d = 1; d <= {{LAST_DAY}}; d++) {
+        [outSel, inSel, ojOutDateSel, ojInDateSel].forEach(sel => {
+          const opt = document.createElement('option');
+          opt.value = d;
+          opt.innerText = d + ' {{MONTH_LABEL}}';
+          sel.appendChild(opt);
+        });
+      }
+
+      // Open-Jaw Builder Outbounds
+      const ojOutSel = document.getElementById('ojOutSelect');
+      outboundOptions.forEach((o, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.innerText = o.route + ' (' + o.cabin + ') - ' + o.miles.toLocaleString() + ' mi [' + o.flight_nos + ']';
+        ojOutSel.appendChild(opt);
+      });
+
+      // Open-Jaw Builder Inbounds
+      const ojInSel = document.getElementById('ojInSelect');
+      inboundOptions.forEach((i, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.innerText = i.route + ' (' + i.cabin + ') - ' + i.miles.toLocaleString() + ' mi [' + i.flight_nos + ']';
+        ojInSel.appendChild(opt);
+      });
+
+      // Default selection in Open-Jaw Builder: KL out + Penang in
+      const klIdx = outboundOptions.findIndex(x => x.destination === 'Kuala Lumpur' && x.cabin === 'Economy');
+      const penIdx = inboundOptions.findIndex(x => x.origin === 'Penang' && x.cabin === 'Economy');
+      if (klIdx >= 0) ojOutSel.value = klIdx;
+      if (penIdx >= 0) ojInSel.value = penIdx;
+
+      updateOpenJawBuilder();
+      renderColumnPills();
+    }
+
+    function updateOpenJawBuilder() {
+      const outIdx = parseInt(document.getElementById('ojOutSelect').value, 10);
+      const inIdx = parseInt(document.getElementById('ojInSelect').value, 10);
+      const outD = parseInt(document.getElementById('ojOutDateSelect').value, 10);
+      const inD = parseInt(document.getElementById('ojInDateSelect').value, 10);
+
+      const outOpt = outboundOptions[outIdx];
+      const inOpt = inboundOptions[inIdx];
+
+      if (!outOpt || !inOpt) return;
+
+      document.getElementById('ojOutTag').className = 'badge ' + getBadgeClass(outOpt.cabin);
+      document.getElementById('ojOutTag').innerText = outOpt.cabin;
+      document.getElementById('ojInTag').className = 'badge ' + getBadgeClass(inOpt.cabin);
+      document.getElementById('ojInTag').innerText = inOpt.cabin;
+
+      document.getElementById('ojOutDetails').innerHTML = `
+        <b>Flight:</b> ${outOpt.flight_nos} &bull; <b>Dep:</b> ${outOpt.dep_time} &bull; <b>Dur:</b> ${outOpt.duration_str}<br>
+        <b>Weather in ${outOpt.destination}:</b> ${outOpt.temp_low}°C–${outOpt.temp_high}°C (${outOpt.weather})<br>
+        <span style="color:#DC2626;"><b>Blackouts:</b> ${outOpt.blackout_str}</span>
+      `;
+
+      document.getElementById('ojInDetails').innerHTML = `
+        <b>Flight:</b> ${inOpt.flight_nos} &bull; <b>Dep:</b> ${inOpt.dep_time} &bull; <b>Dur:</b> ${inOpt.duration_str}<br>
+        <b>Weather in ${inOpt.origin}:</b> ${inOpt.temp_low}°C–${inOpt.temp_high}°C (${inOpt.weather})<br>
+        <span style="color:#DC2626;"><b>Blackouts:</b> ${inOpt.blackout_str}</span>
+      `;
+
+      const totMiles = outOpt.miles + inOpt.miles;
+      const durKnown = outOpt.duration_min != null && inOpt.duration_min != null;
+      const totMin = durKnown ? outOpt.duration_min + inOpt.duration_min : NaN;
+      const durHrs = totMin / 60.0;
+      const durStr = durKnown ? Math.floor(durHrs) + 'h ' + (totMin % 60) + 'm' : '-';
+      const pph = Math.round(totMiles / durHrs);
+
+      document.getElementById('ojTotalMiles').innerText = totMiles.toLocaleString() + ' mi';
+      document.getElementById('ojTotalTime').innerText = durStr;
+      document.getElementById('ojPph').innerText = Number.isFinite(pph) ? pph.toLocaleString() + ' pts/hr' : '-';
+
+      const isSameCity = (outOpt.destination.toLowerCase() === inOpt.origin.toLowerCase());
+      document.getElementById('ojPairingType').innerHTML = isSameCity ? 
+        '<span style="color:#059669; font-weight:700;">Standard Round-Trip</span>' : 
+        '<span style="color:#7C3AED; font-weight:700;">Open-Jaw Route</span>';
+
+      let outValid = true;
+      let inValid = true;
+      if (outD > 0 && outOpt.blackout_days.includes(outD)) outValid = false;
+      if (inD > 0 && inOpt.blackout_days.includes(inD)) inValid = false;
+
+      const badgeEl = document.getElementById('ojValidityBadge');
+      const panel = document.getElementById('ojResultPanel');
+      if (outD > 0 || inD > 0) {
+        if (outValid && inValid) {
+          badgeEl.innerHTML = '<span class="badge badge-valid">✓ 100% Valid for Selected Dates</span>';
+          panel.classList.remove('has-blackout');
+        } else {
+          let errs = [];
+          if (outD > 0 && !outValid) errs.push('Outbound ' + outD + ' {{MON}} Blacked Out');
+          if (inD > 0 && !inValid) errs.push('Inbound ' + inD + ' {{MON}} Blacked Out');
+          badgeEl.innerHTML = '<span class="badge badge-blackout">✕ ' + errs.join(' | ') + '</span>';
+          panel.classList.add('has-blackout');
+        }
+      } else {
+        badgeEl.innerHTML = '<span style="color:var(--text-muted); font-size:12px;">Pick dates above to check blackout status</span>';
+        panel.classList.remove('has-blackout');
+      }
+    }
+
+    function onDateChanged() {
+      const outD = parseInt(document.getElementById('outDateSelect').value, 10);
+      const inD = parseInt(document.getElementById('inDateSelect').value, 10);
+      document.getElementById('lblOutDate').innerText = outD > 0 ? (outD + ' {{MON}}') : 'Flexible';
+      document.getElementById('lblInDate').innerText = inD > 0 ? (inD + ' {{MON}}') : 'Flexible';
+      
+      let summaryText = 'Flexible / Any Date';
+      if (outD > 0 && inD > 0) {
+        summaryText = outD + ' {{MON}} (Outbound) &rarr; ' + inD + ' {{MON}} (Return)';
+      } else if (outD > 0) {
+        summaryText = outD + ' {{MON}} (Outbound) &bull; Any Return Date';
+      } else if (inD > 0) {
+        summaryText = 'Any Outbound Date &bull; ' + inD + ' {{MON}} (Return)';
+      }
+      document.getElementById('dateSelectionSummary').innerHTML = summaryText;
+
+      document.getElementById('ojOutDateSelect').value = outD;
+      document.getElementById('ojInDateSelect').value = inD;
+      updateOpenJawBuilder();
+
+      renderView();
+    }
+
+    function switchMode(mode) {
+      currentMode = mode;
+      document.getElementById('tabModeRT').classList.toggle('active', mode === 'roundtrip');
+      document.getElementById('tabModeRaw').classList.toggle('active', mode === 'raw');
+      currentSortCol = 'miles';
+      sortAsc = true;
+      renderColumnPills();
+      buildTableHeaders();
+      renderView();
+    }
+
+    let orderRT = colsModeRT.map(c => c.id);
+    let orderRaw = colsModeRaw.map(c => c.id);
+    let dragColId = null;
+
+    function colsFor(mode) {
+      return (mode === 'roundtrip') ? colsModeRT : colsModeRaw;
+    }
+
+    function onColDragStart(ev, colId) {
+      dragColId = colId;
+      ev.dataTransfer.effectAllowed = 'move';
+    }
+    function onColDragOver(ev) {
+      ev.preventDefault();
+    }
+    function onColDrop(ev, targetColId) {
+      ev.preventDefault();
+      const order = (currentMode === 'roundtrip') ? orderRT : orderRaw;
+      if (!dragColId || dragColId === targetColId) { dragColId = null; return; }
+      const fromIdx = order.indexOf(dragColId);
+      const toIdx = order.indexOf(targetColId);
+      if (fromIdx === -1 || toIdx === -1) { dragColId = null; return; }
+      order.splice(fromIdx, 1);
+      order.splice(toIdx, 0, dragColId);
+      dragColId = null;
+      buildTableHeaders();
+      renderView();
+    }
+
+    function buildTableHeaders() {
+      const th = document.getElementById('tableHead');
+      const order = (currentMode === 'roundtrip') ? orderRT : orderRaw;
+      const vis = (currentMode === 'roundtrip') ? visRT : visRaw;
+      const cols = colsFor(currentMode);
+
+      let html = '<tr>';
+      order.forEach(colId => {
+        if (!vis[colId]) return;
+        const col = cols.find(c => c.id === colId);
+        if (!col) return;
+        const sortKey = col.sortKey;
+        const tooltip = (col.tooltip || '').replace(/"/g, '&quot;');
+        const labelSpan = sortKey
+          ? `<span onclick="handleSort('${sortKey}')" style="cursor:pointer;">${col.label} <span class="sort-arrow" id="s-${sortKey}">▲▼</span></span>`
+          : `<span>${col.label}</span>`;
+        html += `<th ondragover="onColDragOver(event)" ondrop="onColDrop(event,'${colId}')" title="${tooltip}"><span class="col-grip" draggable="true" ondragstart="onColDragStart(event,'${colId}')" title="Drag to reorder columns">⠿</span>${labelSpan}</th>`;
+      });
+      html += '</tr>';
+      th.innerHTML = html;
+    }
+
+    function handleSort(col) {
+      if (currentSortCol === col) {
+        sortAsc = !sortAsc;
+      } else {
+        currentSortCol = col;
+        sortAsc = true;
+      }
+      renderView();
+    }
+
+    function getBadgeClass(cabin) {
+      if (cabin.includes('Business')) return 'badge-biz';
+      if (cabin.includes('Premium')) return 'badge-pe';
+      if (cabin.includes('+') || cabin.includes('Mixed')) return 'badge-mix';
+      return 'badge-econ';
+    }
+
+    function getWeatherBadgeClass(wType) {
+      if (wType === 'Sunny') return 'badge-sunny';
+      if (wType === 'Rainy') return 'badge-rainy';
+      return 'badge-cloudy';
+    }
+
+    function renderView() {
+      const outD = parseInt(document.getElementById('outDateSelect').value, 10);
+      const inD = parseInt(document.getElementById('inDateSelect').value, 10);
+      const region = document.getElementById('regionSelect').value;
+      const cabin = document.getElementById('cabinSelect').value;
+      const weather = document.getElementById('weatherSelect').value;
+      const search = document.getElementById('textSearch').value.toLowerCase();
+      const strictValid = document.getElementById('chkStrictValid').checked;
+
+      let dataset = (currentMode === 'roundtrip') ? [...rtItineraries] : [...rawSectors];
+
+      let filtered = dataset.filter(item => {
+        if (region !== 'ALL' && item.region !== region) return false;
+        
+        if (cabin !== 'ALL') {
+          if (currentMode === 'roundtrip') {
+            if (item.cabin_type !== cabin) return false;
+          } else {
+            if (item.cabin !== cabin) return false;
+          }
+        }
+
+        if (weather !== 'ALL' && item.weather_type !== weather) return false;
+
+        if (search) {
+          const blob = JSON.stringify(item).toLowerCase();
+          if (!blob.includes(search)) return false;
+        }
+
+        if (currentMode === 'roundtrip') {
+          let outValid = true;
+          let inValid = true;
+          if (outD > 0 && item.out_bo_days && item.out_bo_days.includes(outD)) outValid = false;
+          if (inD > 0 && item.in_bo_days && item.in_bo_days.includes(inD)) inValid = false;
+          item._outValid = outValid;
+          item._inValid = inValid;
+          item._rtValid = outValid && inValid;
+
+          if (strictValid) {
+            if (outD > 0 && !outValid) return false;
+            if (inD > 0 && !inValid) return false;
+          }
+        } else {
+          let targetValid = true;
+          if (item.direction === 'Outbound' && outD > 0) {
+            if (item.blackout_days && item.blackout_days.includes(outD)) targetValid = false;
+          } else if (item.direction === 'Inbound' && inD > 0) {
+            if (item.blackout_days && item.blackout_days.includes(inD)) targetValid = false;
+          }
+          item._targetValid = targetValid;
+          if (strictValid) {
+            if ((item.direction === 'Outbound' && outD > 0 && !targetValid) ||
+                (item.direction === 'Inbound' && inD > 0 && !targetValid)) {
+              return false;
+            }
+          }
+        }
+
+        return true;
+      });
+
+      filtered.sort((a, b) => {
+        let vA = a[currentSortCol];
+        let vB = b[currentSortCol];
+        if (typeof vA === 'string') {
+          vA = vA.toLowerCase();
+          vB = vB.toLowerCase();
+        }
+        if (vA < vB) return sortAsc ? -1 : 1;
+        if (vA > vB) return sortAsc ? 1 : -1;
+        return 0;
+      });
+
+      document.getElementById('kpi-count').innerText = filtered.length;
+      if (filtered.length > 0) {
+        const minM = Math.min(...filtered.map(x => x.miles));
+        document.getElementById('kpi-lowest').innerText = minM.toLocaleString() + ' mi';
+        const pphVals = filtered.map(x => x.pts_per_hr).filter(v => v != null);
+        const minPph = pphVals.length ? Math.min(...pphVals) : null;
+        document.getElementById('kpi-pph').innerText = minPph == null ? '-' : minPph.toLocaleString() + ' pts/hr';
+      } else {
+        document.getElementById('kpi-lowest').innerText = '-';
+        document.getElementById('kpi-pph').innerText = '-';
+      }
+
+      if (outD > 0 || inD > 0) {
+        const validCount = filtered.filter(x => (currentMode === 'roundtrip' ? x._rtValid : x._targetValid)).length;
+        document.getElementById('kpi-valid-ratio').innerText = validCount + ' / ' + filtered.length + ' Valid';
+        let subText = '';
+        if (outD > 0) subText += outD + ' {{MON}} (Out) ';
+        if (inD > 0) subText += inD + ' {{MON}} (In)';
+        document.getElementById('kpi-valid-sub').innerText = 'For ' + subText.trim();
+      } else {
+        document.getElementById('kpi-valid-ratio').innerText = 'All Dates Open';
+        document.getElementById('kpi-valid-sub').innerText = 'Select dates above to verify';
+      }
+
+      document.querySelectorAll('.sort-arrow').forEach(el => el.innerText = '▲▼');
+      document.querySelectorAll('thead th').forEach(el => el.classList.remove('sorted'));
+      const activeArrow = document.getElementById('s-' + currentSortCol);
+      if (activeArrow) {
+        activeArrow.parentElement.classList.add('sorted');
+        activeArrow.innerText = sortAsc ? '▲' : '▼';
+      }
+
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      if (currentMode === 'roundtrip') {
+        const rtCellHTML = {
+          destination: (row) => `
+              <td>
+                <span class="cell-title">${row.destination}</span><br>
+                <span style="font-size:11px; color:var(--text-muted);">${row.region}</span>
+              </td>
+            `,
+          cabin: (row) => `<td><span class="badge ${getBadgeClass(row.cabin)}">${row.cabin}</span></td>`,
+          miles: (row) => `<td class="cell-miles">${row.miles.toLocaleString()}</td>`,
+          duration: (row) => `<td class="cell-flight-info"><b>${row.flight_dur_str}</b> (RT)</td>`,
+          pph: (row) => `<td class="cell-pph">${fmtNum(row.pts_per_hr)} <span style="font-size:10px; font-weight:normal;">pts/hr</span></td>`,
+          outbound: (row) => `
+              <td class="cell-flight-info">
+                <span style="font-weight:600; color:#1D4886;">${row.out_schedule}</span><br>
+                ${row.out_flights}
+              </td>
+            `,
+          inbound: (row) => `
+              <td class="cell-flight-info">
+                <span style="font-weight:600; color:#1D4886;">${row.in_schedule}</span><br>
+                ${row.in_flights}
+              </td>
+            `,
+          notes: (row) => {
+            let validityPill = '';
+            if (outD > 0 || inD > 0) {
+              if (row._rtValid) {
+                validityPill = '<span class="badge badge-valid">✓ Both Dates Valid</span><br>';
+              } else {
+                let reasons = [];
+                if (outD > 0 && !row._outValid) reasons.push('Outbound ' + outD + ' {{MON}} Blacked Out');
+                if (inD > 0 && !row._inValid) reasons.push('Inbound ' + inD + ' {{MON}} Blacked Out');
+                validityPill = '<span class="badge badge-blackout">✕ ' + reasons.join(' | ') + '</span><br>';
+              }
+            }
+            return `
+              <td class="cell-flight-info" style="max-width:260px;">
+                ${validityPill}
+                ${row.notes}
+              </td>
+            `;
+          },
+          weather_temp: (row) => `
+              <td>
+                <b>${row.temp_low}°C&ndash;${row.temp_high}°C</b><br>
+                <span style="font-size:11px; color:var(--text-muted);">${row.weather}</span>
+              </td>
+            `
+        };
+        filtered.forEach(row => {
+          const tr = document.createElement('tr');
+          let cells = '';
+          orderRT.forEach(colId => {
+            if (visRT[colId] && rtCellHTML[colId]) cells += rtCellHTML[colId](row);
+          });
+          tr.innerHTML = cells;
+          tbody.appendChild(tr);
+        });
+      } else {
+        const rawCellHTML = {
+          route: (row) => `
+              <td>
+                <span class="cell-title">${row.route}</span><br>
+                <span style="font-size:11px; color:var(--text-muted);">${row.region}</span>
+              </td>
+            `,
+          direction: (row) => `<td><span class="badge" style="background:#F1F5F9; color:#0F172A;">${row.direction}</span></td>`,
+          cabin: (row) => `<td><span class="badge ${getBadgeClass(row.cabin)}">${row.cabin}</span></td>`,
+          miles: (row) => `<td class="cell-miles">${row.miles.toLocaleString()}</td>`,
+          flight_nos: (row) => `<td><span class="flight-pill">${row.flight_nos}</span></td>`,
+          dep_time: (row) => `<td style="font-weight:600; color:#1D4886;">${row.dep_time}</td>`,
+          duration: (row) => `<td class="cell-flight-info">${row.flight_dur_str}</td>`,
+          pph: (row) => `<td class="cell-pph">${fmtNum(row.pts_per_hr)}</td>`,
+          blackouts: (row) => `<td class="cell-flight-info" style="max-width:240px; color:#DC2626;">${row.blackout_str}</td>`,
+          date_status: (row) => {
+            let dateStatus = '<span style="color:var(--text-muted); font-size:11.5px;">-</span>';
+            if ((row.direction === 'Outbound' && outD > 0) || (row.direction === 'Inbound' && inD > 0)) {
+              if (row._targetValid) {
+                dateStatus = '<span class="badge badge-valid">✓ Date Valid</span>';
+              } else {
+                dateStatus = '<span class="badge badge-blackout">✕ Blacked Out</span>';
+              }
+            }
+            return `<td>${dateStatus}</td>`;
+          },
+          weather_temp: (row) => `
+              <td>
+                <b>${row.temp_low}°C–${row.temp_high}°C</b><br>
+                <span style="font-size:11px; color:var(--text-muted);">${row.weather}</span>
+              </td>
+            `
+        };
+        filtered.forEach(row => {
+          const tr = document.createElement('tr');
+          let cells = '';
+          orderRaw.forEach(colId => {
+            if (visRaw[colId] && rawCellHTML[colId]) cells += rawCellHTML[colId](row);
+          });
+          tr.innerHTML = cells;
+          tbody.appendChild(tr);
+        });
+      }
+    }
+
+    initSelects();
+    buildTableHeaders();
+    renderView();
+    setTimeout(updateTableScrollHint, 50);
+  </script>

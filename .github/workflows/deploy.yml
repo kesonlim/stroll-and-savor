@@ -1,0 +1,52 @@
+# Rebuilds site/dist and deploys it to Cloudflare Pages (project stroll-and-savor)
+# whenever main changes something the site is built from -- including the monthly
+# KrisFlyer Spontaneous Escapes data the scheduled cloud routine pushes on the 15th.
+#
+# Needs two repository secrets (Settings -> Secrets and variables -> Actions):
+#   CLOUDFLARE_API_TOKEN   -- a token with "Cloudflare Pages: Edit" permission
+#   CLOUDFLARE_ACCOUNT_ID  -- the account id from the Cloudflare dashboard URL
+# Until they exist the deploy step is skipped with a warning, not a failure.
+name: Build and deploy site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "scraper/samples/**"
+      - "content/templates/**"
+      - "content/scripts/**"
+      - "airlines/data/**"
+      - "brand/**"
+      - "functions/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build site
+        run: python3 site/scripts/build.py
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::warning::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID secrets not set -- built but not deployed"
+            exit 0
+          fi
+          npx --yes wrangler@4 pages deploy site/dist --project-name stroll-and-savor --branch main \
+            --commit-hash "$GITHUB_SHA" --commit-message "$(git log -1 --pretty=%s)"

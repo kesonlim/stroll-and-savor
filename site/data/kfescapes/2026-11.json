@@ -1,0 +1,1154 @@
+{
+ "travel_month": "2026-11",
+ "source": "milelion",
+ "source_url": "https://milelion.com/2026/10/15/singapore-airlines-krisflyer-spontaneous-escapes-for-november-2026-announced/",
+ "fetched_at": "2026-10-25T18:55:21+00:00",
+ "booking_window": {
+  "start": "2026-10-15",
+  "end": "2026-10-31"
+ },
+ "travel_window": {
+  "start": "2026-11-01",
+  "end": "2026-11-30"
+ },
+ "discount_pct": 30,
+ "tables": [
+  {
+   "flourish_id": "30470106",
+   "title": "Spontaneous Escapes November 2026 (Business)",
+   "cabin": "Business",
+   "rows": 27
+  },
+  {
+   "flourish_id": "30470108",
+   "title": "Spontaneous Escapes November 2026 (PY)",
+   "cabin": "Premium Economy",
+   "rows": 17
+  },
+  {
+   "flourish_id": "30565085",
+   "title": "Spontaneous Escapes November 2026 (Economy)",
+   "cabin": "Economy",
+   "rows": 63
+  }
+ ],
+ "sectors": [
+  {
+   "origin": "Denpasar",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 15400,
+   "flight_nos": [
+    "SQ947"
+   ],
+   "blackout": "1-3, 8-10, 15-16, 19, 22-23 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Jakarta",
+   "cabin": "Business",
+   "miles": 15400,
+   "flight_nos": [
+    "SQ950",
+    "SQ952"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Jakarta",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 15400,
+   "flight_nos": [
+    "SQ951",
+    "SQ963",
+    "SQ965",
+    "SQ967"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Kuala Lumpur",
+   "cabin": "Business",
+   "miles": 15400,
+   "flight_nos": [
+    "SQ122",
+    "SQ126"
+   ],
+   "blackout": "5-7 Nov 2026"
+  },
+  {
+   "origin": "Kuala Lumpur",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 15400,
+   "flight_nos": [
+    "SQ105",
+    "SQ107",
+    "SQ125"
+   ],
+   "blackout": "7-10 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Surabaya",
+   "cabin": "Business",
+   "miles": 15400,
+   "flight_nos": [
+    "SQ922",
+    "SQ928"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Surabaya",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 15400,
+   "flight_nos": [
+    "SQ923",
+    "SQ929"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Bangkok",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ714"
+   ],
+   "blackout": "4-9, 14, 18-20, 26 Nov 2026"
+  },
+  {
+   "origin": "Bangkok",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ719"
+   ],
+   "blackout": "1, 8-10, 15, 25, 29-30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Da Nang",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ176"
+   ],
+   "blackout": "3-6, 11, 17, 19, 21, 24, 26, 30 Nov 2026"
+  },
+  {
+   "origin": "Da Nang",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ175"
+   ],
+   "blackout": "2-4, 6, 9, 11-12, 17, 19, 24-26 Nov 2026"
+  },
+  {
+   "origin": "Hanoi",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ191"
+   ],
+   "blackout": "1-3, 6-10, 13-16, 20-23, 26-29 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Ho Chi Minh City",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ184",
+    "SQ186",
+    "SQ188"
+   ],
+   "blackout": "6 Nov 2026"
+  },
+  {
+   "origin": "Ho Chi Minh City",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ185",
+    "SQ187"
+   ],
+   "blackout": "9 Nov 2026"
+  },
+  {
+   "origin": "Manila",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ915"
+   ],
+   "blackout": "1, 4, 6, 14, 18, 22-26, 28 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Phnom Penh",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ158"
+   ],
+   "blackout": "3-4, 6-7, 10-11, 13-14, 18, 24-25 Nov 2026"
+  },
+  {
+   "origin": "Phnom Penh",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 17500,
+   "flight_nos": [
+    "SQ153",
+    "SQ157"
+   ],
+   "blackout": "3-4, 6-7, 10, 13-14, 17-18, 22, 24 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Hangzhou",
+   "cabin": "Business",
+   "miles": 24850,
+   "flight_nos": [
+    "SQ838"
+   ],
+   "blackout": "5-6, 12, 29 Nov 2026"
+  },
+  {
+   "origin": "Hangzhou",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 24850,
+   "flight_nos": [
+    "SQ839"
+   ],
+   "blackout": "2, 9 Nov 2026"
+  },
+  {
+   "origin": "Ahmedabad",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 31500,
+   "flight_nos": [
+    "SQ505"
+   ],
+   "blackout": "4-15, 24 Nov 2026"
+  },
+  {
+   "origin": "Colombo",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 31500,
+   "flight_nos": [
+    "SQ469"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Colombo",
+   "cabin": "Business",
+   "miles": 31500,
+   "flight_nos": [
+    "SQ468"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Dhaka",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 31500,
+   "flight_nos": [
+    "SQ447"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Dhaka",
+   "cabin": "Business",
+   "miles": 31500,
+   "flight_nos": [
+    "SQ446"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Darwin",
+   "cabin": "Business",
+   "miles": 29750,
+   "flight_nos": [
+    "SQ251",
+    "SQ253"
+   ],
+   "blackout": "1-9 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Cairns",
+   "cabin": "Business",
+   "miles": 50400,
+   "flight_nos": [
+    "SQ203"
+   ],
+   "blackout": "1-8 Nov 2026"
+  },
+  {
+   "origin": "Cairns",
+   "destination": "Singapore",
+   "cabin": "Business",
+   "miles": 50400,
+   "flight_nos": [
+    "SQ204"
+   ],
+   "blackout": "24-30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Brisbane",
+   "cabin": "Premium Economy",
+   "miles": 37450,
+   "flight_nos": [
+    "SQ265"
+   ],
+   "blackout": "1-15, 19-22, 27-30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Istanbul",
+   "cabin": "Premium Economy",
+   "miles": 36050,
+   "flight_nos": [
+    "SQ392"
+   ],
+   "blackout": "6-9, 14, 28-30 Nov 2026"
+  },
+  {
+   "origin": "Istanbul",
+   "destination": "Singapore",
+   "cabin": "Premium Economy",
+   "miles": 36050,
+   "flight_nos": [
+    "SQ391"
+   ],
+   "blackout": "2, 4, 7, 9, 14, 21 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Brussels",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ304"
+   ],
+   "blackout": "1, 6, 15, 20-30 Nov 2026"
+  },
+  {
+   "origin": "Brussels",
+   "destination": "Singapore",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ303"
+   ],
+   "blackout": "2, 7, 14-16 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Copenhagen",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ352"
+   ],
+   "blackout": "1, 5-7, 14-30 Nov 2026"
+  },
+  {
+   "origin": "Copenhagen",
+   "destination": "Singapore",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ351"
+   ],
+   "blackout": "1-2, 5-9, 14-15, 18, 21, 28, 30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Frankfurt",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ326",
+    "SQ330"
+   ],
+   "blackout": "20-22, 27-30 Nov 2026"
+  },
+  {
+   "origin": "Frankfurt",
+   "destination": "Singapore",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ25",
+    "SQ329"
+   ],
+   "blackout": "1-2, 6-7, 13-15, 20-21 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Milan",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ356"
+   ],
+   "blackout": "1-2, 7-8, 13-14, 21-30 Nov 2026"
+  },
+  {
+   "origin": "Milan",
+   "destination": "Singapore",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ355"
+   ],
+   "blackout": "1-9, 13-22 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Munich",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ368"
+   ],
+   "blackout": "27, 30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Paris",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ338"
+   ],
+   "blackout": "14, 28-29 Nov 2026"
+  },
+  {
+   "origin": "Paris",
+   "destination": "Singapore",
+   "cabin": "Premium Economy",
+   "miles": 52150,
+   "flight_nos": [
+    "SQ335",
+    "SQ337"
+   ],
+   "blackout": "1-15 Nov 2026"
+  },
+  {
+   "origin": "Frankfurt",
+   "destination": "New York",
+   "cabin": "Premium Economy",
+   "miles": 39900,
+   "flight_nos": [
+    "SQ26"
+   ],
+   "blackout": "28-29 Nov 2026"
+  },
+  {
+   "origin": "New York",
+   "destination": "Frankfurt",
+   "cabin": "Premium Economy",
+   "miles": 39900,
+   "flight_nos": [
+    "SQ25"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "San Francisco",
+   "cabin": "Premium Economy",
+   "miles": 55300,
+   "flight_nos": [
+    "SQ34"
+   ],
+   "blackout": "1, 14-16, 26-30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Brunei",
+   "cabin": "Economy",
+   "miles": 5600,
+   "flight_nos": [
+    "SQ148"
+   ],
+   "blackout": "15, 22 Nov 2026"
+  },
+  {
+   "origin": "Brunei",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 5600,
+   "flight_nos": [
+    "SQ147"
+   ],
+   "blackout": "9, 15, 30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Denpasar",
+   "cabin": "Economy",
+   "miles": 5600,
+   "flight_nos": [
+    "SQ944"
+   ],
+   "blackout": "5-8, 12-13, 19-21, 24-25 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Kuala Lumpur",
+   "cabin": "Economy",
+   "miles": 5600,
+   "flight_nos": [
+    "SQ122",
+    "SQ126"
+   ],
+   "blackout": "5-7 Nov 2026"
+  },
+  {
+   "origin": "Kuala Lumpur",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 5600,
+   "flight_nos": [
+    "SQ103",
+    "SQ105"
+   ],
+   "blackout": "8-10 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Surabaya",
+   "cabin": "Economy",
+   "miles": 5600,
+   "flight_nos": [
+    "SQ922",
+    "SQ926",
+    "SQ928"
+   ],
+   "blackout": "6-7 Nov 2026"
+  },
+  {
+   "origin": "Surabaya",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 5600,
+   "flight_nos": [
+    "SQ923",
+    "SQ927",
+    "SQ929"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Bangkok",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ714",
+    "SQ720"
+   ],
+   "blackout": "4-8, 19-21, 25-27 Nov 2026"
+  },
+  {
+   "origin": "Bangkok",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ719"
+   ],
+   "blackout": "1, 8-10, 15, 22, 28-30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Da Nang",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ174",
+    "SQ176"
+   ],
+   "blackout": "5-6, 21, 26 Nov 2026"
+  },
+  {
+   "origin": "Da Nang",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ171",
+    "SQ173",
+    "SQ175"
+   ],
+   "blackout": "9-11, 15, 30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Ho Chi Minh City",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ186",
+    "SQ188"
+   ],
+   "blackout": "5-7, 20 Nov 2026"
+  },
+  {
+   "origin": "Ho Chi Minh City",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ187"
+   ],
+   "blackout": "9-10 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Manila",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ914",
+    "SQ916"
+   ],
+   "blackout": "1-8, 18, 21, 25-30 Nov 2026"
+  },
+  {
+   "origin": "Manila",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ917",
+    "SQ919"
+   ],
+   "blackout": "9, 15, 25 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Phnom Penh",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ156",
+    "SQ158"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Phnom Penh",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ153",
+    "SQ157"
+   ],
+   "blackout": "20-22 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Phuket",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ724",
+    "SQ736",
+    "SQ740"
+   ],
+   "blackout": "5-7, 13, 21, 28 Nov 2026"
+  },
+  {
+   "origin": "Phuket",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ723",
+    "SQ725"
+   ],
+   "blackout": "9-10, 15, 29 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Siem Reap",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ166"
+   ],
+   "blackout": "1-2, 5-8, 13 Nov 2026"
+  },
+  {
+   "origin": "Siem Reap",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 9100,
+   "flight_nos": [
+    "SQ163",
+    "SQ165"
+   ],
+   "blackout": "6, 9-10, 15-16, 18, 21-22, 28-29 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Hangzhou",
+   "cabin": "Economy",
+   "miles": 10850,
+   "flight_nos": [
+    "SQ838"
+   ],
+   "blackout": "5-6 Nov 2026"
+  },
+  {
+   "origin": "Hangzhou",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 10850,
+   "flight_nos": [
+    "SQ839"
+   ],
+   "blackout": "13, 15, 22, 29 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Colombo",
+   "cabin": "Economy",
+   "miles": 13300,
+   "flight_nos": [
+    "SQ469"
+   ],
+   "blackout": "-"
+  },
+  {
+   "origin": "Dhaka",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 13300,
+   "flight_nos": [
+    "SQ447"
+   ],
+   "blackout": "4-5 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Dhaka",
+   "cabin": "Economy",
+   "miles": 13300,
+   "flight_nos": [
+    "SQ446"
+   ],
+   "blackout": "25-30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Adelaide",
+   "cabin": "Economy",
+   "miles": 20300,
+   "flight_nos": [
+    "SQ279"
+   ],
+   "blackout": "2-4, 6-7, 9-11, 13-14, 16-18, 20-21, 23-25, 27-28 Nov 2026"
+  },
+  {
+   "origin": "Adelaide",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 20300,
+   "flight_nos": [
+    "SQ278"
+   ],
+   "blackout": "1, 3-5, 7-8, 10-12, 14-15, 17-19, 21-30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Brisbane",
+   "cabin": "Economy",
+   "miles": 20300,
+   "flight_nos": [
+    "SQ265",
+    "SQ255"
+   ],
+   "blackout": "1-8, 20-22 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Cairns",
+   "cabin": "Economy",
+   "miles": 20300,
+   "flight_nos": [
+    "SQ203"
+   ],
+   "blackout": "1-8 Nov 2026"
+  },
+  {
+   "origin": "Cairns",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 20300,
+   "flight_nos": [
+    "SQ204"
+   ],
+   "blackout": "1-4, 20-30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Melbourne",
+   "cabin": "Economy",
+   "miles": 20300,
+   "flight_nos": [
+    "SQ237"
+   ],
+   "blackout": "1-8, 14-15, 21-22, 27-29 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Sydney",
+   "cabin": "Economy",
+   "miles": 20300,
+   "flight_nos": [
+    "SQ231"
+   ],
+   "blackout": "1-8, 14-15, 21-22, 28-29 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Istanbul",
+   "cabin": "Economy",
+   "miles": 22400,
+   "flight_nos": [
+    "SQ392"
+   ],
+   "blackout": "4, 7-9, 21-23 Nov 2026"
+  },
+  {
+   "origin": "Istanbul",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 22400,
+   "flight_nos": [
+    "SQ391"
+   ],
+   "blackout": "4, 13-21 Nov 2026"
+  },
+  {
+   "origin": "Amsterdam",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ323"
+   ],
+   "blackout": "1-12, 14, 21-22, 28-29 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Brussels",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ304"
+   ],
+   "blackout": "1-9, 13-15, 22, 27, 29 Nov 2026"
+  },
+  {
+   "origin": "Brussels",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ303"
+   ],
+   "blackout": "14, 28 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Copenhagen",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ352"
+   ],
+   "blackout": "1-2, 6-8, 14-15, 20-30 Nov 2026"
+  },
+  {
+   "origin": "Copenhagen",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ351"
+   ],
+   "blackout": "1, 6-7, 14, 21 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Frankfurt",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ326",
+    "SQ330"
+   ],
+   "blackout": "7-8, 21-22, 28-30 Nov 2026"
+  },
+  {
+   "origin": "Frankfurt",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ25",
+    "SQ329",
+    "SQ330"
+   ],
+   "blackout": "6-7 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "London Gatwick",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ314"
+   ],
+   "blackout": "1, 2, 15, 22, 28-29 Nov 2026"
+  },
+  {
+   "origin": "London Gatwick",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ313"
+   ],
+   "blackout": "6-7, 14, 28 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "London (LHR)",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ308",
+    "SQ318"
+   ],
+   "blackout": "1, 7, 21, 28-29 Nov 2026"
+  },
+  {
+   "origin": "London (LHR)",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ305",
+    "SQ317"
+   ],
+   "blackout": "1, 5-7, 14, 21 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Milan",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ356"
+   ],
+   "blackout": "7, 21-30 Nov 2026"
+  },
+  {
+   "origin": "Milan",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ355"
+   ],
+   "blackout": "1-3, 7-9, 14, 21, 28 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Munich",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ328",
+    "SQ368"
+   ],
+   "blackout": "7-8, 14-15, 21-22, 28-30 Nov 2026"
+  },
+  {
+   "origin": "Munich",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ327",
+    "SQ367"
+   ],
+   "blackout": "7-8, 14-15, 21-22, 28-29 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Paris",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ338"
+   ],
+   "blackout": "15, 21-22, 26, 28-29 Nov 2026"
+  },
+  {
+   "origin": "Paris",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ335",
+    "SQ337"
+   ],
+   "blackout": "1-7, 12, 14-15, 18-19 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Rome",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ366"
+   ],
+   "blackout": "1, 6, 15, 22, 27-28 Nov 2026"
+  },
+  {
+   "origin": "Rome",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ365"
+   ],
+   "blackout": "1-15 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Zurich",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ346"
+   ],
+   "blackout": "7-8, 14-15, 20-30 Nov 2026"
+  },
+  {
+   "origin": "Zurich",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ345"
+   ],
+   "blackout": "1-3, 28-29 Nov 2026"
+  },
+  {
+   "origin": "Frankfurt",
+   "destination": "New York",
+   "cabin": "Economy",
+   "miles": 19250,
+   "flight_nos": [
+    "SQ26"
+   ],
+   "blackout": "1-3, 25-27, 29-30 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Los Angeles",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ36",
+    "SQ38"
+   ],
+   "blackout": "1-2, 12-19, 23, 26-30 Nov 2026"
+  },
+  {
+   "origin": "Los Angeles",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ35",
+    "SQ37"
+   ],
+   "blackout": "1-3, 5-7, 9-14, 18-21 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "San Francisco",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ32"
+   ],
+   "blackout": "1-2, 7-8, 14-19, 26-30 Nov 2026"
+  },
+  {
+   "origin": "San Francisco",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ31"
+   ],
+   "blackout": "1-2, 6-22 Nov 2026"
+  },
+  {
+   "origin": "Singapore",
+   "destination": "Seattle",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ28"
+   ],
+   "blackout": "27-29 Nov 2026"
+  },
+  {
+   "origin": "Seattle",
+   "destination": "Singapore",
+   "cabin": "Economy",
+   "miles": 30800,
+   "flight_nos": [
+    "SQ27"
+   ],
+   "blackout": "11, 14, 20-21 Nov 2026"
+  }
+ ]
+}

@@ -8,6 +8,7 @@ Monthly business-class award fare list (30% off Saver Awards), published as clos
 
 - [Spontaneous Escapes tracker](https://strollsavor.com/singapore-airlines/spontaneous-escapes/) -- section index, all months
 - Latest: [30% off Saver Awards, business class](https://strollsavor.com/singapore-airlines/spontaneous-escapes/2026-11/) -- 27 fares · book by 2026-10-31 · via MileLion
+- [Master dashboard, every cabin](https://strollsavor.com/kfescapes/) -- all 107 November 2026 fares (Economy, Premium Economy, Business) with blackout dates, filters and a round-trip / open-jaw planner; past months stay at /singapore-airlines/spontaneous-escapes/<YYYY-MM>/dashboard/
 
 ## Airlines glossary
 

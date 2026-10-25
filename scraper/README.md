@@ -76,8 +76,12 @@ of matching or beating MileLion's own publish speed:
   Monday the 16th; a Saturday 15th shifts to Monday the 17th; an 18th
   buffer day covers a Monday public holiday stacking on top of a weekend
   15th. Each fire is idempotent (no-ops once `samples/<travel_month>.json`
-  exists for the month), so the extra days/hours cost nothing but a quick
-  no-op check.
+  and `site/data/kfescapes/<travel_month>.json` both exist for the month),
+  so the extra days/hours cost nothing but a quick no-op check.
+- **Dashboard (since 2026-10-25)**: the same fire also refreshes the
+  all-cabin master dashboard at strollsavor.com/kfescapes/ (`PROCEDURE.md`
+  step 9) and pushes; `.github/workflows/deploy.yml` deploys on that push.
+  Unlike social content, the dashboard publishes without review.
 - **Why hourly, not every 30 min**: the platform enforces a 1-hour minimum
   fire interval per trigger; every-30-min was rejected outright by the API.
 - **Timing basis — a proxy, not confirmed**: the 9am–2:20pm SGT window is

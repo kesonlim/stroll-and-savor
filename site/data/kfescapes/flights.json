@@ -1,0 +1,920 @@
+{
+ "_about": "Known Singapore Airlines flight schedules, keyed by flight number. dep/arr are local times (HH:MM), dur_min is block time in minutes. Seeded from the October 2026 dashboard; add new flight numbers here (with a source) when kfescapes_fetch.py reports them as unknown.",
+ "SQ28": {
+  "dep": "09:00",
+  "arr": "09:05",
+  "dur_min": 865,
+  "route": "Singapore to Seattle",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ103": {
+  "dep": "08:35",
+  "arr": "09:40",
+  "dur_min": 65,
+  "route": "Kuala Lumpur to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ105": {
+  "dep": "10:20",
+  "arr": "11:25",
+  "dur_min": 65,
+  "route": "Kuala Lumpur to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ121": {
+  "dep": "20:30",
+  "arr": "21:35",
+  "dur_min": 65,
+  "route": "Kuala Lumpur to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ122": {
+  "dep": "07:45",
+  "arr": "08:50",
+  "dur_min": 65,
+  "route": "Singapore to Kuala Lumpur",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ126": {
+  "dep": "18:40",
+  "arr": "19:45",
+  "dur_min": 65,
+  "route": "Singapore to Kuala Lumpur",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ128": {
+  "dep": "19:40",
+  "arr": "20:45",
+  "dur_min": 65,
+  "route": "Singapore to Kuala Lumpur",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ133": {
+  "dep": "15:55",
+  "arr": "17:25",
+  "dur_min": 85,
+  "route": "Penang to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ135": {
+  "dep": "22:45",
+  "arr": "00:10",
+  "dur_min": 85,
+  "route": "Penang to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ136": {
+  "dep": "13:40",
+  "arr": "15:05",
+  "dur_min": 85,
+  "route": "Singapore to Penang",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ138": {
+  "dep": "20:45",
+  "arr": "22:10",
+  "dur_min": 85,
+  "route": "Singapore to Penang",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ147": {
+  "dep": "11:55",
+  "arr": "14:05",
+  "dur_min": 130,
+  "route": "Brunei to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ148": {
+  "dep": "08:40",
+  "arr": "10:50",
+  "dur_min": 130,
+  "route": "Singapore to Brunei",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ153": {
+  "dep": "09:10",
+  "arr": "12:15",
+  "dur_min": 130,
+  "route": "Phnom Penh to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ154": {
+  "dep": "07:15",
+  "arr": "08:25",
+  "dur_min": 125,
+  "route": "Singapore to Phnom Penh",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ155": {
+  "dep": "15:20",
+  "arr": "18:25",
+  "dur_min": 130,
+  "route": "Phnom Penh to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ156": {
+  "dep": "13:30",
+  "arr": "14:40",
+  "dur_min": 125,
+  "route": "Singapore to Phnom Penh",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ157": {
+  "dep": "18:15",
+  "arr": "21:20",
+  "dur_min": 130,
+  "route": "Phnom Penh to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ158": {
+  "dep": "16:15",
+  "arr": "17:25",
+  "dur_min": 125,
+  "route": "Singapore to Phnom Penh",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ163": {
+  "dep": "10:40",
+  "arr": "14:00",
+  "dur_min": 140,
+  "route": "Siem Reap to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ166": {
+  "dep": "08:45",
+  "arr": "10:00",
+  "dur_min": 135,
+  "route": "Singapore to Siem Reap",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ171": {
+  "dep": "11:50",
+  "arr": "15:30",
+  "dur_min": 175,
+  "route": "Da Nang to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ172": {
+  "dep": "09:15",
+  "arr": "11:00",
+  "dur_min": 165,
+  "route": "Singapore to Da Nang",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ173": {
+  "dep": "16:30",
+  "arr": "20:10",
+  "dur_min": 175,
+  "route": "Da Nang to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ174": {
+  "dep": "13:55",
+  "arr": "15:40",
+  "dur_min": 165,
+  "route": "Singapore to Da Nang",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ175": {
+  "dep": "20:45",
+  "arr": "00:25",
+  "dur_min": 175,
+  "route": "Da Nang to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ176": {
+  "dep": "18:10",
+  "arr": "19:55",
+  "dur_min": 165,
+  "route": "Singapore to Da Nang",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ177": {
+  "dep": "12:30",
+  "arr": "15:40",
+  "dur_min": 130,
+  "route": "Ho Chi Minh City to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ178": {
+  "dep": "09:45",
+  "arr": "11:00",
+  "dur_min": 130,
+  "route": "Singapore to Ho Chi Minh City",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ183": {
+  "dep": "15:55",
+  "arr": "19:05",
+  "dur_min": 130,
+  "route": "Ho Chi Minh City to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ184": {
+  "dep": "13:55",
+  "arr": "15:05",
+  "dur_min": 130,
+  "route": "Singapore to Ho Chi Minh City",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ185": {
+  "dep": "12:20",
+  "arr": "15:30",
+  "dur_min": 130,
+  "route": "Ho Chi Minh City to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ186": {
+  "dep": "17:25",
+  "arr": "18:35",
+  "dur_min": 130,
+  "route": "Singapore to Ho Chi Minh City",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ187": {
+  "dep": "19:40",
+  "arr": "22:45",
+  "dur_min": 130,
+  "route": "Ho Chi Minh City to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ188": {
+  "dep": "09:50",
+  "arr": "11:00",
+  "dur_min": 130,
+  "route": "Singapore to Ho Chi Minh City",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ191": {
+  "dep": "12:35",
+  "arr": "17:15",
+  "dur_min": 200,
+  "route": "Hanoi to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ193": {
+  "dep": "18:30",
+  "arr": "23:05",
+  "dur_min": 200,
+  "route": "Hanoi to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ204": {
+  "dep": "11:40",
+  "arr": "16:20",
+  "dur_min": 400,
+  "route": "Cairns to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ222": {
+  "dep": "16:10",
+  "arr": "21:50",
+  "dur_min": 460,
+  "route": "Sydney to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ228": {
+  "dep": "15:40",
+  "arr": "21:30",
+  "dur_min": 470,
+  "route": "Melbourne to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ251": {
+  "dep": "08:30",
+  "arr": "14:45",
+  "dur_min": 285,
+  "route": "Singapore to Darwin",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ253": {
+  "dep": "19:40",
+  "arr": "01:55",
+  "dur_min": 285,
+  "route": "Singapore to Darwin",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ266": {
+  "dep": "09:10",
+  "arr": "15:20",
+  "dur_min": 490,
+  "route": "Brisbane to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ278": {
+  "dep": "09:10",
+  "arr": "14:10",
+  "dur_min": 440,
+  "route": "Adelaide to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ304": {
+  "dep": "23:55",
+  "arr": "07:10",
+  "dur_min": 815,
+  "route": "Singapore to Brussels",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ308": {
+  "dep": "09:05",
+  "arr": "15:40",
+  "dur_min": 835,
+  "route": "Singapore to London (LHR)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ314": {
+  "dep": "23:45",
+  "arr": "06:25",
+  "dur_min": 840,
+  "route": "Singapore to London (LGW)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ318": {
+  "dep": "12:45",
+  "arr": "19:20",
+  "dur_min": 835,
+  "route": "Singapore to London (LHR)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ326": {
+  "dep": "13:55",
+  "arr": "20:30",
+  "dur_min": 780,
+  "route": "Singapore to Frankfurt",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ330": {
+  "dep": "01:25",
+  "arr": "08:00",
+  "dur_min": 780,
+  "route": "Singapore to Frankfurt",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ334": {
+  "dep": "00:05",
+  "arr": "07:15",
+  "dur_min": 810,
+  "route": "Singapore to Amsterdam",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ338": {
+  "dep": "00:15",
+  "arr": "07:35",
+  "dur_min": 820,
+  "route": "Singapore to Paris",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ352": {
+  "dep": "00:10",
+  "arr": "06:55",
+  "dur_min": 785,
+  "route": "Singapore to Copenhagen",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ356": {
+  "dep": "23:30",
+  "arr": "06:10",
+  "dur_min": 780,
+  "route": "Singapore to Milan",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ378": {
+  "dep": "00:25",
+  "arr": "07:05",
+  "dur_min": 780,
+  "route": "Singapore to Milan",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ401": {
+  "dep": "09:40",
+  "arr": "17:55",
+  "dur_min": 345,
+  "route": "Delhi to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ403": {
+  "dep": "21:55",
+  "arr": "06:10",
+  "dur_min": 345,
+  "route": "Delhi to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ421": {
+  "dep": "11:45",
+  "arr": "19:50",
+  "dur_min": 335,
+  "route": "Mumbai to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ423": {
+  "dep": "23:35",
+  "arr": "07:40",
+  "dur_min": 335,
+  "route": "Mumbai to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ431": {
+  "dep": "23:25",
+  "arr": "07:05",
+  "dur_min": 295,
+  "route": "Male to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ438": {
+  "dep": "20:35",
+  "arr": "22:10",
+  "dur_min": 285,
+  "route": "Singapore to Male",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ446": {
+  "dep": "20:35",
+  "arr": "22:40",
+  "dur_min": 250,
+  "route": "Singapore to Dhaka",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ447": {
+  "dep": "23:55",
+  "arr": "06:05",
+  "dur_min": 255,
+  "route": "Dhaka to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ462": {
+  "dep": "10:00",
+  "arr": "11:20",
+  "dur_min": 230,
+  "route": "Singapore to Colombo",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ463": {
+  "dep": "11:30",
+  "arr": "18:00",
+  "dur_min": 240,
+  "route": "Colombo to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ468": {
+  "dep": "22:20",
+  "arr": "23:40",
+  "dur_min": 230,
+  "route": "Singapore to Colombo",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ469": {
+  "dep": "00:50",
+  "arr": "07:20",
+  "dur_min": 240,
+  "route": "Colombo to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ505": {
+  "dep": "23:05",
+  "arr": "07:15",
+  "dur_min": 340,
+  "route": "Ahmedabad to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ528": {
+  "dep": "20:15",
+  "arr": "21:50",
+  "dur_min": 245,
+  "route": "Singapore to Chennai",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ529": {
+  "dep": "23:15",
+  "arr": "06:00",
+  "dur_min": 255,
+  "route": "Chennai to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ706": {
+  "dep": "06:40",
+  "arr": "08:05",
+  "dur_min": 145,
+  "route": "Singapore to Bangkok",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ707": {
+  "dep": "12:15",
+  "arr": "15:50",
+  "dur_min": 150,
+  "route": "Bangkok to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ712": {
+  "dep": "15:45",
+  "arr": "17:15",
+  "dur_min": 145,
+  "route": "Singapore to Bangkok",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ713": {
+  "dep": "20:15",
+  "arr": "23:40",
+  "dur_min": 150,
+  "route": "Bangkok to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ714": {
+  "dep": "17:30",
+  "arr": "19:00",
+  "dur_min": 145,
+  "route": "Singapore to Bangkok",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ719": {
+  "dep": "21:15",
+  "arr": "00:35",
+  "dur_min": 150,
+  "route": "Bangkok to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ720": {
+  "dep": "18:30",
+  "arr": "20:00",
+  "dur_min": 145,
+  "route": "Singapore to Bangkok",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ723": {
+  "dep": "09:30",
+  "arr": "12:20",
+  "dur_min": 115,
+  "route": "Phuket to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ724": {
+  "dep": "07:35",
+  "arr": "08:25",
+  "dur_min": 110,
+  "route": "Singapore to Phuket",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ725": {
+  "dep": "11:30",
+  "arr": "14:20",
+  "dur_min": 115,
+  "route": "Phuket to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ727": {
+  "dep": "16:30",
+  "arr": "19:20",
+  "dur_min": 115,
+  "route": "Phuket to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ732": {
+  "dep": "09:30",
+  "arr": "10:20",
+  "dur_min": 110,
+  "route": "Singapore to Phuket",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ736": {
+  "dep": "14:10",
+  "arr": "15:00",
+  "dur_min": 110,
+  "route": "Singapore to Phuket",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ739": {
+  "dep": "20:10",
+  "arr": "23:05",
+  "dur_min": 115,
+  "route": "Phuket to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ740": {
+  "dep": "18:30",
+  "arr": "19:20",
+  "dur_min": 110,
+  "route": "Singapore to Phuket",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ801": {
+  "dep": "00:05",
+  "arr": "06:25",
+  "dur_min": 375,
+  "route": "Beijing to Singapore (PEK)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ805": {
+  "dep": "08:55",
+  "arr": "15:05",
+  "dur_min": 375,
+  "route": "Beijing to Singapore (PEK)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ807": {
+  "dep": "16:35",
+  "arr": "22:50",
+  "dur_min": 375,
+  "route": "Beijing to Singapore (PEK)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ810": {
+  "dep": "00:30",
+  "arr": "06:35",
+  "dur_min": 365,
+  "route": "Singapore to Beijing Daxing (PKX)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ811": {
+  "dep": "09:30",
+  "arr": "15:35",
+  "dur_min": 365,
+  "route": "Beijing Daxing to Singapore (PKX)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ819": {
+  "dep": "18:35",
+  "arr": "23:40",
+  "dur_min": 305,
+  "route": "Chongqing to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ825": {
+  "dep": "00:10",
+  "arr": "05:40",
+  "dur_min": 330,
+  "route": "Shanghai to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ827": {
+  "dep": "08:05",
+  "arr": "13:35",
+  "dur_min": 330,
+  "route": "Shanghai to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ828": {
+  "dep": "08:05",
+  "arr": "13:25",
+  "dur_min": 320,
+  "route": "Singapore to Shanghai",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ831": {
+  "dep": "13:50",
+  "arr": "19:20",
+  "dur_min": 330,
+  "route": "Shanghai to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ833": {
+  "dep": "16:50",
+  "arr": "22:20",
+  "dur_min": 330,
+  "route": "Shanghai to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ835": {
+  "dep": "19:10",
+  "arr": "00:40",
+  "dur_min": 330,
+  "route": "Shanghai to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ836": {
+  "dep": "17:05",
+  "arr": "22:25",
+  "dur_min": 320,
+  "route": "Singapore to Shanghai",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ838": {
+  "dep": "16:55",
+  "arr": "22:05",
+  "dur_min": 310,
+  "route": "Singapore to Hangzhou",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ839": {
+  "dep": "00:10",
+  "arr": "05:10",
+  "dur_min": 300,
+  "route": "Hangzhou to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ843": {
+  "dep": "15:40",
+  "arr": "20:35",
+  "dur_min": 295,
+  "route": "Chengdu to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ857": {
+  "dep": "02:05",
+  "arr": "06:10",
+  "dur_min": 245,
+  "route": "Shenzhen to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ868": {
+  "dep": "07:50",
+  "arr": "12:25",
+  "dur_min": 275,
+  "route": "Singapore to Xiamen",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ869": {
+  "dep": "13:50",
+  "arr": "18:25",
+  "dur_min": 275,
+  "route": "Xiamen to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ874": {
+  "dep": "08:25",
+  "arr": "12:25",
+  "dur_min": 240,
+  "route": "Singapore to Hong Kong",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ875": {
+  "dep": "14:15",
+  "arr": "18:15",
+  "dur_min": 240,
+  "route": "Hong Kong to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ877": {
+  "dep": "14:25",
+  "arr": "19:10",
+  "dur_min": 285,
+  "route": "Taipei to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ878": {
+  "dep": "11:45",
+  "arr": "16:25",
+  "dur_min": 280,
+  "route": "Singapore to Taipei",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ883": {
+  "dep": "16:40",
+  "arr": "20:40",
+  "dur_min": 240,
+  "route": "Hong Kong to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ898": {
+  "dep": "19:55",
+  "arr": "23:50",
+  "dur_min": 240,
+  "route": "Singapore to Hong Kong",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ899": {
+  "dep": "09:05",
+  "arr": "13:00",
+  "dur_min": 240,
+  "route": "Hong Kong to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ914": {
+  "dep": "09:15",
+  "arr": "12:55",
+  "dur_min": 225,
+  "route": "Singapore to Manila",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ916": {
+  "dep": "14:05",
+  "arr": "18:00",
+  "dur_min": 225,
+  "route": "Singapore to Manila",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ917": {
+  "dep": "14:15",
+  "arr": "18:00",
+  "dur_min": 225,
+  "route": "Manila to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ921": {
+  "dep": "19:00",
+  "arr": "22:45",
+  "dur_min": 225,
+  "route": "Manila to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ922": {
+  "dep": "07:50",
+  "arr": "09:15",
+  "dur_min": 145,
+  "route": "Singapore to Surabaya",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ923": {
+  "dep": "10:15",
+  "arr": "13:45",
+  "dur_min": 145,
+  "route": "Surabaya to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ927": {
+  "dep": "18:30",
+  "arr": "22:00",
+  "dur_min": 145,
+  "route": "Surabaya to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ934": {
+  "dep": "08:20",
+  "arr": "11:05",
+  "dur_min": 165,
+  "route": "Singapore to Denpasar (Bali)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ935": {
+  "dep": "10:45",
+  "arr": "13:20",
+  "dur_min": 165,
+  "route": "Denpasar (Bali) to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ947": {
+  "dep": "20:05",
+  "arr": "22:40",
+  "dur_min": 165,
+  "route": "Denpasar (Bali) to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ948": {
+  "dep": "18:05",
+  "arr": "20:50",
+  "dur_min": 165,
+  "route": "Singapore to Denpasar (Bali)",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ949": {
+  "dep": "21:45",
+  "arr": "00:20",
+  "dur_min": 165,
+  "route": "Denpasar (Bali) to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ950": {
+  "dep": "06:20",
+  "arr": "07:05",
+  "dur_min": 110,
+  "route": "Singapore to Jakarta",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ951": {
+  "dep": "05:25",
+  "arr": "08:10",
+  "dur_min": 110,
+  "route": "Jakarta to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ952": {
+  "dep": "07:40",
+  "arr": "08:25",
+  "dur_min": 110,
+  "route": "Singapore to Jakarta",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ960": {
+  "dep": "15:15",
+  "arr": "16:00",
+  "dur_min": 110,
+  "route": "Singapore to Jakarta",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ963": {
+  "dep": "18:05",
+  "arr": "20:55",
+  "dur_min": 110,
+  "route": "Jakarta to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ964": {
+  "dep": "17:20",
+  "arr": "18:05",
+  "dur_min": 110,
+  "route": "Singapore to Jakarta",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ965": {
+  "dep": "19:00",
+  "arr": "21:50",
+  "dur_min": 110,
+  "route": "Jakarta to Singapore",
+  "source": "2026-10 dashboard schedule"
+ },
+ "SQ990": {
+  "dep": "07:30",
+  "arr": "08:00",
+  "dur_min": 90,
+  "route": "Singapore to Medan",
+  "source": "2026-10 dashboard schedule"
+ }
+}
